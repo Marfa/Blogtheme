@@ -15,7 +15,7 @@
 
         {{#get "posts" as |post|}}
             {{#foreach post}}
-                <item>
+                <item turbo="true">
                     <title><![CDATA[ {{title}} ]]></title>
                     <description><![CDATA[ {{excerpt}} ]]></description>
                     <link>{{url absolute="true"}}</link>
