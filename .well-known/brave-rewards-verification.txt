@@ -1,0 +1,4 @@
+This is a Brave Rewards publisher verification file.
+
+Domain: themarfa.name
+Token: f64caacfe0f63d53a4b485db01583bbe6e19022c6998035447e083bd559d140c
