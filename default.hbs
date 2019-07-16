@@ -99,5 +99,16 @@
 {{/is}}
 <!-- Go to www.addthis.com/dashboard to customize your tools -->
 <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-56843ef5297b0da7"></script>
+<link rel="manifest" href="/manifest.json" />
+<script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async=""></script>
+<script>
+    var OneSignal = window.OneSignal || [];
+    OneSignal.push(function() {
+        OneSignal.init({
+            appId: "aa419f32-4c4e-4953-abc0-72cd5c502bc0",
+        });
+    });
+</script>
+
 </body>
 </html>

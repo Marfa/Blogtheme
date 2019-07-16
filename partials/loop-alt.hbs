@@ -6,16 +6,16 @@
       <div class="column">
         <header class="entry-header">
           {{#primary_author}}
-            <p class="entry-author">Автор: <a href="{{url}}">{{name}}</a></p>
+            <p class="entry-author">Author: <a href="{{url}}">{{name}}</a></p>
           {{/primary_author}}
           <h2 class="entry-title"><a href="{{url}}">{{{title}}}</a></h2>
           <time class="entry-date" datetime="{{date format='YYYY-MM-DD'}}">{{date format="DD MMMM YYYY"}}</time>
         </header>
 
         <section class="entry-content">
-          <p class="entry-tags">{{tags prefix="Теги: "}}</p>
+          <p class="entry-tags">{{tags prefix="Tags: "}}</p>
           <p>{{excerpt characters="400"}}</p>
-          <p><a href="{{url}}" class="more-link">Читать дальше</a></p>
+          <p><a href="{{url}}" class="more-link">Read more</a></p>
         </section>
       </div>
 

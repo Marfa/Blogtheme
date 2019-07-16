@@ -31,14 +31,14 @@
         <article class="{{post_class}}">
           <header class="entry-header">
             {{#primary_author}}
-              <p class="entry-author">Автор: <a href="{{url}}">{{name}}</a></p>
+              <p class="entry-author">Author: <a href="{{url}}">{{name}}</a></p>
             {{/primary_author}}
             <h1>{{title}}</h1>
             <time class="entry-date" datetime="{{date format='YYYY-MM-DD'}}">{{date format="DD MMMM YYYY"}}</time>
           </header>
 
           <section class="entry-content">
-            <p class="entry-tags">{{tags prefix="Теги: "}}</p>
+            <p class="entry-tags">{{tags prefix="Tags: "}}</p>
 <!-- Go to www.addthis.com/dashboard to customize your tools --> <div class="addthis_tipjar_inline"></div>
             {{content}}
 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
@@ -61,7 +61,7 @@
             <div class="column">
               {{#next_post}}
                 <div class="next">
-                  <p>Следующий пост</p>
+                  <p>Next Post</p>
                   <h3><a href="{{url}}">{{title}}</a></h3>
                 </div>
               {{/next_post}}
@@ -70,7 +70,7 @@
             <div class="column">
               {{#prev_post}}
                 <div class="prev">
-                  <p>Предыдущий пост</p>
+                  <p>Previous Post</p>
                   <h3><a href="{{url}}">{{title}}</a></h3>
                 </div>
               {{/prev_post}}
