@@ -52,7 +52,7 @@ $(document).ready(function(){
 
   $('#search-field').ghostHunter({
     results: '#results',
-    info_template   : "<p>Найдено постов: {{amount}}</p>",
+    info_template   : "<p>Posts found: {{amount}}</p>",
     result_template : "<h4 class='results-title'><a href='{{link}}'>{{title}}</a></h4><time class='results-date'>{{pubDate}}</time><hr>",
     onKeyUp: true
   });
