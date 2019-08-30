@@ -31,11 +31,9 @@
         <article class="{{post_class}}">
           <header class="entry-header">
             {{#if authors}}
-                <ul>
                 {{#foreach authors}}
                     <p class="entry-author">Author: <a href="{{url}}" title="{{name}}" class="author author-{{id}} {{slug}}">{{name}}</a></p>
                 {{/foreach}}
-                </ul>
               {{/if}}
             <h1>{{title}}</h1>
             <time class="entry-date" datetime="{{date format='YYYY-MM-DD'}}">{{date format="DD MMMM YYYY"}}</time>
