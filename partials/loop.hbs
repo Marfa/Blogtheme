@@ -16,9 +16,11 @@
 
       <div class="column medium-column-40">
         <header class="entry-header">
-          {{#primary_author}}
-            <p class="entry-author">Author: <a href="{{url}}">{{name}}</a></p>
-          {{/primary_author}}
+            {{#if authors}}
+                {{#foreach authors}}
+                    <p class="entry-author">Author: <a href="{{url}}">{{name}}</a></p>
+                {{/foreach}}
+              {{/if}}
           <h2 class="entry-title"><a href="{{url}}">{{{title}}}</a></h2>
           <time class="entry-date" datetime="{{date format='YYYY-MM-DD'}}">{{date format="DD MMMM YYYY"}}</time>
         </header>
