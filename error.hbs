@@ -5,9 +5,9 @@
 <main class="site-main wow fadeIn" data-wow-duration=".8s" role="main">
 
   <section class="site-error-message">
-    <h1 class="site-error-code">{{code}}</h1>
+    <h1 class="site-error-code">{{statusCode}}</h1>
     <h2 class="site-error-description">{{message}}</h2>
-    <a class="site-error-link" href="{{@blog.url}}">Вернуться на главную →</a>
+    <a class="site-error-link" href="{{@site.url}}">Вернуться на главную →</a>
   </section>
 
   {{> widget-recent-posts}}

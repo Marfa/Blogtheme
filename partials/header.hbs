@@ -2,12 +2,12 @@
   <div class="row">
 
     <div class="column medium-column-35 large-column-25">
-      {{#if @blog.logo}}
-        <h1 class="site-title"><a href="{{@blog.url}}"><img src="{{@blog.logo}}" alt="{{@blog.title}}"></a></h1>
+      {{#if @site.logo}}
+        <h1 class="site-title"><a href="{{@site.url}}"><img src="{{@site.logo}}" alt="{{@site.title}}"></a></h1>
       {{else}}
-        <h1 class="site-title"><a href="{{@blog.url}}">{{@blog.title}}</a></h1>
+        <h1 class="site-title"><a href="{{@site.url}}">{{@site.title}}</a></h1>
       {{/if}}
-      <p class="site-description">{{@blog.description}}<br>Для связи <a href="mailto:biz@themarfa.name">biz@themarfa.name</a> или Telegram @immarfa</p>
+      <p class="site-description">{{@site.description}}<br>Для связи <a href="mailto:biz@themarfa.name">biz@themarfa.name</a> или Telegram @immarfa</p>
     </div>
 
     <div class="column">
