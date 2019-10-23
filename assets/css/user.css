@@ -51,6 +51,23 @@
     margin: 0 6px;
 }
 
+.kg-bookmark-card {
+    width: 100%;
+    background: var(--white);
+}
+
+.kg-card + .kg-bookmark-card {
+    margin-top: 0;
+}
+
+.kg-bookmark-publisher {
+    overflow: hidden;
+    max-width: 240px;
+    line-height: 1.5em;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
 .kg-gallery-container {
     display: flex;
     flex-direction: column;
