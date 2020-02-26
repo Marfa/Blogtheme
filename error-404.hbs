@@ -1,0 +1,14 @@
+{{!< default}}
+
+<div class="error">
+    <h1>404</h1>
+    <p>Страница не найдена. Но ты можешь почитать один из недавних постов:</p>
+    <div class="error__recent">
+    {{#get "posts" limit="3" as |recents|}}
+        {{#foreach recents}}
+            <a href="{{url}}">{{title}}</a>
+            {{/foreach}}
+    {{/get}}
+    </div>
+    <a href="/">← Или вернуться на главную</a>
+</div>

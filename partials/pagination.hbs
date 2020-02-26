@@ -1,11 +1,11 @@
-<nav class="pagination" role="pagination">
-  <span class="page-number">Страница {{page}} из {{pages}}</span>
-  <ul>
+<div class="post-list__pagination" role="navigation">
+    <span class="page-number">Страница {{page}} из {{pages}}</span>
+    <div>
     {{#if prev}}
-      <li class="prev"><a href="{{page_url prev}}">К новым постам</a></li>
+        <a class="newer-posts" href="{{page_url prev}}">&larr; К новым постам</a>
     {{/if}}
     {{#if next}}
-      <li class="next"><a href="{{page_url next}}">К старым постам</a></li>
+        <a class="older-posts" href="{{page_url next}}">К старым постам &rarr;</a>
     {{/if}}
-  </ul>
-</nav>
+    </div>
+</div>

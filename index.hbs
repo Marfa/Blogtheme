@@ -1,13 +1,86 @@
 {{!< default}}
-{{! The tag above means - insert everything in this file into the {body} of the default.hbs template }}
 
-{{! The main content area on the homepage }}
-<main class="site-main wow fadeIn" data-wow-duration=".8s" role="main">
+{{#is "index"}}
+    {{> featured_posts}}
+{{/is}}
 
-  {{! Search results }}
-  <section id="results"></section>
+{{#is "tag"}}
+    <h2 class="index-title">Посты по тегу "{{tag.name}}"</h2>
+{{/is}}
 
-  {{! The tag below includes the post loop - partials/loop.hbs }}
-  {{> "loop"}}
+{{#is "author"}}
+    {{> author author}}
+{{/is}}
 
-</main>
+<div class="post-list">
+    <section class="posts">
+        <div class="posts__partner wow fadeIn">
+            <div class="posts__partner-soc">
+                Мы в соцсетях:
+                <a href="tg://resolve?domain=themarfa" target="_blank">{{> "icons/telegram"}}</a>
+                <a href="https://twitter.com/themarfa" target="_blank">{{> "icons/twitter"}}</a>
+                <a href="https://vk.com/themarfa" target="_blank">{{> "icons/vk"}}</a>
+                <a href="https://facebook.com/groups/themarfa" target="_blank">{{> "icons/facebook"}}</a>
+                <a href="https://tt.me/themarfa" target="_blank">{{> "icons/tamtam"}}</a>
+                <a href="https://pinterest.com/themarfa" target="_blank">{{> "icons/pinterest"}}</a>
+            </div>
+            <span>Сотрудничество — <a href="mailto:biz@themarfa.name">biz@themarfa.name</a>, <a href="tg://resolve?domain=immarfa">@immarfa</a></span>
+        </div>
+
+        {{#is "author"}}<span class="post-list__count">{{plural pagination.total empty='Нет постов' singular='% пост' plural='% постов'}}</span>{{/is}}
+
+        {{#foreach posts}}
+            <article class="{{post_class}} wow fadeIn">
+                <div class="post__image">
+                    {{#if feature_image}}
+                    <img src="{{img_url feature_image}}">
+                    {{/if}}
+                </div>
+                <div class="post__info {{#unless feature_image}}post__info_full-width{{/unless}}">
+                    <div class="post__main-info">
+                        <h1 class="post__title"><a href="{{url}}">{{#if featured}}🔥 {{/if}}{{title}}</a></h1>
+                        <p class="post__excerpt">{{excerpt words="7"}}</p>
+                    </div>
+
+                    <div class="post__secondary-info">
+                        <div class="post__tags">
+                            <div class="post__tags-wrapper">
+                                <div class="post__tags-inner">
+                                {{#foreach tags}}
+                                    <a href="{{url}}" class="tag">{{name}}</a>
+                                {{/foreach}}
+                                </div>
+                            </div>
+                        </div>
+
+                        <a href="{{url}}" class="post__view-full">Читать дальше →</a>
+                    </div>
+                </div>
+            </article>
+        {{/foreach}}
+    </section>
+
+    <script>
+        let el = document.createElement('ins');
+        let d = el.dataset;
+        el.className = "adsbygoogle";
+        d.adClient = "ca-pub-6070814285497936";
+        d.adSlot = "3487354804";
+        d.adFormat = "horizontal";
+        d.fullWidthResponsive = "true";
+        el.setAttribute("style", "display:block;width:100%;max-height:200px;");
+        let q = $('.post-list .post:nth-of-type(5)');
+        $(q).after(el);
+    </script>
+</div>
+
+{{pagination}}
+
+<div class="index-ad">
+    <ins class="adsbygoogle"
+        style="display:block;width:100%;max-height:200px;"
+        data-ad-client="ca-pub-6070814285497936"
+        data-ad-slot="3487354804"
+        data-ad-format="horizontal"
+        data-full-width-responsive="true"></ins>
+</div>

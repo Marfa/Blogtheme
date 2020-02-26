@@ -1,108 +1,25 @@
 <!DOCTYPE html>
-<html>
+<html lang="{{@site.lang}}">
 <head>
-    {{! Document Settings }}
-    <meta charset="utf-8"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-
-    {{! Page Meta }}
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>{{meta_title}}</title>
-
-    <meta name="HandheldFriendly" content="True"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
-    <meta name="yandex-verification" content="d7438bb9477336c2"/>
-    <meta name="rpebb87ab7bf864089b568bea3a5a1c0df" content="ed23e9188af05f1d5ec5d9731e1b39bf"/>
-    <meta name="verify-admitad" content="ea3067190f" />
-    <meta http-equiv="Access-Control-Allow-Origin" content="*">
-
-
-    <link rel="apple-touch-icon" sizes="120x120" href="{{asset "/apple-touch-icon.png"}}">
-    <link rel="icon" type="image/png" sizes="32x32" href="{{asset "/favicon32.png"}}">
-    <link rel="icon" type="image/png" sizes="16x16" href="{{asset "/favicon16.png"}}">
-    <link rel="manifest" href="{{asset "/manifest.json"}}">
-    <link rel="mask-icon" href="{{asset "/safari-pinned-tab.svg"}}" color="#5bbad5">
-    <meta name="theme-color" content="#ffffff">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-
-    <link rel="stylesheet" type="text/css" href="{{asset "css/min/jquery.fancybox.min.css"}}">
-    <script src="{{asset "js/min/jquery.fancybox.min.js"}}"></script>
-
-    {{! Ghost outputs important style and meta data with this tag }}
+    <link rel="stylesheet" type="text/css" href="{{asset "css/app.css"}}">
+    <script type="text/javascript" src="{{asset "scripts/main.js"}}"></script>
     {{ghost_head}}
-
-    {{! Styles'n'Scripts }}
-    <link rel="stylesheet" type="text/css" href="{{asset "css/min/screen.min.css"}}"/>
-    <link rel="stylesheet" type="text/css" href="{{asset "css/min/animate.min.css"}}"/>
-    <link rel="stylesheet" type="text/css" href="{{asset "css/min/pace.min.css"}}"/>
-    <link rel="stylesheet" type="text/css" href="{{asset "fonts/icons/icons.css"}}"/>
-    <link rel="stylesheet" type="text/css" href="{{asset "css/user.css"}}"/>
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"/>
-    <link href="https://fonts.googleapis.com/css?family=Playfair+Display|Roboto&display=swap" rel="stylesheet">
-
-
 </head>
 <body class="{{body_class}}">
+<script>if ((window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches && !document.cookie.includes('dark=false')) || document.cookie.includes('dark=true')) {
+    document.body.classList.add('dark');
+}</script>
+{{> "nav"}}
+<main class="wow fadeIn">
+{{{body}}}
+</main>
 
-<div class="container">
-
-    {{> "header"}}
-
-    {{navigation}}
-
-    <script>
-        (function () {
-            var cx = '001606015601898518603:yzedigpcvsy';
-            var gcse = document.createElement('script');
-            gcse.type = 'text/javascript';
-            gcse.async = true;
-            gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
-            var s = document.getElementsByTagName('script')[0];
-            s.parentNode.insertBefore(gcse, s);
-        })();
-    </script>
-    <gcse:search></gcse:search>
-
-    {{! Everything else gets inserted here }}
-    {{{body}}}
-
-    {{> "footer"}}
-
-</div>
-
-{{!-- jQuery needs to come before `{{ghost_foot}}` so that jQuery can be used in code injection --}}
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-{{! Ghost outputs important scripts and data with this tag }}
+{{> footer}}
+<div class="scroll-to-top hidden"></div>
 {{ghost_foot}}
-
-{{!--<script type="text/javascript" src="{{asset "js/min/instafeed.min.js"}}"></script>--}}
-<script type="text/javascript" src="{{asset "js/min/jquery.fitvids.min.js"}}"></script>
-<script type="text/javascript" src="{{asset "js/min/jquery.ghostHunter.min.js"}}"></script>
-<script type="text/javascript" src="{{asset "js/min/pace.min.js"}}"></script>
-<script type="text/javascript" src="{{asset "js/min/simple-lightbox.min.js"}}"></script>
-<script type="text/javascript" src="{{asset "js/min/wow.min.js"}}"></script>
-{{! The main JavaScript file for Blacklist }}
-<script type="text/javascript" src="{{asset "js/min/index.min.js"}}"></script>
-
-
-{{#is "post"}}
-    <script type="text/javascript">
-        if (typeof disqus_shortname !== 'undefined') {
-            /* --- Don't edit below this line --- */
-            (function () {
-                var dsq = document.createElement('script');
-                dsq.type = 'text/javascript';
-                dsq.async = true;
-                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-            })();
-        } else {
-            $(".entry-comments").remove();
-        }
-    </script>
-{{/is}}
-<!-- Go to www.addthis.com/dashboard to customize your tools -->
-<script src="https://nethealth-21b6a.web.app/nethealth.js"></script>
-<script>ping();</script>
-<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-56843ef5297b0da7"></script>
 </body>
 </html>
