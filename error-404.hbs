@@ -1,0 +1,14 @@
+{{!< default}}
+
+<div class="error">
+    <h1>404</h1>
+    <p>Page not found. But you can read one of these recent posts:</p>
+    <div class="error__recent">
+    {{#get "posts" limit="3" as |recents|}}
+        {{#foreach recents}}
+            <a href="{{url}}">{{title}}</a>
+            {{/foreach}}
+    {{/get}}
+    </div>
+    <a href="/">← Or go back to the main page</a>
+</div>

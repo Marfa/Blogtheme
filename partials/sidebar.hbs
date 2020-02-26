@@ -1,39 +1,47 @@
-<aside class="sidebar">
-
-    {{#is "post"}}
-        <section class="widget">
-            <p>Share</p>
-            <!-- Go to www.addthis.com/dashboard to customize your tools -->
-            <div class="addthis_inline_share_toolbox"></div>
-        </section>
-    {{/is}}
-
-    {{> widget-recent-posts}}
-
-    <!-- MailerLite Universal -->
-    <div class="ml-form-embed"
-         data-account="1421240:f2s5e2n7m7"
-         data-form="1388704:c4x9s5">
+<div class="sidebar">
+    <div class="sidebar__block sidebar__block_no-mobile">
+        <button class="sidebar__button theme-switch"></button>
     </div>
 
-    <!-- End MailerLite Universal -->
+    {{# if ads}}
+    <div class="sidebar__block sidebar__block_no-padding">
+        <ins class="adsbygoogle"
+             style="display:block;width:100%;max-height:250px;"
+             data-ad-format="rectangle"
+             data-ad-client="ca-pub-6070814285497936"
+             data-ad-slot="3487354804"></ins>
+    </div>
+    {{/if}}
 
+    <div class="sidebar__block sidebar__block_no-mobile">
+        <span class="sidebar__block-title">Share</span>
+        <div class="addthis_inline_share_toolbox"></div>
+    </div>
 
-    <!--End mc_embed_signup-->
+    <div class="sidebar__block sidebar__block_no-padding">
+        <!--Telegram Widget-->
+        <iframe id="tgw_5d273ad583ba888b628b456a" frameborder="0" scrolling="no" horizontalscrolling="no" verticalscrolling="no" width="100%" height="540px" async></iframe><script>document.addEventListener("DOMContentLoaded",function(){document.getElementById("tgw_5d273ad583ba888b628b456a").setAttribute("src","https://tgwidget.com/channel/v2.0/?id=5d273ad583ba888b628b456a")})</script>
+    </div>
 
+    <div class="sidebar__block sidebar__block_recent">
+        <span class="sidebar__block-title">Recent posts</span>
+        {{#get "posts" limit="3" filter="id:-{{post.id}}" as |recents|}}
+            {{#foreach recents}}
+                <a href="{{url}}">{{title}}</a>
+            {{/foreach}}
+        {{/get}}
+    </div>
 
-    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-    <!-- Adaptive -->
-    <ins class="adsbygoogle"
-         style="display:block"
-         data-ad-client="ca-pub-6070814285497936"
-         data-ad-slot="3487354804"
-         data-ad-format="auto"
-         data-full-width-responsive="true"></ins>
-    <script>
-        (adsbygoogle = window.adsbygoogle || []).push({});
-    </script>
+    <div class="sidebar__block sidebar__block_no-padding">
+        <!-- MailerLite Universal -->
+        <div class="ml-form-embed"
+             data-account="1421240:f2s5e2n7m7"
+             data-form="1229148:y5g1a0">
+        </div>
+        <!-- End MailerLite Universal -->
+    </div>
 
-    {{> widget-tag-cloud}}
-
-</aside>
+{{!--    <div class="sidebar__block sidebar__block_no-padding">
+        <script type="text/javascript" src="https://escense.ru/themarfa.php?size=250x250&dp=themarfa"></script>
+    </div>--}}
+</div>

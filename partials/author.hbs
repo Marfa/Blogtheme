@@ -1,0 +1,17 @@
+<div class="author">
+    {{#if profile_image}}
+    <div class="author__image">
+        <img src="{{img_url profile_image}}">
+    </div>
+    {{/if}}
+
+    <div class="author__info">
+        <span class="author__name">{{name}}</span>
+
+        <div class="author__meta">
+            {{#if bio}}
+            <span class="author__bio">{{bio}}</span>
+            {{/if}}
+        </div>
+    </div>
+</div>

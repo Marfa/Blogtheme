@@ -1,98 +1,81 @@
 {{!< default}}
-{{! The tag above means - insert everything in this file into the {body} of the default.hbs template }}
 
-<main class="site-main wow fadeIn" data-wow-duration=".8s" role="main">
-
-  {{! Search results }}
-  <section id="results"></section>
-
-  {{! Everything inside the #post tags pulls data from the post }}
-  {{#post}}
-
-    {{#if feature_image}}
-      <section class="featured-image">
-        <img src="{{img_url feature_image}}" alt="{{title}}">
-      </section>
-    {{/if}}
-
-    <div class="row">
-      <div class="column medium-column-65">
-<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<!-- Adaptive -->
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-client="ca-pub-6070814285497936"
-     data-ad-slot="3487354804"
-     data-ad-format="auto"
-     data-full-width-responsive="true"></ins>
-<script>
-(adsbygoogle = window.adsbygoogle || []).push({});
-</script>
+<div class="article">
+    <div class="article__inner">
+    {{#post}}
         <article class="{{post_class}}">
-          <header class="entry-header">
-            {{#if authors}}
-                {{#foreach authors}}
-                    <p class="entry-author">Author: <a href="{{url}}" title="{{name}}" class="author author-{{id}} {{slug}}">{{name}}</a></p>
-                {{/foreach}}
+            <header class="post__header">
+                {{#if feature_image}}
+                <img class="post__feature-image" src="{{feature_image}}">
+                {{/if}}
+                <div class="post__info">
+                    <h1 class="post__title">{{title}}</h1>
+                    <span class="post__meta">
+                        <time datetime="{{date published_at format="MMMM DD, YYYY"}}" class="post__date">{{date published_at format="MMMM DD, YYYY"}}</time><span class="post__author">{{authors}}</span>
+                    </span>
+                </div>
+            </header>
 
-              {{/if}}
-            <h1>{{title}}</h1>
-            <time class="entry-date" datetime="{{date format='YYYY-MM-DD'}}">{{date format="DD MMMM YYYY"}}</time>
-          </header>
+            <section class="post__content">
+                <div class="post__content-inner">
+                {{content}}
+                </div>
 
-          <section class="entry-content">
-            <p class="entry-tags">{{tags prefix="Tags: "}}</p>
-<!-- Go to www.addthis.com/dashboard to customize your tools --> <div class="addthis_tipjar_inline"></div>
-            {{content}}
-<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<!-- Adaptive -->
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-client="ca-pub-6070814285497936"
-     data-ad-slot="3487354804"
-     data-ad-format="auto"
-     data-full-width-responsive="true"></ins>
-<script>
-(adsbygoogle = window.adsbygoogle || []).push({});
-</script>
-          </section>
+                {{#if tags}}
+                <span class="post__tags">
+                    <b>Теги:</b>
+                    {{#foreach tags}}
+                        <a href="{{url}}" class="tag">{{name}}</a>
+                    {{/foreach}}
+                </span>
+                {{/if}}
+
+                <ins class="adsbygoogle"
+                     style="display:block;max-height:200px;"
+                     data-ad-client="ca-pub-6070814285497936"
+                     data-ad-slot="3487354804"
+                     data-ad-format="horizontal"
+                     data-full-width-responsive="true"
+                ></ins>
+            </section>
         </article>
 
-        <section class="read-next-story">
-          <div class="row">
+        {{#is "post"}}
+        <div class="article__read-next">
+            {{#next_post}}<a href="{{url}}" class="article__next-post"><div class="arrow">←</div><span>{{title}}</span></a>{{/next_post}}
+            {{#prev_post}}<a href="{{url}}" class="article__prev-post"><div class="arrow">→</div><span>{{title}}</span></a>{{/prev_post}}
+        </div>
 
-            <div class="column">
-              {{#next_post}}
-                <div class="next">
-                  <p>Next Post</p>
-                  <h3><a href="{{url}}">{{title}}</a></h3>
-                </div>
-              {{/next_post}}
-            </div>
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+            let disqus_shortname = 'marfa';
+            let disqus_identifier = '{{comment_id}}';
+        </script>
+        {{/is}}
 
-            <div class="column">
-              {{#prev_post}}
-                <div class="prev">
-                  <p>Previous Post</p>
-                  <h3><a href="{{url}}">{{title}}</a></h3>
-                </div>
-              {{/prev_post}}
-            </div>
+        <script>
+            function createAd() {
+                let el = document.createElement('ins');
+                let d = el.dataset;
+                el.className = "adsbygoogle";
+                d.adClient = "ca-pub-6070814285497936";
+                d.adSlot = "3487354804";
+                d.adFormat = "horizontal";
+                d.fullWidthResponsive = "true";
+                el.setAttribute("style", "display:block;max-height:200px;");
+                return el;
+            }
 
-          </div>
-        </section>
+            $('.post__content-inner > p').first().after(createAd());
 
-        {{! The tag below includes comments - partials/comments.hbs }}
-        {{> comments}}
-      </div>
+            if ($('.post__content-inner').text().trim().length >= 1000) {
+                let q = $('.post__content-inner > p');
+                let n = Math.floor(q.length / 2);
+                $(q[n - 1]).after(createAd());
+            }
+        </script>
+    {{/post}}
+    </div>
 
-      <div class="column medium-offset-5">
-
-        {{> sidebar}}
-
-      </div>
-    </div>{{! End .row }}
-
-  {{/post}}
-
-</main>
+    {{> sidebar ads=true}}
+</div>

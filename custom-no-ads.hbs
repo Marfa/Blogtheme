@@ -1,0 +1,47 @@
+{{!< default}}
+
+<div class="article">
+    <div class="article__inner">
+    {{#post}}
+        <article class="{{post_class}}">
+            <header class="post__header">
+                {{#if feature_image}}
+                <img class="post__feature-image" src="{{feature_image}}">
+                {{/if}}
+                <div class="post__info">
+                    <h1 class="post__title">{{title}}</h1>
+                    <span class="post__meta">
+                        <time datetime="{{date published_at format="MMMM DD, YYYY"}}" class="post__date">{{date published_at format="MMMM DD, YYYY"}}</time><a href="{{primary_author.url}}" class="post__author">{{primary_author.name}}</a>
+                    </span>
+                </div>
+            </header>
+
+            <section class="post__content">
+                {{content}}
+
+                {{#if tags}}
+                <span class="post__tags">
+                    <b>Теги:</b>
+                    {{#foreach tags}}
+                        <a href="{{url}}" class="tag">{{name}}</a>
+                    {{/foreach}}
+                </span>
+                {{/if}}
+            </section>
+        </article>
+
+        <div class="article__read-next">
+            {{#next_post}}<a href="{{url}}" class="article__next-post"><div class="arrow">←</div><span>{{title}}</span></a>{{/next_post}}
+            {{#prev_post}}<a href="{{url}}" class="article__prev-post"><div class="arrow">→</div><span>{{title}}</span></a>{{/prev_post}}
+        </div>
+
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+            var disqus_shortname = 'marfa';
+            var disqus_identifier = '{{comment_id}}';
+        </script>
+    {{/post}}
+    </div>
+
+    {{> sidebar}}
+</div>
