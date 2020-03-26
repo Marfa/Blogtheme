@@ -44,8 +44,11 @@
             {{#next_post}}<a href="{{url}}" class="article__next-post"><div class="arrow">←</div><span>{{title}}</span></a>{{/next_post}}
             {{#prev_post}}<a href="{{url}}" class="article__prev-post"><div class="arrow">→</div><span>{{title}}</span></a>{{/prev_post}}
         </div>
-<div id="commento"></div>
-<script src="https://cdn.commento.io/js/commento.js"></script>
+        <div id="disqus_thread">        </div>
+        <script type="text/javascript">
+            let disqus_shortname = 'marfa';
+            let disqus_identifier = '{{comment_id}}';
+        </script>
         {{/is}}
 
         <script>
