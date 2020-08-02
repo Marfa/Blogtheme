@@ -383,6 +383,26 @@
       content: var(--theme-toggle-text);
     }
   }
+
+  &__social {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+
+    a {
+      svg {
+        display: block;
+        fill: var(--text);
+      }
+
+      &:hover {
+        svg {
+          opacity: .85;
+        }
+      }
+    }
+  }
 }
 
 @media (max-width: 960px) {
