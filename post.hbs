@@ -2,7 +2,10 @@
 
 <div class="article">
     <div class="article__inner">
-    <!-- xbet banner -->
+    {{#post}}
+        <article class="{{post_class}}">
+            <header class="post__header">
+                <!-- xbet banner -->
 <script>
     (function(w,d,o,g,r,a,m){
         var cid=(Math.random()*1e17).toString(36);d.write('<div id="'+cid+'"></div>');
@@ -15,9 +18,6 @@
     })(window,document,'script',['ftd.agency'],'ABNS');
 </script>
 <!-- xbet banner -->
-    {{#post}}
-        <article class="{{post_class}}">
-            <header class="post__header">
                 {{#if feature_image}}
                 <img class="post__feature-image" src="{{feature_image}}">
                 {{/if}}
