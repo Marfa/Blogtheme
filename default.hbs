@@ -28,6 +28,21 @@
     {{ghost_head}}
 </head>
 <body class="{{body_class}}">
+<!-- pickdata -->
+<script>
+    (function (w, d, u) {
+        if (w.pickDataCounter) return;
+        var t = d.createElement('script');
+        t.async = true;
+        t.src = u;
+        t.onload = function () {
+            var c = w.pickDataCounter({'id': '60a8f07e2f2dd', 'url': 'https://stat.pickdata.io'});
+            c.trackPageView();
+        };
+        var s = d.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(t, s)
+    })(window, document, 'https://stat.pickdata.io/counter/counter.js');
+</script>
 <script>if ((window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches && !document.cookie.includes('dark=false')) || document.cookie.includes('dark=true')) {
     document.body.classList.add('dark');
 }</script>
