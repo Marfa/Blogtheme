@@ -180,10 +180,10 @@ $(document).ready(function() {
         setTimeout(() => {
             if (!'google_ad_modifications' in window) {
                 $('.adsbygoogle').each(i => {
-                    $(this).attr('id', 'yandex_rtb_R-A-388288-5')
+                    $(this).attr('id', 'yandex_rtb_R-A-388288-'+i)
                     window.yaContextCb.push(()=>{
                         Ya.Context.AdvManager.render({
-                            renderTo: 'yandex_rtb_R-A-388288-5',
+                            renderTo: 'yandex_rtb_R-A-388288-'+i,
                             blockId: 'R-A-388288-5'
                         })
                     })
