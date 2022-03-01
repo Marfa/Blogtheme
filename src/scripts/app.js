@@ -176,6 +176,20 @@ $(document).ready(function() {
                 adsbygoogle.push({})
             })
         }
+
+        setTimeout(() => {
+            if (!'google_ad_modifications' in window) {
+                $('.adsbygoogle').each(i => {
+                    $(this).attr('id', 'yandex_rtb_R-A-388288-5')
+                    window.yaContextCb.push(()=>{
+                        Ya.Context.AdvManager.render({
+                            renderTo: 'yandex_rtb_R-A-388288-5',
+                            blockId: 'R-A-388288-5'
+                        })
+                    })
+                })
+            }
+        }, 1000)
     }
     if (dbg) {
         $('.posts__partner').hide();
