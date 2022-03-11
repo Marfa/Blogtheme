@@ -18,6 +18,10 @@
             <section class="post__content">
 
                 <div class="post__content-inner">
+				<script async type='text/javascript' src='//s.clickiocdn.com/t/225529/360_light.js'></script>
+<script class='__lxGc__' type='text/javascript'>
+((__lxGc__=window.__lxGc__||{'s':{},'b':0})['s']['_225529']=__lxGc__['s']['_225529']||{'b':{}})['b']['_683379']={'i':__lxGc__.b++};
+</script>
                 {{content}}
                 </div>
 
@@ -29,13 +33,6 @@
                     {{/foreach}}
                 </span>
                 {{/if}}
-                 <ins class="adsbygoogle"
-                     style="display:block;max-height:200px;"
-                     data-ad-client="ca-pub-6070814285497936"
-                     data-ad-slot="3487354804"
-                     data-ad-format="horizontal"
-                     data-full-width-responsive="true"
-                ></ins>
             </section>
         </article>
 
@@ -49,29 +46,9 @@
             let disqus_shortname = 'marfa';
             let disqus_identifier = '{{comment_id}}';
         </script>
+</div>
         {{/is}}
 
-        <script>
-            function createAd() {
-                let el = document.createElement('ins');
-                let d = el.dataset;
-                el.className = "adsbygoogle";
-                d.adClient = "ca-pub-6070814285497936";
-                d.adSlot = "3487354804";
-                d.adFormat = "horizontal";
-                d.fullWidthResponsive = "true";
-                el.setAttribute("style", "display:block;max-height:200px;");
-                return el;
-            }
-
-            $('.post__content-inner > p').first().after(createAd());
-
-            if ($('.post__content-inner').text().trim().length >= 1000) {
-                let q = $('.post__content-inner > p');
-                let n = Math.floor(q.length / 2);
-                $(q[n - 1]).after(createAd());
-            }
-        </script>
     {{/post}}
     </div>
 
