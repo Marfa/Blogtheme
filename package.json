@@ -42,7 +42,7 @@
     "file-loader": "^5.1.0",
     "fitvids": "^2.1.1",
     "jquery": "^3.5.1",
-    "minimist": ">=1.2.2",
+    "minimist": ">=1.2.6",
     "pace": "0.0.4",
     "pace-js": "^1.2.4",
     "slick-carousel": "^1.8.1",
