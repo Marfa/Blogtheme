@@ -1,4 +1,5 @@
 google.com, pub-6070814285497936, DIRECT, f08c47fec0942fa0
+#clickio
 clickio.com, 149181, DIRECT
 advertising.com, 28305, RESELLER
 amxrtb.com, 105199600, DIRECT
@@ -40,6 +41,14 @@ smartadserver.com, 3070, RESELLER
 smartadserver.com, 4111, RESELLER
 sovrn.com, 260380, RESELLER, fafdf38b16bf6b2b
 yahoo.com, 58905, RESELLER, e1a5b5b6e3255540
+betweendigital.com, 35566, DIRECT
+criteo.com, B-060312, DIRECT, 9fac4a4a87c2a44f
+gamoshi.io, 267-b4800, RESELLER, 20e30b2ae1f670f2
+indexexchange.com, 197200, RESELLER, 50b1c356f2c5c8fc
+mail.ru, 3771565, RESELLER
+otm-r.com, 14, RESELLER
+target.my.com, 3771565, RESELLER
+themediagrid.com, F4K9Y8, DIRECT, 35d5010d7789b49d
 #adfinitystart
 ad.plus, 40031, DIRECT #video
 adcolony.com, 1efc6603710003ea, RESELLER
