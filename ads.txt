@@ -1,5 +1,10 @@
 google.com, pub-6070814285497936, DIRECT, f08c47fec0942fa0
 #clickio
+adform.com, 2437, RESELLER, 9f5210a2f0999e32
+adform.com, 2688, RESELLER, 9f5210a2f0999e32
+adform.com, 2727, RESELLER, 9f5210a2f0999e32
+adform.com, 2783, RESELLER, 9f5210a2f0999e32
+adform.com, 622, RESELLER
 adform.com, 1226, RESELLER
 adform.com, 1819, RESELLER, 9f5210a2f0999e32
 adform.com, 1943, RESELLER
