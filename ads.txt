@@ -1,5 +1,99 @@
 google.com, pub-6070814285497936, DIRECT, f08c47fec0942fa0
 #clickio
+adswizz.com, entravision, DIRECT
+adswizz.com, hcode, DIRECT
+adswizz.com, targetspot, DIRECT
+adswizz.com, targetspot, RESELLER
+adtech.com, 4687, RESELLER
+advertising.com, 28764, RESELLER
+advertising.com, 29036, RESELLER, e1a5b5b6e3255540
+advertising.com, 7574, RESELLER
+amitydigital.io, 360, DIRECT
+aol.com, 27093, RESELLER
+aol.com, 46658, RESELLER
+aolcloud.net, 4687, RESELLER
+appnexus.com, 11470, RESELLER
+appnexus.com, 11487, RESELLER, f5ab79cb980f11d1
+appnexus.com, 12447, RESELLER, f5ab79cb980f11d1
+appnexus.com, 1504, RESELLER, f5ab79cb980f11d1
+appnexus.com, 1577, DIRECT, f5ab79cb980f11d1
+appnexus.com, 1577, RESELLER, f5ab79cb980f11d1
+appnexus.com, 1785, RESELLER, f5ab79cb980f11d1
+appnexus.com, 2928, RESELLER, f5ab79cb980f11d1
+appnexus.com, 4052, RESELLER, f5ab79cb980f11d1
+appnexus.com, 7265, DIRECT, f5ab79cb980f11d1
+appnexus.com, 7265, RESELLER, f5ab79cb980f11d1
+appnexus.com, 8233, RESELLER, f5ab79cb980f11d1
+appnexus.com, 9986, RESELLER, f5ab79cb980f11d1
+aps.amazon.com, 5044, DIRECT
+betweendigital.com, 35566, RESELLER
+betweendigital.com, 43910, DIRECT
+buzzoola.com, 13526, DIRECT
+contextweb.com, 560606, RESELLER, 89ff185a4c4e857c
+contextweb.com, 561998, RESELLER, 89ff185a4c4e857c
+conversantmedia.com, 100098, RESELLER, 03113cd04947736d
+freewheel.tv, 1134593, RESELLER
+freewheel.tv, 1134609, RESELLER
+freewheel.tv, 13755, RESELLER
+freewheel.tv, 13945, RESELLER
+freewheel.tv, 328705, RESELLER
+freewheel.tv, 328721, RESELLER
+google.com, pub-7168377611570943, RESELLER, f08c47fec0942fa0
+improvedigital.com, 1057, RESELLER
+improvedigital.com, 1791, RESELLER
+improvedigital.com, 907, RESELLER
+indexexchange.com, 189595, RESELLER
+indexexchange.com, 189596, RESELLER, 50b1c356f2c5c8fc
+indexexchange.com, 195921, RESELLER, 50b1c356f2c5c8fc
+lijit.com, 215294, RESELLER, fafdf38b16bf6b2b
+lijit.com, 215294-eb, RESELLER, fafdf38b16bf6b2b
+loopme.com, 11343, RESELLER, 6c8d5f95897a5a3b
+loopme.com, 11423, RESELLER, 6c8d5f95897a5a3b
+mgid.com, 156117, RESELLER, d4c29acad76ce94f
+nobid.io, 22487092286, DIRECT
+ogury.com, ae2e749f-fba5-4c12-bcca-6ba139c4db2a, DIRECT
+onetag.com, 38980b46b0, RESELLER
+openx.com, 540022851, RESELLER, 6a698e2ec38604c6
+openx.com, 540031703, RESELLER, 6a698e2ec38604c6
+pubmatic.com, 120391, RESELLER, 5d62403b186f2ace
+pubmatic.com, 154037, RESELLER, 5d62403b186f2ace
+pubmatic.com, 156962, RESELLER, 5d62403b186f2ace
+pubmatic.com, 158100, RESELLER, 5d62403b186f2ace
+rhythmone.com, 1059622079, RESELLER, a670c89d4a324e47
+rhythmone.com, 609241817, RESELLER, a670c89d4a324e47
+richaudience.com, Ua8BIWjxkR, RESELLER
+RTBHOUSE.COM, xvuNZ1jGMuxoVO2IrrLh, DIRECT
+rubiconproject.com, 16418, DIRECT, 0bfd66d529a55807
+rubiconproject.com, 16418, RESELLER, 0bfd66d529a55807
+rubiconproject.com, 16568, RESELLER, 0bfd66d529a55807
+rubiconproject.com, 23946, RESELLER, 0bfd66d529a55807
+rubiconproject.com, 9753, DIRECT, 0bfd66d529a55807
+rubiconproject.com, 9753, RESELLER, 0bfd66d529a55807
+rubiconproject.com, 9755, DIRECT, 0bfd66d529a55807
+rubiconproject.com, 9755, RESELLER, 0bfd66d529a55807
+showheroes.com, 2787, DIRECT
+smartadserver.com, 2058, RESELLER
+smartadserver.com, 2161, DIRECT
+smartadserver.com, 3668, RESELLER
+sonobi.com, e128791470, RESELLER, d1a215d9eb5aee9e
+sovrn.com, 257611, RESELLER, fafdf38b16bf6b2b
+spotx.tv, 146631, RESELLER, 7842df1d2fe2db34
+spotx.tv, 244525, RESELLER, 7842df1d2fe2db34
+spotxchange.com, 146631, RESELLER, 7842df1d2fe2db34
+spotxchange.com, 244525, RESELLER, 7842df1d2fe2db34
+Targetspot.com, 000, DIRECT, feb28ed826dcf532
+targetspot.com, 136, DIRECT, feb28ed826dcf532
+targetspot.com, 18, DIRECT, feb28ed826dcf532
+triplelift.com, 10521, RESELLER, 6c33edb13117fd86
+triplelift.com, 10521-EB, RESELLER, 6c33edb13117fd86
+tritondigital.com, 25853, DIRECT, 19b4454d0b87b58b
+tritondigital.com, 44733, DIRECT, 19b4454d0b87b58b
+tritondigital.com, 44733, RESELLER, 19b4454d0b87b58b
+video.unrulymedia.com, 609241817, RESELLER
+viralize.com, 2787, DIRECT
+yahoo.com, 55771, RESELLER, e1a5b5b6e3255540
+yahoo.com, 59361, RESELLER, e1a5b5b6e3255540
+yahoo.com, 59362, RESELLER, e1a5b5b6e3255540
 adform.com, 1226, RESELLER
 adform.com, 1819, RESELLER, 9f5210a2f0999e32
 adform.com, 1943, RESELLER
