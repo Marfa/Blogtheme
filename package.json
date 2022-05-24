@@ -2,10 +2,6 @@
   "name": "themarfa-theme",
   "description": "Made for blog.themarfa.name",
   "version": "0.5.6",
-  "engines": {
-    "ghost-api": "v3",
-    "node": ">=10.14.0"
-  },
   "keywords": [
     "ghost-theme"
   ],
