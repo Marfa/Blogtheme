@@ -1,5 +1,14 @@
 google.com, pub-6070814285497936, DIRECT, f08c47fec0942fa0
 #clickio
+adform.com, 2437, RESELLER, 9f5210a2f0999e32
+adform.com, 2688, RESELLER, 9f5210a2f0999e32
+adform.com, 2727, RESELLER, 9f5210a2f0999e32
+adform.com, 2783, RESELLER, 9f5210a2f0999e32
+adform.com, 622, RESELLER
+ogury.com, ae2e749f-fba5-4c12-bcca-6ba139c4db2a, RESELLER
+onetag.com, 7685cd60ce8d4f0, RESELLER
+onetag.com, 7685cd60ce8d4f0-OB, RESELLER
+smartadserver.com, 3070-OB, RESELLER, 060d053dcf45cbf3
 adswizz.com, entravision, DIRECT
 adswizz.com, hcode, DIRECT
 adswizz.com, targetspot, DIRECT
