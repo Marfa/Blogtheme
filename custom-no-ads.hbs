@@ -35,11 +35,13 @@
             {{#prev_post}}<a href="{{url}}" class="article__prev-post"><div class="arrow">→</div><span>{{title}}</span></a>{{/prev_post}}
         </div>
 
-        <div id="disqus_thread"></div>
-        <script type="text/javascript">
-            var disqus_shortname = 'marfa';
-            var disqus_identifier = '{{comment_id}}';
-        </script>
+        <script src="https://cdn.fastcomments.com/js/embed-v2.min.js"></script>
+<div id="fastcomments-widget"></div>
+<script>
+window.FastCommentsUI(document.getElementById('fastcomments-widget'), {
+    "tenantId": "iPjaMPm9xQu"
+});
+</script>
     {{/post}}
     </div>
 
