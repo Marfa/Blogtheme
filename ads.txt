@@ -1,5 +1,19 @@
 google.com, pub-6070814285497936, DIRECT, f08c47fec0942fa0
 #clickio
+adswizz.com, entravision, RESELLER
+amxrtb.com, 105199600, RESELLER
+appnexus.com, 3480, RESELLER, f5ab79cb980f11d1
+appnexus.com, 8904, RESELLER, f5ab79cb980f11d1
+criteo.com, B-060312, RESELLER, 9fac4a4a87c2a44f
+freewheel.tv, 1003361, RESELLER
+pubmatic.com, 156695, RESELLER, 5d62403b186f2ace
+showheroes.com, 2787, RESELLER
+soundcast.fm, 63038ce281dfc, RESELLER
+themediagrid.com, F4K9Y8, RESELLER, 35d5010d7789b49d
+triplelift.com, 12507, RESELLER, 6c33edb13117fd86
+tritondigital.com, 123193, RESELLER, 19b4454d0b87b58b
+viralize.com, 2787, RESELLER
+yieldlab.net, 6378054, RESELLER
 152media.info, 152M348, RESELLER
 adform.com, 2845, RESELLER, 9f5210a2f0999e32
 adform.com, 768, RESELLER
