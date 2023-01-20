@@ -1,5 +1,6 @@
 google.com, pub-6070814285497936, DIRECT, f08c47fec0942fa0
 #clickio
+luxupnetwork.com, 2147334467, DIRECT
 adswizz.com, entravision, RESELLER
 amxrtb.com, 105199600, RESELLER
 appnexus.com, 3480, RESELLER, f5ab79cb980f11d1
