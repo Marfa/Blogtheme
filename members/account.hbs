@@ -1,0 +1,170 @@
+{{!< ../default}}
+
+<div class="page__hdr flex flex-cc m-b-lg">
+  <h1>{{t "Your account"}}</h1>
+</div>
+
+<div class="container wrapper">
+  <div class="acnt">
+    {{#if @member.paid}}
+
+      {{!-- Logged in, paying member: Show acnt info --}}
+      <div class="acnt-box">
+        <p class="m-b-lg">{{t "Currently, you have an active account to all areas. You're all set, but if you need any help, get in touch with us and we'd be happy to help."}}</p>
+        {{#foreach @member.subscriptions}}
+          <div class="acnt-det flex flex-cc m-b-lg">
+            <div class="acnt-det__label">
+              <div class="acnt-det__name">{{t "Name"}}</div>
+              <div class="acnt-det__email">{{t "Email"}}</div>
+              <div class="acnt-det__plan">{{t "Your plan"}}</div>
+              <div class="acnt-det__status">{{t "Status"}}</div>
+              <div class="acnt-det__valid">{{t "Valid until"}}</div>
+            </div>
+            <div class="acnt-det__value">
+              <div class="acnt-det__name">{{@member.name}}</div>
+              <div class="acnt-det__email">{{@member.email}}</div>
+              <div class="acnt-det__plan">{{price plan}} {{plan.nickname}}</div>
+              <div class="acnt-det__status">{{status}}</div>
+              <div class="acnt-det__valid">{{date current_period_end format="MMMM DD, YYYY"}}</div> 
+            </div>
+          </div>
+
+          <div class="acnt__edit m-t-lg m-b-lg">
+            <a class="btn btn--brand btn--xs" href="javascript:"
+                data-members-edit-billing
+                data-members-success="/"
+                data-members-cancel="/"
+              >Edit billing info</a>
+
+            <span class="flex-1"></span>
+
+            {{cancel_link
+              class="btn btn--brand btn--xs btn--bordered"
+            }}
+          </div>
+        {{/foreach}}
+      </div>
+
+      {{#get "posts" limit="all" include="authors,tags" }}
+      <div class="section__title m-b">{{t "Members only content"}}</div>
+      
+      <div class="row">
+        {{#foreach posts visibility="paid"}}
+          <div class="col-xs-12 col-md-6 col-lg-4">
+            {{> post-card class="m-b-lg"}}
+          </div>
+        {{/foreach}}
+      </div>
+      {{/get}}
+
+    {{else if @member}}
+
+      {{!-- Logged in, not paying: Link to checkout --}}
+      <div class="acnt-box">
+        <p class="m-b-lg">{{t "Currently, you are subscribed to free updates. Unlock full access to see the entire library of members-only content & updates by subscribing to a paid plan."}}
+        </p>
+        <div class="acnt-det flex flex-cc m-b-lg">
+          <div class="acnt-det__label">
+            <div class="acnt-det__email">{{t "Email"}}</div>
+            <div class="acnt-det__plan">{{t "Your plan"}}</div>
+          </div>
+          <div class="acnt-det__value">
+            <div class="acnt-det__email">{{@member.email}}</div>
+            <div class="acnt-det__plan">{{t "Free"}}</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="container wrapper">
+        <h3 class="text-center">{{t "Choose your membership"}}</h3>
+        {{!-- Membership plan toggle --}}
+        <div class="data-plan-switch m-b-lg">
+          <span class="data-plan-label monthly">{{t "Monthly"}}</span>
+          <input checked type="checkbox" role="switch" class="m-0 theme js-plan-toggle" onchange="onDataPlanSwitch()" aria-label="{{t "Membership"}}">
+          <span class="data-plan-label">{{t "Yearly"}}</span>
+        </div>
+
+        {{!-- Membership data --}}
+        <div class="checkout grid pricing js-membership m-b-lg" data-plan="annual" data-member-status="{{#if @member}}{{@member.status}}{{else}}none{{/if}}">
+          {{!-- Render all tiers (public) --}}{{! Get all tiers with monthly price, yearly price, and benefits data }}
+          {{#get "tiers" include="monthly_price,yearly_price,benefits" limit="all" filter="type:paid" as |tiers|}}
+            {{#foreach tiers}}
+              <div class="card checkout-plan tier-{{slug}}" data-tier="{{@number}}">
+
+                {{!-- Title & Price --}}
+                <header class="checkout-plan__hdr border-bottom-1 flex flex-col flex-cc text-acc p-b m-b-lg m-t-sm">
+                  <h3 class="checkout-plan__title m-0">{{name}}</h3>
+                  <div class="checkout-plan__description text-center m-t-sm text-11 text-acc">{{description}}</div>
+                  <div class="checkout-plan__price">
+                    {{#match type "free"}}
+                      <sup>{{price currency="USD"}}</sup><strong>{{price 0}}</strong>
+                    {{/match}}
+
+                    {{#if monthly_price}}
+                      <span data-plan="monthly">
+                        <sup>{{price currency=currency}}</sup>
+                        <strong>{{price monthly_price}}</strong>
+                        <sup>/{{t "month"}}</sup>
+                      </span>
+                    {{/if}}
+
+                    {{#if yearly_price}}
+                      <span data-plan="annual">
+                        <sup>{{price currency=currency}}</sup>
+                        <strong>{{price yearly_price}}</strong>
+                        <sup>/{{t "year"}}</sup>
+                      </span>
+                    {{/if}}
+                  </div>
+                </header>
+                
+                {{!-- Benefits --}}
+                <div class="checkout-plan__content text-acc m-b">
+                  <ul class="list--unstyled m-b-0 text-acc-3">
+                    {{#foreach benefits as |benefit|}}
+                      <li>{{>icon name="check" size="xs"}}{{benefit}}</li>
+                    {{/foreach}}
+                  </ul>
+                </div>
+
+                {{!-- Price --}}
+                {{#if monthly_price}}
+                  <a href="javascript:" data-plan="monthly" data-portal="signup/{{id}}/monthly"
+                    class="btn btn--brand btn--sm">
+                    {{t "Subscribe now"}}
+                  </a>
+                {{/if}}
+
+                {{#if yearly_price}}
+                  <a href="javascript:" data-plan="annual" data-portal="signup/{{id}}/yearly" 
+                      class="btn btn--brand btn--sm">
+                    {{t "Subscribe now"}}
+                  </a>
+                {{/if}}
+
+                {{!-- Free signup --}}
+                {{#match type "free"}}
+                  {{#link href="/signup/" class="btn btn--brand btn--sm"}}{{t "Subscribe now"}}{{/link}}
+                {{/match}}
+              </div>
+            {{/foreach}}
+          {{/get}}
+        </div>
+      </div>
+
+      <script>
+        function onDataPlanSwitch() {
+          const planToggle = document.querySelector('.js-plan-toggle');
+          const isChecked = planToggle.checked;
+          document.querySelector('.js-membership').setAttribute('data-plan', isChecked ? 'annual' : 'monthly');
+        };
+      </script>
+
+    {{else}}
+
+      {{!-- Not logged in: Redirect to signin --}}
+      <script>window.location = '{{@site.url}}/signin/';</script>
+
+    {{/if}}
+  </div>
+</div>

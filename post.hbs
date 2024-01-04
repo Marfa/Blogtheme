@@ -1,22 +1,10 @@
 {{!< default}}
 
-<div class="article">
-    <div class="article__inner">
-    {{#post}}
-        <article class="{{post_class}}">
-            <header class="post__header">
-                {{#if feature_image}}
-                <img class="post__feature-image" src="{{feature_image}}">
-                {{/if}}
-                <div class="post__info">
-                    <h1 class="post__title">{{title}}</h1>
-                    <span class="post__meta">
-                        <time datetime="{{date published_at format="DD MMMM YYYY"}}" class="post__date">{{date published_at format="DD MMMM YYYY"}}</time><span class="post__author">{{authors}}</span>
-                    </span>
-                </div>
-            </header>
-            <section class="post__content">
-			<!-- pst  -->
+{{!-- Everything inside the #post tags pulls data from the post --}}
+{{#post}}
+<div class="container wrapper">
+  {{> post-hero}}
+  <!-- pst  -->
 <a href="https://pst.net/private?utm_source=themarfa_banner1"><img src="https://blog.themarfa.name/content/images/2023/10/1200200-ru-no-fb.gif" class="kg-image" alt="" loading="lazy" width="90%" height="50%" srcset="https://blog.themarfa.name/content/images/2023/10/1200200-ru-no-fb.gif 600w, https://blog.themarfa.name/content/images/2023/10/1200200-ru-no-fb.gif 1000w, https://blog.themarfa.name/content/images/2023/10/1200200-ru-no-fb.gif 1400w" sizes="(min-width: 120px) 120px"></a>
 <!-- pst  -->
 <br>
@@ -35,25 +23,34 @@
 ((__lxGc__=window.__lxGc__||{'s':{},'b':0})['s']['_225529']=__lxGc__['s']['_225529']||{'b':{}})['b']['_683379']={'i':__lxGc__.b++};
 </script>
 <!-- market place  -->
-                {{content}}
-                </div>
+  <article class="{{post_class}} content-wrap post-access-{{visibility}}">
+    <div class="content">
+      {{#if custom_excerpt}}
+        <p class="context-excerpt text-lg">
+          {{custom_excerpt}}
+        </p>
+      {{/if}}
+      {{#if access}}
+        {{content}}
 
-                {{#if tags}}
-                <span class="post__tags">
-                    <b>Теги:</b>
-                    {{#foreach tags}}
-                        <a href="{{url}}" class="tag">{{name}}</a>
-                    {{/foreach}}
-                </span>
-                {{/if}}
-            </section>
-        </article>
+        {{#if primary_tag}}
+          <hr>
+          <div class="post-tags flex">
+            {{#foreach tags}}
+              <a class="tag-{{slug}} m-r bg-acc-2 text-sm fw-700" href="{{url}}" 
+                title="{{name}}" aria-label="{{name}}">#{{name}}</a>
+            {{/foreach}}
+          </div>
+          <hr>
+        {{/if}}
+      {{else}}
+        {{> content-cta fading=true}}
+      {{/if}}
+    </div>
+  </article>
+</div>
 
-        {{#is "post"}}
-        <div class="article__read-next">
-            {{#next_post}}<a href="{{url}}" class="article__next-post"><div class="arrow">←</div><span>{{title}}</span></a>{{/next_post}}
-            {{#prev_post}}<a href="{{url}}" class="article__prev-post"><div class="arrow">→</div><span>{{title}}</span></a>{{/prev_post}}
-        </div>
+{{!-- Include Comments --}}
         <script src="https://cdn.fastcomments.com/js/embed-v2.min.js"></script>
 <div id="fastcomments-widget"></div>
 <script>
@@ -61,10 +58,7 @@ window.FastCommentsUI(document.getElementById('fastcomments-widget'), {
     "tenantId": "iPjaMPm9xQu"
 });
 </script>
-        {{/is}}
 
-    {{/post}}
-    </div>
-
-    {{> sidebar ads=true}}
-</div>
+{{!-- Related posts --}}
+{{> related-posts}}
+{{/post}}

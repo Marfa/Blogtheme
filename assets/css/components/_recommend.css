@@ -1,0 +1,65 @@
+.recommendations {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 0;
+}
+
+.recommendation {
+  border: 1px solid var(--color-border);
+  border-radius: var(--global-radius);
+  list-style: none;
+
+  &:hover {
+    background-color: var(--color-bg-acc-1);
+  }
+
+  a {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    padding: 1.5rem;
+  }
+
+  &-favicon {
+    display: flex;
+    gap: 0.25rem;
+    order: 1;
+
+    img {
+      width: 1.5rem;
+      height: 1.5rem;
+      background-color: transparent;
+    }
+  }
+
+  &-url {
+    font-weight: 600;
+    opacity: 0.8;
+    order: 2;
+  }
+
+  &-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin: 0;
+    font-family: var(--font-headings);
+    order: 3;
+    flex-basis: 100%;
+  }
+
+  &-description {
+    margin: 0;
+    opacity: 0.9;
+    order: 4;
+  }
+}
+
+.content-width {
+  margin: 0 auto;
+  max-width: 680px;
+}
+
+[data-color-scheme="light"] .recommendation {
+  background-color: var(--color-white);
+}

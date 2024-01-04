@@ -1,17 +1,12 @@
-{{{html}}}
-<aside class="gh-post-upgrade-cta">
-    <div class="gh-post-upgrade-cta-content" style="background-color: {{accentColor}}">
-        {{#has visibility="paid"}}
-            <h2>Этот пост доступен платным подписчикам</h2>
-        {{/has}}
-        {{#has visibility="members"}}
-            <h2>Этот пост доступен только подписчикам</h2>
-        {{/has}}
-        {{#if @member}}
-            <a class="gh-btn" data-portal="account/plans" style="color:{{accentColor}}">Активировать платную подписку</a>
-        {{else}}
-            <a class="gh-btn" data-portal="signup" style="color:{{accentColor}}">Подписаться</a>
-            <p><small>Уже подписаны? <a data-portal="signin">Войти</a></small></p>
-        {{/if}}
-    </div>
-</aside>
+{{!-- Content preview --}}
+<div class="post-sneak-peek{{#if fading}} fading{{/if}}">
+  {{{html}}}
+</div>
+
+{{!-- Post Access CTA --}}
+<div class="post-access-cta p-lg text-center {{visibility}}">
+  <h3 class="paid">{{t "This post is for paid members only"}}</h3>
+  <h3 class="members">{{t "This post is for members only"}}</h3>
+  <a class="btn btn--brand btn--rounded m-b-lg" href="/signup/">{{t "Subscribe"}}</a>
+  <div class="small">{{t "Already have an account?"}} <a class="post-access-alt" href="/signin/">{{t "Sign in"}}</a></div>
+</div>

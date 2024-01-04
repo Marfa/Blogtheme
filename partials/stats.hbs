@@ -1,0 +1,44 @@
+{{!-- Site stats --}}
+<div class="welcome">
+  {{!-- {{#get "posts" limit="1" filter="visibility:public"}}
+    <div class="welcome__stat">
+      <span class="welcome__count">{{pagination.total}}</span> 
+      <span class="welcome__count-descr">{{t "Public posts"}}</span>
+    </div>
+  {{/get}}
+
+  {{#get "posts" limit="1" filter="visibility:members"}}
+    <div class="welcome__stat">
+      <span class="welcome__count">{{pagination.total}}</span> 
+      <span class="welcome__count-descr">{{t "Members posts"}}</span>
+    </div>
+  {{/get}} --}}
+
+  {{#get "posts" limit="1" filter="visibility:paid"}}
+    {{#if pagination.total}}
+      <div class="welcome__stat">
+        <span class="welcome__count">{{pagination.total}}</span> 
+        <span class="welcome__count-descr">{{t "Premium posts"}}</span>
+      </div>
+    {{/if}}
+  {{/get}}
+
+  {{#get "posts" limit="1"}}
+    {{#if pagination.total}}
+      <div class="welcome__stat">
+        <span class="welcome__count">{{pagination.total}}</span> 
+        <span class="welcome__count-descr">{{t "Total posts"}}</span>
+      </div>
+    {{/if}}
+  {{/get}}
+
+  <div class="welcome__stat">
+    <span class="welcome__count">{{total_paid_members}}</span> 
+    <span class="welcome__count-descr">{{t "Premium members"}}</span>
+  </div>
+
+  <div class="welcome__stat">
+    <span class="welcome__count">{{total_members}}</span> 
+    <span class="welcome__count-descr">{{t "Total members"}}</span>
+  </div>
+</div>

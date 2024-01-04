@@ -1,36 +1,152 @@
 <!DOCTYPE html>
-<html lang="{{@site.locale}}">
-<head>
-<link rel="apple-touch-icon" sizes="57x57" href="{{asset "apple-icon-57x57.png"}}">
-<link rel="apple-touch-icon" sizes="60x60" href="{{asset "apple-icon-60x60.png"}}">
-<link rel="apple-touch-icon" sizes="72x72" href="{{asset "apple-icon-72x72.png"}}">
-<link rel="apple-touch-icon" sizes="76x76" href="{{asset "apple-icon-76x76.png"}}">
-<link rel="apple-touch-icon" sizes="114x114" href="{{asset "apple-icon-114x114.png"}}">
-<link rel="apple-touch-icon" sizes="120x120" href="{{asset "apple-icon-120x120.png"}}">
-<link rel="apple-touch-icon" sizes="144x144" href="{{asset "apple-icon-144x144.png"}}">
-<link rel="apple-touch-icon" sizes="152x152" href="{{asset "apple-icon-152x152.png"}}">
-<link rel="apple-touch-icon" sizes="180x180" href="{{asset "apple-icon-180x180.png"}}">
-<link rel="icon" type="image/png" sizes="192x192"  href="{{asset "android-icon-192x192.png"}}">
-<link rel="icon" type="image/png" sizes="32x32" href="{{asset "favicon-32x32.png"}}">
-<link rel="icon" type="image/png" sizes="96x96" href="{{asset "favicon-96x96.png"}}">
-<link rel="icon" type="image/png" sizes="16x16" href="{{asset "favicon-16x16.png"}}">
-<link rel="icon" type="image/svg+xml" sizes="120x120" href="{{asset "logo_tel_chat.svg"}}">
-<link rel="manifest" href="{{asset "manifest.json"}}">
-<meta name="msapplication-TileColor" content="#ffffff">
-<meta name="msapplication-TileImage" content="{{asset "ms-icon-144x144.png"}}">
-<meta name="theme-color" content="#ffffff">
+<html lang="{{@site.locale}}" data-grid-columns="3">
+  <head>
+    {{!-- Document Settings --}}
     <meta charset="utf-8">
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>{{meta_title}}</title>
-    <link rel="stylesheet" type="text/css" href="{{asset "css/app.css"}}">
-    <script>window.yaContextCb=window.yaContextCb||[]</script>
-    <script src="https://yandex.ru/ads/system/context.js" async></script>
-    <script type="text/javascript" src="{{asset "scripts/main.js"}}"></script>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    {{!-- Page Meta --}}
+    <title>{{#is "account"}}{{t "Account"}} | {{else}}{{#is "signin"}}{{t "Sign in"}} | {{else}}{{#is "signup"}}{{t "Sign up"}} | {{/is}}{{/is}}{{/is}}{{meta_title}}</title>
+
+    {{!-- Mobile Meta --}}
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    {{!-- PWA --}}
+    <link rel="manifest" href="{{asset 'manifest.webmanifest'}}">
+    <meta name="theme-color" content="{{@site.accent_color}}">
+    <link rel="apple-touch-icon" href="{{asset 'icon-192x192.png'}}">
+
+    {{!-- Theme Configuration --}}
+    {{> theme-config}}
+
+    {{!-- Preloading --}}
+    <link rel="preload" href="{{asset 'dist/app.min.js'}}" as="script">
+    <link rel="preload" href="{{asset 'dist/app.min.css'}}" as="style">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    {{#if @custom.typography}}
+      {{#match @custom.typography "Manrope"}}
+        <link rel="preload stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap" as="font" onload="this.onload=null;this.rel='stylesheet'">
+
+        {{!-- No Js --}}
+        <noscript>
+          <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+        </noscript>
+      {{/match}}
+
+      {{!-- Cabin --}}
+      {{#match @custom.typography "Cabin"}}
+        <link rel="preload stylesheet" href="https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap" 
+              as="style" onload="this.onload=null;this.rel='stylesheet'" crossorigin>
+        <noscript>
+          <link href="https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+        </noscript>
+        <style>
+          body {
+            --font-sans: 'Cabin';
+          }
+        </style>
+      {{/match}}
+
+      {{!-- Lora --}}
+      {{#match @custom.typography "Lora"}}
+        <link rel="preload stylesheet" href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap" 
+              as="style" onload="this.onload=null;this.rel='stylesheet'" crossorigin>
+        <noscript>
+          <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+        </noscript>
+        <style>
+          body {
+            --font-sans: 'Lora';
+          }
+        </style>
+      {{/match}}
+
+      {{!-- Inconsolata --}}
+      {{#match @custom.typography "Inconsolata"}}
+        <link rel="preload stylesheet" href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@400;500;600;700;800;900&display=swap" 
+              as="style" onload="this.onload=null;this.rel='stylesheet'" crossorigin>
+        <noscript>
+          <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+        </noscript>
+        <style>
+          body {
+            --font-sans: 'Inconsolata';
+          }
+        </style>
+      {{/match}}
+    {{else}}
+      <link rel="preload stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap" as="font" onload="this.onload=null;this.rel='stylesheet'">
+
+      {{!-- No Js --}}
+      <noscript>
+        <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+      </noscript>
+    {{/if}}
+
+    {{!-- Main theme scripts --}}
+    <script async src="{{asset 'dist/app.min.js'}}"></script>
+
+    {{!-- Styles'n'Scripts --}}
+    <link rel="stylesheet" href="{{asset 'dist/app.min.css'}}" />
+    <!--cssential--><style></style><!--/cssential-->
+
+    {{!-- Ghost outputs important style and meta data with this tag --}}
     {{ghost_head}}
-</head>
-<body class="{{body_class}}">
-<!-- Luxup banners  -->
+
+    {{!-- Global scripts for setting values --}}
+    {{> global-scripts}}
+  </head>
+  <body class="{{body_class}}{{#is "page"}}{{#unless @page.show_title_and_feature_image}} page-no-title{{/unless}}{{/is}}">
+    {{!-- Include Search View --}}
+    {{!-- {{> search}} --}}
+
+    {{!-- Include Menu --}}
+    {{> menu}}
+
+    {{!-- The blog navigation links --}}
+    {{^is "signin, signup"}}
+      {{> header}}
+    {{/is}}
+
+    <main class="main">
+      {{!-- All the main content gets inserted here, index.hbs, post.hbs, etc --}}
+      {{{body}}}
+    </main>
+
+    {{!-- The footer at the very bottom --}}
+    {{^is "signin, signup"}}
+      {{#unless @member}}
+      {{/unless}}
+
+      {{> footer}}
+
+      {{!-- Scroll Top --}}
+      <div class="scroll-top">
+        <svg class="progress-circle" width="100%" height="100%" viewBox="-1 -1 102 102">
+          <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"/>
+        </svg>
+        {{> icon name="arrow-up"}}
+      </div>
+    {{/is}}
+
+    {{!-- Notifications --}}
+    {{> notifications}}
+
+    {{!-- Service Worker for PWA --}}
+    <script>
+      if (config.enable_pwa && 'serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/service-worker.js');
+        });
+      }
+    </script>
+
+    {{!-- Ghost outputs important scripts and data with this tag --}}
+    {{ghost_foot}}
+	<!-- Luxup banners  -->
 <!-- Fullscreen_mobile  -->
 <script async type='text/javascript' src='//s.luxcdn.com/t/225529/360_light.js'></script>
 <script class='__lxGc__' type='text/javascript'>
@@ -45,15 +161,6 @@
 <script>if ((window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches && !document.cookie.includes('dark=false')) || document.cookie.includes('dark=true')) {
     document.body.classList.add('dark');
 }</script>
-{{> "nav"}}
-<main class="wow fadeIn">
-{{{body}}}
-</main>
-
-{{> footer}}
-<div class="scroll-to-top hidden"></div>
-{{ghost_foot}}
-</body>
 <script async type='text/javascript' src='//s.clickiocdn.com/t/225529/360_light.js'></script>
 <script class='__lxGc__' type='text/javascript'>
 ((__lxGc__=window.__lxGc__||{'s':{},'b':0})['s']['_225529']=__lxGc__['s']['_225529']||{'b':{}})['b']['_682546']={'i':__lxGc__.b++};
@@ -62,4 +169,5 @@
 <script class='__lxGc__' type='text/javascript'>
 ((__lxGc__=window.__lxGc__||{'s':{},'b':0})['s']['_225529']=__lxGc__['s']['_225529']||{'b':{}})['b']['_682546']={'i':__lxGc__.b++};
 </script>
+  </body>
 </html>
