@@ -15,15 +15,15 @@
       </a>
     {{/unless}}
 
-    <a class="account-link" href="/account/" tabindex="0"
+    <a class="account-link" href="/#/portal/account" tabindex="0"
       title="{{t "Account"}}" aria-label="{{t "Account"}}">
       {{>icon name="user" size="xs"}}{{t "Account"}}
     </a>
 
     <a class="signout-link" href="#signout" tabindex="0"
-      title="{{t "Sign out"}}" aria-label="{{t "Sign out"}}"
+      title="{{t "Выйти"}}" aria-label="{{t "Выйти"}}"
       data-members-signout>
-      {{>icon name="log-out" size="xs"}}{{t "Sign out"}}
+      {{>icon name="log-out" size="xs"}}{{t "Выйти"}}
     </a>
   {{else}}
     <a class="signup-link" href="/signup/" tabindex="0"

@@ -14,10 +14,7 @@
         {{#if @member.paid}}
           {{!-- Paid member - no CTA --}}
         {{else if @member}}
-          <a class="btn btn--shadow btn--secondary" href="/account/"
-            title="{{t "Upgrade"}}" aria-label="{{t "Upgrade"}}">
-            {{t "Upgrade"}}
-          </a>
+          {{!-- Paid member - no CTA --}}
         {{else}}
           {{#if @custom.hero_form}}
             <form data-members-form="subscribe">
