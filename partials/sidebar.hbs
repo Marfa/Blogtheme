@@ -3,27 +3,7 @@
   <div class="section__title m-b">{{#if hero_headline}}{{hero_headline}}{{else}}{{@site.title}}{{/if}}</div>
 
   <div class="sidebar__section">
-    <div class="sidebar__descr" id="sidebar-descr">{{#if hero_description}}{{hero_description}}{{else}}{{@site.description}}{{/if}}</div>
-    {{!-- {{>social-media}} --}}
-    {{#if @member.paid}}
-    {{else if @member}}
-      <a href="/account/" class="btn flex flex-cc btn--secondary w-100 p">{{t "Upgrade"}}</a>
-    {{else}}
-      <form class="flex flex-col flex-cc" data-members-form="signup">
-        <div class="signup-box w-100">
-          <input data-members-email type="email" autocomplete="off"
-            placeholder="{{t "Your email address"}}" 
-            aria-labelledby="sidebar-descr" required/>
-          <button class="btn btn--secondary w-100 p" type="submit">{{t "Subscribe"}}</button>
-        </div>
-        <a tabindex="0" class="notify notify-success js-notify-close">
-          <div class="container wrapper flex flex-cc">
-            <div class="notify__msg flex-1">{{t "Great! Check your inbox and click the link to confirm your subscription"}}</div> 
-            <div class="notify__close">{{>icon name="x" size="xs"}}</div>
-          </div>
-        </a>
-      </form>
-    {{/if}}
+    <div class="sidebar__descr" id="sidebar-descr"><iframe id="tgw_5d273ad583ba888b628b456a" frameborder="0" scrolling="no" horizontalscrolling="no" verticalscrolling="no" width="100%" height="540px" async></iframe><script>document.addEventListener("DOMContentLoaded",function(){document.getElementById("tgw_5d273ad583ba888b628b456a").setAttribute("src","https://tgwidget.com/channel/v2.0/?id=5d273ad583ba888b628b456a")})</script>
   </div>
 
   {{!-- Sidebar featured posts --}}

@@ -4,6 +4,25 @@
 {{#post}}
 <div class="container wrapper">
   {{> post-hero}}
+  <!-- pst  -->
+<a href="https://pst.net/private?utm_source=themarfa_banner1"><img src="https://blog.themarfa.name/content/images/2023/10/1200200-ru-no-fb.gif" class="kg-image" alt="" loading="lazy" width="90%" height="50%" srcset="https://blog.themarfa.name/content/images/2023/10/1200200-ru-no-fb.gif 600w, https://blog.themarfa.name/content/images/2023/10/1200200-ru-no-fb.gif 1000w, https://blog.themarfa.name/content/images/2023/10/1200200-ru-no-fb.gif 1400w" sizes="(min-width: 120px) 120px"></a>
+<!-- pst  -->
+<br>
+<br>
+<!-- market place  -->
+<div id="mp_custom_6934"></div> <script>window.mpsuStart = window.mpsuStart || [], window.mpsuStart.push(6934);</script>                            
+<!-- market place  -->
+
+                <div class="post__content-inner">
+				<script async type='text/javascript' src='//s.clickiocdn.com/t/225529/360_light.js'></script>
+<script class='__lxGc__' type='text/javascript'>
+((__lxGc__=window.__lxGc__||{'s':{},'b':0})['s']['_225529']=__lxGc__['s']['_225529']||{'b':{}})['b']['_683379']={'i':__lxGc__.b++};
+</script>
+				<script async type='text/javascript' src='//s.luxcdn.com/t/225529/360_light.js'></script>
+<script class='__lxGc__' type='text/javascript'>
+((__lxGc__=window.__lxGc__||{'s':{},'b':0})['s']['_225529']=__lxGc__['s']['_225529']||{'b':{}})['b']['_683379']={'i':__lxGc__.b++};
+</script>
+<!-- market place  -->
   <div class="row post-with-toc">
 
     <div class="col-xs-12 col-xl-3 toc-wrapper">
@@ -21,11 +40,6 @@
     <div class="col-xs-12 col-lg-8 col-xl-6">
       <article class="{{post_class}} content-wrap post-access-{{visibility}} js-toc-content no-overflow">
         <div class="content">
-          {{#if custom_excerpt}}
-            <p class="context-excerpt text-lg">
-              {{custom_excerpt}}
-            </p>
-          {{/if}}
           {{#if access}}
             {{content}}
 
@@ -52,9 +66,13 @@
 </div>
 
 {{!-- Include Comments --}}
-{{#if access}}
-  {{> comments}}
-{{/if}}
+        <script src="https://cdn.fastcomments.com/js/embed-v2.min.js"></script>
+<div id="fastcomments-widget"></div>
+<script>
+window.FastCommentsUI(document.getElementById('fastcomments-widget'), {
+    "tenantId": "iPjaMPm9xQu"
+});
+</script>
 
 {{!-- Related posts --}}
 {{> related-posts}}
