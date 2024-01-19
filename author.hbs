@@ -16,10 +16,8 @@
         {{!-- Author social links --}}
         <div class="hero__social flex">
           {{!-- Author website --}}
-          {{#if website}}
-            <a href="{{website}}" target="_blank" title="Website" aria-label="Website">
-              {{> icon name="link" size="sm"}}
-            </a>
+          {{#if website}}{{> icon name="link" size="sm"}}
+            <a href="{{website}}" target="_blank" title="Website" aria-label="Website"> - перейти на сайт автора</a>
           {{/if}}
         </div>
       </div>
