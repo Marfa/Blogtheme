@@ -85,6 +85,9 @@
           {{#authors separator=", "}}{{/authors}}
         </div>
       {{/has}}
+	        <time datetime="{{date format='YYYY-MM-DD'}}" class="post-card__date">
+        {{date published_at timeago=""}}
+      </time>
     </div>
 
     <div class="post-card__exc m-b">
@@ -98,7 +101,12 @@
     <div class="flex-1"></div>
 
     <div class="post-card__ftr">
-      <span>{{reading_time minute=(t "1 min read") minutes=(t "% min read")}}</span>
+	<a href="{{url}}">
+    	<button class="btn btn--wide btn--shadow btn--brand">
+        Читать
+      </button>
+  </a> 
+      <span class="post-card__date">{{reading_time minute=(t "1 min read") minutes=(t "% min read")}}</span>
 
        {{#if @custom.show_comment_count}}
         {{#if comments}}
@@ -112,10 +120,6 @@
           }}
         {{/if}}
       {{/if}}
-      
-      <time datetime="{{date format='YYYY-MM-DD'}}" class="post-card__date">
-        {{date published_at timeago=""}}
-      </time>
     </div>
   </div>
 </article>
