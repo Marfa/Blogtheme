@@ -42,3 +42,5 @@ uis.mobfox.com, 165, RESELLER
 vdopia.com, 14630, RESELLER, 49a66ce31a704197
 video.unrulymedia.com, 3880497124, RESELLER
 yandex.com, 36882225, RESELLER
+
+google.com, pub-6070814285497936, DIRECT, f08c47fec0942fa0
