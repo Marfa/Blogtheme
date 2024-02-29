@@ -1,0 +1,40 @@
+{{!< default}}
+
+{{!-- Everything inside the #post tags pulls data from the post --}}
+{{#post}}
+<div class="container wrapper">
+  {{> post-hero}}
+  <article class="{{post_class}} content-wrap post-access-{{visibility}}">
+    <div class="content">
+      {{#if access}}
+        {{content}}
+
+        {{#if primary_tag}}
+          <hr>
+          <div class="post-tags flex">
+            {{#foreach tags}}
+              <a class="tag-{{slug}} m-r bg-acc-2 text-sm fw-700" href="{{url}}" 
+                title="{{name}}" aria-label="{{name}}">#{{name}}</a>
+            {{/foreach}}
+          </div>
+          <hr>
+        {{/if}}
+      {{else}}
+        {{> content-cta fading=true}}
+      {{/if}}
+    </div>
+  </article>
+</div>
+
+{{!-- Include Comments --}}
+        <script src="https://cdn.fastcomments.com/js/embed-v2.min.js"></script>
+<div id="fastcomments-widget"></div>
+<script>
+window.FastCommentsUI(document.getElementById('fastcomments-widget'), {
+    "tenantId": "iPjaMPm9xQu"
+});
+</script>
+
+{{!-- Related posts --}}
+{{> related-posts}}
+{{/post}}
