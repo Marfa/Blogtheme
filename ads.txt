@@ -1,5 +1,6 @@
 luxupnetwork.com, 2147334467, DIRECT
 adcolony.com, 29b7f4a14dc689eb, RESELLER, 1ad675c9de6b5176
+adriver.ru, 187150, DIRECT
 advertising.com, 28764, RESELLER
 amitydigital.io, 360, RESELLER
 appnexus.com, 12447, RESELLER, f5ab79cb980f11d1
@@ -42,5 +43,3 @@ uis.mobfox.com, 165, RESELLER
 vdopia.com, 14630, RESELLER, 49a66ce31a704197
 video.unrulymedia.com, 3880497124, RESELLER
 yandex.com, 36882225, RESELLER
-
-google.com, pub-6070814285497936, DIRECT, f08c47fec0942fa0
