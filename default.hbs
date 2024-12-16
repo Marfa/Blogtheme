@@ -29,65 +29,19 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    {{#if @custom.typography}}
-      {{#match @custom.typography "Manrope"}}
-        <link rel="preload stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap" as="font" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap" as="font" onload="this.onload=null;this.rel='stylesheet'">
 
-        {{!-- No Js --}}
-        <noscript>
-          <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-        </noscript>
-      {{/match}}
+    {{!-- No Js --}}
+    <noscript>
+      <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    </noscript>
 
-      {{!-- Cabin --}}
-      {{#match @custom.typography "Cabin"}}
-        <link rel="preload stylesheet" href="https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap" 
-              as="style" onload="this.onload=null;this.rel='stylesheet'" crossorigin>
-        <noscript>
-          <link href="https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
-        </noscript>
-        <style>
-          body {
-            --font-sans: 'Cabin';
-          }
-        </style>
-      {{/match}}
-
-      {{!-- Lora --}}
-      {{#match @custom.typography "Lora"}}
-        <link rel="preload stylesheet" href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap" 
-              as="style" onload="this.onload=null;this.rel='stylesheet'" crossorigin>
-        <noscript>
-          <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
-        </noscript>
-        <style>
-          body {
-            --font-sans: 'Lora';
-          }
-        </style>
-      {{/match}}
-
-      {{!-- Inconsolata --}}
-      {{#match @custom.typography "Inconsolata"}}
-        <link rel="preload stylesheet" href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@400;500;600;700;800;900&display=swap" 
-              as="style" onload="this.onload=null;this.rel='stylesheet'" crossorigin>
-        <noscript>
-          <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-        </noscript>
-        <style>
-          body {
-            --font-sans: 'Inconsolata';
-          }
-        </style>
-      {{/match}}
-    {{else}}
-      <link rel="preload stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap" as="font" onload="this.onload=null;this.rel='stylesheet'">
-
-      {{!-- No Js --}}
-      <noscript>
-        <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-      </noscript>
-    {{/if}}
+    <style>
+      body { 
+        --font-sans: var(--gh-font-body, 'Manrope')
+      }
+      body h1,body h2,body h3,body h4,body h5,body h6 { font-family: var(--gh-font-heading, 'Manrope'); }
+    </style>
 
     {{!-- Main theme scripts --}}
     <script async src="{{asset 'dist/app.min.js'}}"></script>
@@ -122,6 +76,11 @@
     {{!-- The footer at the very bottom --}}
     {{^is "signin, signup"}}
       {{#unless @member}}
+        <div class="section p-t p-b m-0 sub">
+          <div class="container wrapper">
+            {{> subscribe text=(t 'Send') }}
+          </div>
+        </div>
       {{/unless}}
 
       {{> footer}}

@@ -128,7 +128,7 @@ var callback = function(){
         document.body.classList.add('subscribe-success')
       break;
     case 'signup': 
-      window.location = '/signup/?action=checkout';
+      // window.location = '/signup/?action=checkout';
       break;
     case 'checkout':
       // addClass('body', 'signup-success');
@@ -638,6 +638,7 @@ function updateTagColor(postCards) {
   postCards.forEach(postCard => {
     var color = postCard.getAttribute('data-tag-color');
     var contrast = getContrast(color);
+    postCard.style.setProperty('--color-accent-contrast', contrast);
     var tag = postCard.querySelector('.post-card__tag');
     if (tag) {
       tag.style.color = contrast;

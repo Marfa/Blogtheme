@@ -1,6 +1,6 @@
 {{!-- Post Card --}}
 <article class="post-card{{^if feature_image}} no-img{{/if}}{{#if featured}} featured{{/if}} {{post_class}}{{#if class}} {{class}}{{/if}}" 
-        {{#if primary_tag.accent_color}} data-tag-color="{{primary_tag.accent_color}}"{{/if}}> 
+        {{#if primary_tag.accent_color}} data-tag-color="{{primary_tag.accent_color}}" style="--color-accent: {{primary_tag.accent_color}};"{{/if}}> 
   {{#if img}}
     {{#if feature_image}}
       <a class="post-card__img" href="{{url}}" title="{{title}}" aria-label="{{title}}">
@@ -28,6 +28,7 @@
         {{/primary_tag}}
       {{/if}}
 
+      <span class="visibility self-align-center">{{visibility}}</span>
 
       <div class="flex-1"></div>
 
@@ -120,6 +121,10 @@
           }}
         {{/if}}
       {{/if}}
+      
+      <time datetime="{{date format='YYYY-MM-DD'}}" class="post-card__date">
+        {{date published_at timeago=""}}
+      </time>
     </div>
   </div>
 </article>

@@ -28,7 +28,7 @@ const npm_src   = 'node_modules/';
 const serve = done => {
   browserSync.init({
     port: 3368,
-    proxy: 'http://localhost:2368/'
+    proxy: 'http://127.0.0.1:2368/'
   });
   done();
 };
@@ -144,7 +144,6 @@ const zipper = done => {
         '!dist/**',
         '!assets/dist/*.map',
         '!assets/icon*.png',
-        '!package-lock.json',
         '!.github',
         '!TODO.md',
         '!ROADMAP.md',

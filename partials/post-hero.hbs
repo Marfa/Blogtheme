@@ -18,8 +18,12 @@
                 {{>icon name="user" size="sm"}}
               {{/if}}
             </span>
-            <div class="m-l-sm fw-500">
-              {{name}}
+
+            <div class="m-l-sm flex flex-col fw-500 line-height-1 gap-4">
+              <div>{{name}}</div>
+              <time datetime="{{date ../published_at format='YYYY-MM-DD'}}" class="text-xs">
+                {{date ../published_at timeago=""}}
+              </time>
             </div>
           </a>
         {{/primary_author}}
@@ -40,8 +44,11 @@
             </a>
           {{/foreach}}
         </div>
-        <div class="m-l-sm fw-500">
-          {{#authors separator=", "}}{{/authors}}
+        <div class="m-l-sm flex flex-col fw-500 line-height-1 gap-4">
+          <div>{{#authors separator=", "}}{{/authors}}</div>
+          <time datetime="{{date format='YYYY-MM-DD'}}" class="text-xs">
+            {{date published_at timeago=""}}
+          </time>
         </div>
       {{/has}}
     </div>

@@ -472,6 +472,10 @@ blockquote.kg-blockquote-alt {
   font-size: clamp(1.1rem,1.25vw,1.25rem); 
 }
 
+.kg-card.kg-header-card p.kg-header-card-subheading { 
+  font-size: clamp(1.1rem,1.25vw,1.25rem); 
+}
+
 .kg-card.kg-header-card.kg-width-wide h3.kg-header-card-subheading { 
   font-size: clamp(1.1rem,1.5vw,1.5rem); 
 }
@@ -499,3 +503,64 @@ blockquote.kg-blockquote-alt {
 .kg-card.kg-header-card.kg-v2 picture {
   border-radius: inherit;
 }
+
+/* -------------------------------------------------------------------------- */
+/* Product card */
+/* -------------------------------------------------------------------------- */
+.content .kg-product-card .kg-product-card-description ol, 
+.content .kg-product-card .kg-product-card-description p, 
+.content .kg-product-card .kg-product-card-description ul {
+  opacity: 0.85;
+}
+.content .kg-product-card-container {
+  background: var(--color-bg-acc-1);
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+  font-family: var(--font-body);
+  box-shadow: none;
+}
+
+
+/* -------------------------------------------------------------------------- */
+/* Bookmark card */
+/* -------------------------------------------------------------------------- */
+.content .kg-bookmark-icon {
+  margin-right: 6px;
+}
+
+.content .kg-bookmark-card a.kg-bookmark-container, 
+.content .kg-bookmark-card a.kg-bookmark-container:hover {
+  background: var(--color-bg-acc-1);
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+}
+.content .kg-bookmark-content {
+  font-family: var(--font-body);
+}
+
+
+/* -------------------------------------------------------------------------- */
+/* Audio card */
+/* -------------------------------------------------------------------------- */
+.content .kg-audio-card {
+  background: var(--color-bg-acc-1);
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+  font-family: var(--font-body);
+}
+
+
+/* -------------------------------------------------------------------------- */
+/* File card */
+/* -------------------------------------------------------------------------- */
+.content .kg-file-card a.kg-file-card-container {
+  background: var(--color-bg-acc-1);
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+  font-family: var(--font-body);
+}
+
+/* -------------------------------------------------------------------------- */
+/* Fix unwanted margins in kg card texts wrapped in <p> */
+/* -------------------------------------------------------------------------- */
+.content .kg-card *:where(h1,h2,h3,h4,h5,h6) p:not([class]) { margin: 0; font-size: inherit; }

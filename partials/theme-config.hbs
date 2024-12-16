@@ -4,7 +4,7 @@
     color_scheme: `{{#if @custom.default_color_scheme}}{{@custom.default_color_scheme}}{{else}}system{{/if}}`,
     view_type: `{{#if @custom.post_feed_style}}{{@custom.post_feed_style}}{{else}}grid{{/if}}`,
     header_position: `{{#if @custom.enable_sticky_header}}sticky{{else}}initial{{/if}}`,
-    grid_columns: 3, /* Nr of columns for post cards: 2/3. */
+    grid_columns: parseInt(`{{@custom.post_feed_grid_columns}}`), /* Nr of columns for post cards: 2/3. */
     image_lightbox: !!`{{#if @custom.enable_image_lightbox}}{{@custom.enable_image_lightbox}}{{/if}}`,
     open_links_in_new_tab: !!`{{#if @custom.open_external_links_in_new_tab}}{{@custom.open_external_links_in_new_tab}}{{/if}}`,
     scroll_to_top: !!`{{#if @custom.enable_scroll_to_top}}{{@custom.enable_scroll_to_top}}{{/if}}`,
