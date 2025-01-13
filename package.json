@@ -124,11 +124,6 @@
         "default": false,
         "group": "homepage"
       },
-      "post_card_tag_accent_bg": {
-        "type": "boolean",
-        "default": false,
-        "group": "homepage"
-      },
       "enable_image_lightbox": {
         "type": "boolean",
         "default": true,
