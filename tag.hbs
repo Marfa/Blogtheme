@@ -2,105 +2,105 @@
 
 {{!-- Tag Hero --}}
 {{#tag}}
-<section class="section hero border-top-1{{#if feature_image}} has-img{{/if}}">
-  <div class="container wrapper {{#if feature_image}} w-100{{/if}}">
-    <div class="hero__inner flex flex-cc">
-      <div class="hero__content flex-1">
-        {{!-- Title and description --}}
-        <h1 class="hero__title{{#unless feature_image}} text-center{{/unless}}">{{name}}</h1>
-        <div class="hero__descr m-b{{#unless feature_image}} text-center{{/unless}}">{{description}}</div>
-        <div class="hero__descr m-b fw-700{{#unless feature_image}} text-center{{/unless}}">
-          {{plural ../pagination.total empty=(t 'No posts') singular=(t '1 post') plural=(t '% posts')}}
-        </div>
-      </div>
+    <section class="section hero border-top-1{{#if feature_image}} has-img{{/if}}">
+        <div class="container wrapper {{#if feature_image}} w-100{{/if}}">
+            <div class="hero__inner flex flex-cc">
+                <div class="hero__content flex-1">
+                    {{!-- Title and description --}}
+                    <h1 class="hero__title{{#unless feature_image}} text-center{{/unless}}">{{name}}</h1>
+                    <div class="hero__descr m-b{{#unless feature_image}} text-center{{/unless}}">{{description}}</div>
+                    <div class="hero__descr m-b fw-700{{#unless feature_image}} text-center{{/unless}}">
+                        {{plural ../pagination.total empty=(t 'No posts') singular=(t '1 post') plural=(t '% posts')}}
+                    </div>
+                </div>
 
-      {{#if feature_image}}
-        <img class="lazyload hero__img"
-            data-srcset="{{img_url feature_image size="s"}} 300w,
+                {{#if feature_image}}
+                    <img class="lazyload hero__img"
+                         data-srcset="{{img_url feature_image size="s"}} 300w,
                     {{img_url feature_image size="m"}} 600w,
                     {{img_url feature_image size="l"}} 1000w"
-            data-sizes="(max-width: 1000px) 50vw, 700px"
-            data-src="{{img_url feature_image size="s"}}"
-            src="{{img_url feature_image size="xs"}}"
-            alt="{{name}}" 
-        />
-      {{/if}}
-    </div>
-  </div>
-</section>
+                         data-sizes="(max-width: 1000px) 50vw, 700px"
+                         data-src="{{img_url feature_image size="s"}}"
+                         src="{{img_url feature_image size="xs"}}"
+                         alt="{{name}}"
+                    />
+                {{/if}}
+            </div>
+        </div>
+    </section>
 {{/tag}}
 
 <div class="container wrapper">
-  {{#if posts}}
-  <div class="section">
-    <div class="flex flex-cc m-b">
-      <div class="section__title">{{t "Latest posts"}}</div>
+    {{#if posts}}
+        <div class="section">
+            <div class="flex flex-cc m-b">
+                <div class="section__title">{{t "Latest posts"}}</div>
 
-      <div class="flex-1"></div>
-    
-      {{!-- Grid/List buttons --}}
-      <button class="toggle__item btn--grid p-sm m-r-sm js-grid-btn" 
-        aria-label="{{t "Grid"}}" title="{{t "Grid"}}" tabindex="0"
-        onclick="setView('grid')">
-        {{> icon name="grid" size="sm"}}
-      </button>
-      <button class="toggle__item btn--list p-sm js-list-btn" 
-        aria-label="{{t "List"}}" title="{{t "List"}}"
-        onclick="setView('list')">
-        {{> icon name="list" size="sm"}}
-      </button>
-    </div>
-  <!-- секция баннеров  -->
+                <div class="flex-1"></div>
 
-<script type="text/javascript">
-var myadspace = [];
-myadspace[0] = '<noindex><a href="https://pst.net/?f=4d5d6d5148e5f4038393633cc6e06c2b" target="_blank" rel="nofollow"><img src="https://blog.themarfa.name/content/images/2023/10/1200200-ru-no-fb.gif" alt="PST " style="min-width: 120px; width: 100%;"></a></noindex>'
-myadspace[1] = '<noindex><a href="https://abcard.io?utm_source=media&utm_medium=cpc&utm_campaign=blogthemarfa&utm_content=banner_04" target="_blank" rel="nofollow"><img src="https://blog.themarfa.name/content/images/2025/03/1200x200_gif.gif" alt="Any Bill" style="min-width: 120px; width: 100%;"></a></noindex>'
-var x = 0;
-function rotate(myadspace) {
-while (x < myadspace.length) {
-var sort = Math.floor(Math.random() * myadspace.length);
-if (myadspace[sort] != 0) {
-document.getElementById('adspace').innerHTML = (myadspace[sort]);
-myadspace[sort] = 0;
-x++;
-}
-}
-}
-</script>
-<style>
-#adspace {
-}
-#adspace img {
-}
-</style>
-<div id="adspace">
-<script type="text/javascript">
-rotate(myadspace);
-</script>
-</div>
-<!-- секция баннеров -->
-    {{!-- Posts --}}
-    <div class="grid grid-col-3 post-container">
-	<!-- click io  -->
-				<script async type='text/javascript' src='//s.clickiocdn.com/t/225529/360_light.js'></script>
-<script class='__lxGc__' type='text/javascript'>
-((__lxGc__=window.__lxGc__||{'s':{},'b':0})['s']['_225529']=__lxGc__['s']['_225529']||{'b':{}})['b']['_683379']={'i':__lxGc__.b++};
-</script>
-				<script async type='text/javascript' src='//s.luxcdn.com/t/225529/360_light.js'></script>
-<script class='__lxGc__' type='text/javascript'>
-((__lxGc__=window.__lxGc__||{'s':{},'b':0})['s']['_225529']=__lxGc__['s']['_225529']||{'b':{}})['b']['_683379']={'i':__lxGc__.b++};
-</script>
-<!-- click io  -->
-      {{#foreach posts}}
-        {{> post-card img=true}}
-      {{/foreach}}
-    </div>
-    <div class="col-xs-12 center-xs m-t-lg">
-      <button class="btn btn--wide btn--shadow btn--brand js-load-more" onclick="loadMorePosts(this)">
-        {{t "Load more posts"}}
-      </button>
-    </div>
-  </div>
-  {{/if}}
+                {{!-- Grid/List buttons --}}
+                <button class="toggle__item btn--grid p-sm m-r-sm js-grid-btn"
+                        aria-label="{{t "Grid"}}" title="{{t "Grid"}}" tabindex="0"
+                        onclick="setView('grid')">
+                    {{> icon name="grid" size="sm"}}
+                </button>
+                <button class="toggle__item btn--list p-sm js-list-btn"
+                        aria-label="{{t "List"}}" title="{{t "List"}}"
+                        onclick="setView('list')">
+                    {{> icon name="list" size="sm"}}
+                </button>
+            </div>
+            <!-- секция баннеров  -->
+
+            <script type="text/javascript">
+                var myadspace = [];
+                myadspace[0] = '<noindex><a href="https://pst.net/?f=4d5d6d5148e5f4038393633cc6e06c2b" target="_blank" rel="nofollow"><img src="https://blog.themarfa.name/content/images/2023/10/1200200-ru-no-fb.gif" alt="PST " style="min-width: 120px; width: 100%;"></a></noindex>'
+                myadspace[1] = '<noindex><a href="https://abcard.io?utm_source=media&utm_medium=cpc&utm_campaign=blogthemarfa&utm_content=banner_04" target="_blank" rel="nofollow"><img src="https://blog.themarfa.name/content/images/2025/03/1200x200_gif.gif" alt="Any Bill" style="min-width: 120px; width: 100%;"></a></noindex>'
+                var x = 0;
+                function rotate(myadspace) {
+                while (x < myadspace.length) {
+                var sort = Math.floor(Math.random() * myadspace.length);
+                if (myadspace[sort] != 0) {
+                document.getElementById('adspace').innerHTML = (myadspace[sort]);
+                myadspace[sort] = 0;
+                x++;
+                }
+                }
+                }
+            </script>
+            <style>
+                #adspace {
+                }
+                #adspace img {
+                }
+            </style>
+            <div id="adspace">
+                <script type="text/javascript">
+                    rotate(myadspace);
+                </script>
+            </div>
+            <!-- секция баннеров -->
+            {{!-- Posts --}}
+            <div class="grid grid-col-3 post-container">
+                <!-- click io  -->
+                <script async type='text/javascript' src='//s.clickiocdn.com/t/225529/360_light.js'></script>
+                <script class='__lxGc__' type='text/javascript'>
+                    ((__lxGc__=window.__lxGc__||{'s':{},'b':0})['s']['_225529']=__lxGc__['s']['_225529']||{'b':{}})['b']['_683379']={'i':__lxGc__.b++};
+                </script>
+                <script async type='text/javascript' src='//s.luxcdn.com/t/225529/360_light.js'></script>
+                <script class='__lxGc__' type='text/javascript'>
+                    ((__lxGc__=window.__lxGc__||{'s':{},'b':0})['s']['_225529']=__lxGc__['s']['_225529']||{'b':{}})['b']['_683379']={'i':__lxGc__.b++};
+                </script>
+                <!-- click io  -->
+                {{#foreach posts}}
+                    {{> post-card img=true}}
+                {{/foreach}}
+            </div>
+            <div class="col-xs-12 center-xs m-t-lg">
+                <button class="btn btn--wide btn--shadow btn--brand js-load-more" onclick="loadMorePosts(this)">
+                    {{t "Load more posts"}}
+                </button>
+            </div>
+        </div>
+    {{/if}}
 </div>

@@ -1,16 +1,16 @@
 {{!-- Related Posts --}}
 {{#get "posts" include="tags,authors" limit="3" filter="id:-{{comment_id}}+tag:{{primary_tag.slug}}" as |related|}}
-  <div class="related-posts m-t-lg">
-    <div class="container wrapper">
-      <div class="section__title m-b">{{t "You might also like"}}</div>
-      
-      <div class="row post-container">
-        {{#foreach related}}
-          <div class="col-xs-12 col-md-6 col-lg-4 m-b-lg">
-            {{> post-card class="h-100"}}
-          </div>
-        {{/foreach}}
-      </div>
+    <div class="related-posts m-t-lg">
+        <div class="container wrapper">
+            <div class="section__title m-b">{{t "You might also like"}}</div>
+
+            <div class="row post-container">
+                {{#foreach related}}
+                    <div class="col-xs-12 col-md-6 col-lg-4 m-b-lg">
+                        {{> post-card class="h-100"}}
+                    </div>
+                {{/foreach}}
+            </div>
+        </div>
     </div>
-  </div>
 {{/get}}

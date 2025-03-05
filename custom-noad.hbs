@@ -1,6 +1,5 @@
 {{!< default}}
 
-{{!-- Everything inside the #post tags pulls data from the post --}}
 {{#post}}
     <div class="container wrapper">
         {{> post-hero}}
@@ -14,19 +13,11 @@
             <!-- /uSocial -->
             <div class="content">
                 {{#if access}}
-                    <p>Статья скрыта в соответствии с законодательством РФ. Получить полный текст статьи можно <a
-                            href="https://t.me/+0j3SL7x0PhkwZTcy" target="_blank">по ссылке</a>.</p>
-
-                    {{#if primary_tag}}
-                        <hr>
-                        <div class="post-tags flex">
-                            {{#foreach tags}}
-                                <a class="tag-{{slug}} m-r bg-acc-2 text-sm fw-700" href="{{url}}"
-                                   title="{{name}}" aria-label="{{name}}">#{{name}}</a>
-                            {{/foreach}}
-                        </div>
-                        <hr>
-                    {{/if}}
+                    <p>Статья скрыта в соответствии с законодательством РФ. Получить полный текст статьи можно
+                        <a href="https://t.me/+0j3SL7x0PhkwZTcy" target="_blank">по ссылке</a>.</p>
+                    <div class="content-overlay">
+                        {{content}}
+                    </div>
                 {{else}}
                     {{> content-cta fading=true}}
                 {{/if}}
@@ -46,3 +37,62 @@
     {{!-- Related posts --}}
     {{> related-posts}}
 {{/post}}
+
+
+<style>
+    .content-overlay {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        color: var(--color-text-acc-1);
+        user-select: none; /* Disable text selection */
+        overflow: hidden; /* Ensures no content is visible outside the overlay */
+        max-width: 100%; /* Ensure that the overlay does not extend beyond the content area */
+    }
+
+    .content-overlay::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.9); /* Dark overlay */
+        backdrop-filter: blur(5px); /* Optional blur for effect */
+        pointer-events: none; /* Prevent interaction with the content */
+    }
+
+    .content-overlay .content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%; /* Ensure the content stays within the bounds of the container */
+    }
+
+    .content-overlay .content > * {
+        width: 100%; /* Ensure all child elements take full width within the container */
+    }
+
+    .content-overlay p {
+        text-align: center;
+        margin-bottom: 20px;
+        font-size: 1.2rem;
+        color: var(--color-text-acc-1);
+    }
+
+    .content-overlay a {
+        color: var(--color-primary);
+        text-decoration: underline;
+    }
+
+    /* Ensuring that content remains hidden until certain conditions are met */
+    .content-overlay .content,
+    .content-overlay .content * {
+        visibility: hidden; /* Initially hide the content */
+    }
+
+    .content-overlay.show .content,
+    .c
+
+</style>

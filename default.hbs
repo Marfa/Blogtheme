@@ -1,20 +1,21 @@
 <!DOCTYPE html>
 <html lang="{{@site.locale}}" data-grid-columns="3">
-  <head>
+<head>
     {{!-- Document Settings --}}
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta property="article:author" content="{{name}}">
-	<meta property="telegram:channel" content="@themarfa">
-	<meta property="tg:site_verification" content="g7j8/rPFXfhyrq5q0QQV7EsYWv4=">
+    <meta property="telegram:channel" content="@themarfa">
+    <meta property="tg:site_verification" content="g7j8/rPFXfhyrq5q0QQV7EsYWv4=">
 
     {{!-- Page Meta --}}
-    <title>{{#is "account"}}{{t "Account"}} | {{else}}{{#is "signin"}}{{t "Sign in"}} | {{else}}{{#is "signup"}}{{t "Sign up"}} | {{/is}}{{/is}}{{/is}}{{meta_title}}</title>
+    <title>{{#is "account"}}{{t "Account"}} | {{else}}{{#is "signin"}}{{t "Sign in"}} | {{else}}{{#is "signup"}}{{t
+            "Sign up"}} | {{/is}}{{/is}}{{/is}}{{meta_title}}</title>
 
     {{!-- Mobile Meta --}}
-    <meta name="HandheldFriendly" content="True" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    
+    <meta name="HandheldFriendly" content="True"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
     {{!-- PWA --}}
     <link rel="manifest" href="{{asset 'manifest.webmanifest'}}">
     <meta name="theme-color" content="{{@site.accent_color}}">
@@ -29,84 +30,89 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <link rel="preload stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap" as="font" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap" as="font"
+          onload="this.onload=null;this.rel='stylesheet'">
 
     {{!-- No Js --}}
     <noscript>
-      <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap"
+              rel="stylesheet">
     </noscript>
 
     <style>
-      body { 
-        --font-sans: var(--gh-font-body, 'Manrope')
-      }
-      body h1,body h2,body h3,body h4,body h5,body h6 { font-family: var(--gh-font-heading, 'Manrope'); }
+        body {
+          --font-sans: var(--gh-font-body, 'Manrope')
+        }
+        body h1,body h2,body h3,body h4,body h5,body h6 { font-family: var(--gh-font-heading, 'Manrope'); }
     </style>
 
     {{!-- Main theme scripts --}}
     <script async src="{{asset 'dist/app.min.js'}}"></script>
 
     {{!-- Styles'n'Scripts --}}
-    <link rel="stylesheet" href="{{asset 'dist/app.min.css'}}" />
-    <!--cssential--><style></style><!--/cssential-->
+    <link rel="stylesheet" href="{{asset 'dist/app.min.css'}}"/>
+    <!--cssential-->
+    <style></style><!--/cssential-->
 
     {{!-- Ghost outputs important style and meta data with this tag --}}
     {{ghost_head}}
 
     {{!-- Global scripts for setting values --}}
     {{> global-scripts}}
-  </head>
-  <body class="{{body_class}}{{#is "page"}}{{#unless @page.show_title_and_feature_image}} page-no-title{{/unless}}{{/is}}">
-    {{!-- Include Search View --}}
-    {{!-- {{> search}} --}}
+</head>
+<body class="{{body_class}}{{#is "page"}}{{#unless
+        @page.show_title_and_feature_image}} page-no-title{{/unless}}{{/is}}">
+{{!-- Include Search View --}}
+{{!-- {{> search}} --}}
 
-    {{!-- Include Menu --}}
-    {{> menu}}
+{{!-- Include Menu --}}
+{{> menu}}
 
-    {{!-- The blog navigation links --}}
-    {{^is "signin, signup"}}
-      {{> header}}
-    {{/is}}
+{{!-- The blog navigation links --}}
+{{^is "signin, signup"}}
+    {{> header}}
+{{/is}}
 
-    <main class="main">
-      {{!-- All the main content gets inserted here, index.hbs, post.hbs, etc --}}
-      {{{body}}}
-    </main>
+<main class="main">
+    {{!-- All the main content gets inserted here, index.hbs, post.hbs, etc --}}
+    {{{body}}}
+</main>
 
-    {{!-- The footer at the very bottom --}}
-    {{^is "signin, signup"}}
-      {{#unless @member}}
+{{!-- The footer at the very bottom --}}
+{{^is "signin, signup"}}
+    {{#unless @member}}
         <div class="section p-t p-b m-0 sub">
-          <div class="container wrapper">
-            {{> subscribe text=(t 'Send') }}
-          </div>
+            <div class="container wrapper">
+                {{> subscribe text=(t 'Send') }}
+            </div>
         </div>
-      {{/unless}}
+    {{/unless}}
 
-      {{> footer}}
+    {{> footer}}
 
-      {{!-- Scroll Top --}}
-      <div class="scroll-top">
+    {{!-- Scroll Top --}}
+    <div class="scroll-top">
         <svg class="progress-circle" width="100%" height="100%" viewBox="-1 -1 102 102">
-          <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"/>
+            <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"/>
         </svg>
         {{> icon name="arrow-up"}}
-      </div>
-    {{/is}}
+    </div>
+{{/is}}
 
-    {{!-- Notifications --}}
-    {{> notifications}}
+{{!-- Notifications --}}
+{{> notifications}}
 
-    {{!-- Service Worker for PWA --}}
-    <script>
-      if (config.enable_pwa && 'serviceWorker' in navigator) {
-        window.addEventListener('load', () => {
-          navigator.serviceWorker.register('/service-worker.js');
-        });
-      }
-    </script>
+{{!-- Service Worker for PWA --}}
+<script>
+    if (config.enable_pwa && 'serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/service-worker.js');
+      });
+    }
+</script>
 
-    {{!-- Ghost outputs important scripts and data with this tag --}}
-    {{ghost_foot}}
-  </body>
+{{!-- Ghost outputs important scripts and data with this tag --}}
+{{ghost_foot}}
+</body>
 </html>

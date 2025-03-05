@@ -18,7 +18,6 @@
   "Share by email": "Поделиться по email",
   "Copy to clipboard": "Скопирвоать в буфер обмена",
   "Close": "Close",
-
   "Fields_________________________________________________________________": "",
   "Name": "Имя",
   "Email": "Email",
@@ -26,7 +25,7 @@
   "Search": "Поиск",
   "Dark Theme": "Тёмная тема",
   "Light Theme": "Светлая тема",
-  "Theme Toggle": "Переключить тему", 
+  "Theme Toggle": "Переключить тему",
   "Menu": "Меню",
   "No posts": "Нет постов",
   "1 post": "1 пост",
@@ -45,7 +44,6 @@
   "Grid": "Сетка",
   "List": "Список",
   "Your name": "Ваше имя",
-
   "Sections_______________________________________________________________": "",
   "404 Error": "404 Не найдено",
   "Something went wrong! We can't seem to find the page you are looking for": "Что-то пошло  не так и запрошенная страница потерялась",
@@ -68,7 +66,6 @@
   "Tag": "Теги",
   "Follow us": "Подписаться в соцсетях",
   "Tag cloud": "Облако тегов",
-
   "Members________________________________________________________________": "",
   "Become a member": "Become a member",
   "Free": "Free",
@@ -86,7 +83,6 @@
   "One easy payment instead of 12!": "One easy payment instead of 12!",
   "This post is for paid members only": "This post is for paid members only",
   "This post is for members only": "This post is for members only",
-
   "Account________________________________________________________________": "",
   "Your account": "Your account",
   "Currently, you have an active account to all areas. You're all set, but if you need any help, get in touch with us and we'd be happy to help.": "Currently, you have an active account to all areas. You're all set, but if you need any help, get in touch with us and we'd be happy to help.",

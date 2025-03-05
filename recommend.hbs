@@ -1,24 +1,24 @@
 {{!< default}}
 
 {{#match @site.recommendations_enabled}}
-  <div class="container wrapper">
-    {{!-- Hero --}}
-    {{#page}}
-      {{> page-hero hero_class="side"}}
-    {{else}}
-      <div class="post-hero is-page side" data-feature-image="false">
-        <div class="post-hero__content flex flex-col">
-          <h1 class="post-hero__title text-center m-b">{{t "Recommendations"}}</h1>
-        </div>
-      </div>
-    {{/page}}
+    <div class="container wrapper">
+        {{!-- Hero --}}
+        {{#page}}
+            {{> page-hero hero_class="side"}}
+        {{else}}
+            <div class="post-hero is-page side" data-feature-image="false">
+                <div class="post-hero__content flex flex-col">
+                    <h1 class="post-hero__title text-center m-b">{{t "Recommendations"}}</h1>
+                </div>
+            </div>
+        {{/page}}
 
-    <div class="content-width flex flex-col">
-      {{recommendations}}
-      <button data-portal="recommendations" class="btn flex items-center self-align-center m-b-xl">
-        <span class="mr-sm">{{t "Show all recommendations"}}</span>
-        {{> icon name="arrow-right" size="sm"}}
-      </button>
+        <div class="content-width flex flex-col">
+            {{recommendations}}
+            <button data-portal="recommendations" class="btn flex items-center self-align-center m-b-xl">
+                <span class="mr-sm">{{t "Show all recommendations"}}</span>
+                {{> icon name="arrow-right" size="sm"}}
+            </button>
+        </div>
     </div>
-  </div>
 {{/match}}

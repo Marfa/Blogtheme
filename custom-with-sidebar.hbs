@@ -2,89 +2,90 @@
 
 {{!-- Everything inside the #post tags pulls data from the post --}}
 {{#post}}
-<div class="container wrapper">
-  {{> post-hero}}
-  <!-- секция баннеров  -->
+    <div class="container wrapper">
+    {{> post-hero}}
+        <!-- секция баннеров  -->
 
-<script type="text/javascript">
-var myadspace = [];
-myadspace[0] = '<noindex><a href="https://pst.net/?f=4d5d6d5148e5f4038393633cc6e06c2b" target="_blank" rel="nofollow"><img src="https://blog.themarfa.name/content/images/2023/10/1200200-ru-no-fb.gif" alt="PST " style="min-width: 120px; width: 100%;"></a></noindex>'
-myadspace[1] = '<noindex><a href="https://abcard.io?utm_source=media&utm_medium=cpc&utm_campaign=blogthemarfa&utm_content=banner_04" target="_blank" rel="nofollow"><img src="https://blog.themarfa.name/content/images/2025/03/1200x200_gif.gif" alt="Any Bill" style="min-width: 120px; width: 100%;"></a></noindex>'
-var x = 0;
-function rotate(myadspace) {
-while (x < myadspace.length) {
-var sort = Math.floor(Math.random() * myadspace.length);
-if (myadspace[sort] != 0) {
-document.getElementById('adspace').innerHTML = (myadspace[sort]);
-myadspace[sort] = 0;
-x++;
-}
-}
-}
-</script>
-<style>
-#adspace {
-}
-#adspace img {
-}
-</style>
-<div id="adspace">
-<script type="text/javascript">
-rotate(myadspace);
-</script>
-</div>
-<!-- секция баннеров -->
-<div class="container wrapper">
-  {{> post-hero}}
-  <div class="row">
-    <div class="col-xs-12 col-lg-8 col-xl-9">
-      <article class="{{post_class}} content-wrap post-access-{{visibility}} no-overflow">
-        <div class="content">
-<!-- click io  -->
-				<script async type='text/javascript' src='//s.clickiocdn.com/t/225529/360_light.js'></script>
-<script class='__lxGc__' type='text/javascript'>
-((__lxGc__=window.__lxGc__||{'s':{},'b':0})['s']['_225529']=__lxGc__['s']['_225529']||{'b':{}})['b']['_683379']={'i':__lxGc__.b++};
-</script>
-				<script async type='text/javascript' src='//s.luxcdn.com/t/225529/360_light.js'></script>
-<script class='__lxGc__' type='text/javascript'>
-((__lxGc__=window.__lxGc__||{'s':{},'b':0})['s']['_225529']=__lxGc__['s']['_225529']||{'b':{}})['b']['_683379']={'i':__lxGc__.b++};
-</script>
-<!-- click io  -->		
-          {{#if custom_excerpt}}
-            <p class="context-excerpt text-lg">
-              {{custom_excerpt}}
-            </p>
-          {{/if}}
-          {{#if access}}
-            {{content}}
-
-            {{#if tags}}
-              <hr>
-              <div class="post-tags flex">
-                {{#foreach tags}}
-                  <a class="tag-{{slug}} m-r bg-acc-2 text-sm fw-700" href="{{url}}" 
-                    title="{{name}}" aria-label="{{name}}">#{{name}}</a>
-                {{/foreach}}
-              </div>
-              <hr>
-            {{/if}}
-          {{else}}
-            {{> content-cta fading=true}}
-          {{/if}}
+        <script type="text/javascript">
+            var myadspace = [];
+            myadspace[0] = '<noindex><a href="https://pst.net/?f=4d5d6d5148e5f4038393633cc6e06c2b" target="_blank" rel="nofollow"><img src="https://blog.themarfa.name/content/images/2023/10/1200200-ru-no-fb.gif" alt="PST " style="min-width: 120px; width: 100%;"></a></noindex>'
+            myadspace[1] = '<noindex><a href="https://abcard.io?utm_source=media&utm_medium=cpc&utm_campaign=blogthemarfa&utm_content=banner_04" target="_blank" rel="nofollow"><img src="https://blog.themarfa.name/content/images/2025/03/1200x200_gif.gif" alt="Any Bill" style="min-width: 120px; width: 100%;"></a></noindex>'
+            var x = 0;
+            function rotate(myadspace) {
+            while (x < myadspace.length) {
+            var sort = Math.floor(Math.random() * myadspace.length);
+            if (myadspace[sort] != 0) {
+            document.getElementById('adspace').innerHTML = (myadspace[sort]);
+            myadspace[sort] = 0;
+            x++;
+            }
+            }
+            }
+        </script>
+        <style>
+            #adspace {
+            }
+            #adspace img {
+            }
+        </style>
+        <div id="adspace">
+            <script type="text/javascript">
+                rotate(myadspace);
+            </script>
         </div>
-      </article>
-    </div>
-    <div class="col-xs-12 col-lg-4 col-xl-3">
-      {{> sidebar}}
-    </div>
-  </div>
-</div>
+        <!-- секция баннеров -->
+        <div class="container wrapper">
+            {{> post-hero}}
+            <div class="row">
+                <div class="col-xs-12 col-lg-8 col-xl-9">
+                    <article class="{{post_class}} content-wrap post-access-{{visibility}} no-overflow">
+                        <div class="content">
+                            <!-- click io  -->
+                            <script async type='text/javascript'
+                                    src='//s.clickiocdn.com/t/225529/360_light.js'></script>
+                            <script class='__lxGc__' type='text/javascript'>
+                                ((__lxGc__=window.__lxGc__||{'s':{},'b':0})['s']['_225529']=__lxGc__['s']['_225529']||{'b':{}})['b']['_683379']={'i':__lxGc__.b++};
+                            </script>
+                            <script async type='text/javascript' src='//s.luxcdn.com/t/225529/360_light.js'></script>
+                            <script class='__lxGc__' type='text/javascript'>
+                                ((__lxGc__=window.__lxGc__||{'s':{},'b':0})['s']['_225529']=__lxGc__['s']['_225529']||{'b':{}})['b']['_683379']={'i':__lxGc__.b++};
+                            </script>
+                            <!-- click io  -->
+                            {{#if custom_excerpt}}
+                                <p class="context-excerpt text-lg">
+                                    {{custom_excerpt}}
+                                </p>
+                            {{/if}}
+                            {{#if access}}
+                                {{content}}
 
-{{!-- Include Comments --}}
-{{#if access}}
-  {{> comments}}
-{{/if}}
+                                {{#if tags}}
+                                    <hr>
+                                    <div class="post-tags flex">
+                                        {{#foreach tags}}
+                                            <a class="tag-{{slug}} m-r bg-acc-2 text-sm fw-700" href="{{url}}"
+                                               title="{{name}}" aria-label="{{name}}">#{{name}}</a>
+                                        {{/foreach}}
+                                    </div>
+                                    <hr>
+                                {{/if}}
+                            {{else}}
+                                {{> content-cta fading=true}}
+                            {{/if}}
+                        </div>
+                    </article>
+                </div>
+                <div class="col-xs-12 col-lg-4 col-xl-3">
+                    {{> sidebar}}
+                </div>
+            </div>
+        </div>
 
-{{!-- Related posts --}}
-{{> related-posts}}
+    {{!-- Include Comments --}}
+    {{#if access}}
+        {{> comments}}
+    {{/if}}
+
+    {{!-- Related posts --}}
+    {{> related-posts}}
 {{/post}}

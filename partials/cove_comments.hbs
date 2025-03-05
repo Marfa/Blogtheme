@@ -2,27 +2,27 @@
 <div id="cove" class="comments__panel m-b text-acc-2"></div>
 
 {{#if @member}}
-  <div>{{@member.email}} · <a href="javascript:" data-members-signout>{{t "Log out"}}</a></div>
+    <div>{{@member.email}} · <a href="javascript:" data-members-signout>{{t "Log out"}}</a></div>
 {{else}}
-  <p class="m-b fw-700 text-acc-1 text-lg">{{t "Join the conversation."}}</p>
-  <form data-members-form="signin" id="cove-login" class="flex">
-    <input class="cove-input flex-1 m-0" data-members-email type="email" placeholder="your@email.com" required/>
-    <button type="submit" class="btn btn--primary">
-      {{t "Send login link"}}
-    </button>
-    <a tabindex="0" class="notify notify-success js-notify-close">
-      <div class="container wrapper flex flex-cc">
-        <div class="notify__msg flex-1">{{t "Great! Check your inbox and click the link"}}</div> 
-        <div class="notify__close">{{>icon name="x" size="xs"}}</div>
-      </div>
-    </a>
-  </form>
+    <p class="m-b fw-700 text-acc-1 text-lg">{{t "Join the conversation."}}</p>
+    <form data-members-form="signin" id="cove-login" class="flex">
+        <input class="cove-input flex-1 m-0" data-members-email type="email" placeholder="your@email.com" required/>
+        <button type="submit" class="btn btn--primary">
+            {{t "Send login link"}}
+        </button>
+        <a tabindex="0" class="notify notify-success js-notify-close">
+            <div class="container wrapper flex flex-cc">
+                <div class="notify__msg flex-1">{{t "Great! Check your inbox and click the link"}}</div>
+                <div class="notify__close">{{>icon name="x" size="xs"}}</div>
+            </div>
+        </a>
+    </form>
 {{/if}}
 
 <script>
-  const Cove = {
-    publication: config.cove_id,
-    contentId: "{{comment_id}}",
+    const Cove = {
+      publication: config.cove_id,
+      contentId: "{{comment_id}}",
     memberId: "{{@member.uuid}}",
     memberEmail: "{{@member.email}}"
   }

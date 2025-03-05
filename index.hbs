@@ -2,170 +2,173 @@
 
 {{!-- Hero Sections --}}
 <section class="section hero border-top-1{{#if @site.cover_image}} has-img{{/if}}">
-  <div class="container wrapper w-100">
-    <div class="hero__inner flex">
+    <div class="container wrapper w-100">
+        <div class="hero__inner flex">
 
-      <div class="hero__content flex flex-1 flex-col {{#unless @site.cover_image}} flex-cc{{/unless}}">
-        {{!-- Title and description --}}
-        <h1 class="hero__title">{{#if @custom.hero_headline}}{{@custom.hero_headline}}{{else}}{{@site.title}}{{/if}}</h1>
-        <div class="hero__descr m-b{{#unless @site.cover_image}} text-center{{/unless}}">{{#if @custom.hero_description}}{{@custom.hero_description}}{{else}}{{@site.description}}{{/if}}</div>
+            <div class="hero__content flex flex-1 flex-col {{#unless @site.cover_image}} flex-cc{{/unless}}">
+                {{!-- Title and description --}}
+                <h1 class="hero__title">{{#if
+                        @custom.hero_headline}}{{@custom.hero_headline}}{{else}}{{@site.title}}{{/if}}</h1>
+                <div class="hero__descr m-b{{#unless @site.cover_image}} text-center{{/unless}}">{{#if
+                        @custom.hero_description}}{{@custom.hero_description}}{{else}}{{@site.description}}{{/if}}</div>
 
-        {{!-- Subscribe --}}
-        {{#if @member.paid}}
-          {{!-- Paid member - no CTA --}}
-        {{else if @member}}
-          {{!-- Paid member - no CTA --}}
-        {{else}}
-          {{#if @custom.hero_form}}
-            <form data-members-form="subscribe">
-              <input data-members-name aria-labelledby="post-subscribe" autocomplete="off"
-                type="text" placeholder="{{t "Your name"}}" required>
-              <input data-members-email aria-labelledby="post-subscribe" 
-                type="email" placeholder="{{t "Your email address"}}" required/>
-              <button class="btn btn--secondary" type="submit" 
-                title="{{t "Subscribe"}}" aria-label="{{t "Subscribe"}}">
-                {{t "Subscribe"}}
-              </button>
-              <a tabindex="0" class="notify notify-success js-notify-close">
-                <div class="container wrapper flex flex-cc">
-                  <div class="notify__msg flex-1">{{t "Great! Check your inbox and click the link to confirm your subscription"}}</div> 
-                  <div class="notify__close">{{>icon name="x" size="xs"}}</div>
-                </div>
-              </a>
-            </form>
-          {{/if}}
-        {{/if}}
-      </div>
+                {{!-- Subscribe --}}
+                {{#if @member.paid}}
+                {{!-- Paid member - no CTA --}}
+                {{else if @member}}
+                {{!-- Paid member - no CTA --}}
+                {{else}}
+                    {{#if @custom.hero_form}}
+                        <form data-members-form="subscribe">
+                            <input data-members-name aria-labelledby="post-subscribe" autocomplete="off"
+                                   type="text" placeholder="{{t "Your name"}}" required>
+                            <input data-members-email aria-labelledby="post-subscribe"
+                                   type="email" placeholder="{{t "Your email address"}}" required/>
+                            <button class="btn btn--secondary" type="submit"
+                                    title="{{t "Subscribe"}}" aria-label="{{t "Subscribe"}}">
+                                {{t "Subscribe"}}
+                            </button>
+                            <a tabindex="0" class="notify notify-success js-notify-close">
+                                <div class="container wrapper flex flex-cc">
+                                    <div class="notify__msg flex-1">{{t
+                                            "Great! Check your inbox and click the link to confirm your subscription"}}</div>
+                                    <div class="notify__close">{{>icon name="x" size="xs"}}</div>
+                                </div>
+                            </a>
+                        </form>
+                    {{/if}}
+                {{/if}}
+            </div>
 
-      {{!-- Site cover image --}}
-      {{#if @site.cover_image}}
-        <img class="hero__img" 
-          srcset="{{img_url @site.cover_image size="s"}} 300w,
+            {{!-- Site cover image --}}
+            {{#if @site.cover_image}}
+                <img class="hero__img"
+                     srcset="{{img_url @site.cover_image size="s"}} 300w,
                   {{img_url @site.cover_image size="m"}} 600w,
                   {{img_url @site.cover_image size="l"}} 1000w"
-          sizes="(max-width: 1000px) 50vw, 700px"
-          data-src="{{img_url @site.cover_image size="s"}}"
-          src="{{img_url @site.cover_image size="xs"}}"
-          alt="{{@site.title}}"/>
-      {{/if}}
+                     sizes="(max-width: 1000px) 50vw, 700px"
+                     data-src="{{img_url @site.cover_image size="s"}}"
+                     src="{{img_url @site.cover_image size="xs"}}"
+                     alt="{{@site.title}}"/>
+            {{/if}}
+        </div>
     </div>
-  </div>
 </section>
 
 {{!-- Stats --}}
 {{#if @custom.hero_stats}}
-  <div class="container wrapper">
-    {{> stats}}
-  </div>
+    <div class="container wrapper">
+        {{> stats}}
+    </div>
 {{/if}}
 
 <div class="container wrapper">
-  {{!-- Latest Posts --}}
-  <div class="section">
-  <!-- секция баннеров  -->
+    {{!-- Latest Posts --}}
+    <div class="section">
+        <!-- секция баннеров  -->
 
-<script type="text/javascript">
-var myadspace = [];
-myadspace[0] = '<noindex><a href="https://pst.net/?f=4d5d6d5148e5f4038393633cc6e06c2b" target="_blank" rel="nofollow"><img src="https://blog.themarfa.name/content/images/2023/10/1200200-ru-no-fb.gif" alt="PST " style="min-width: 120px; width: 100%;"></a></noindex>'
-myadspace[1] = '<noindex><a href="https://abcard.io?utm_source=media&utm_medium=cpc&utm_campaign=blogthemarfa&utm_content=banner_04" target="_blank" rel="nofollow"><img src="https://blog.themarfa.name/content/images/2025/03/1200x200_gif.gif" alt="Any Bill" style="min-width: 120px; width: 100%;"></a></noindex>'
-var x = 0;
-function rotate(myadspace) {
-while (x < myadspace.length) {
-var sort = Math.floor(Math.random() * myadspace.length);
-if (myadspace[sort] != 0) {
-document.getElementById('adspace').innerHTML = (myadspace[sort]);
-myadspace[sort] = 0;
-x++;
-}
-}
-}
-</script>
-<style>
-#adspace {
-}
-#adspace img {
-}
-</style>
-<div id="adspace">
-<script type="text/javascript">
-rotate(myadspace);
-</script>
-</div>
-<!-- секция баннеров -->
-                <div class="post__content-inner">
-    <div class="flex flex-cc m-b">
-      <span class="fw-700 text-lg uppercase flex-1">{{t "Недавние посты"}}</span>
-      {{!-- Tag List --}}
-      {{!-- <div class="tag-list-wrap flex-1">
-      {{#get "tags" include="count.posts" order="count.posts desc" limit="5"}}
-        <div class="tag-list">
-          {{#foreach tags}}
-            <a class="tag-item" href="{{url}}">{{name}}</a>
-          {{/foreach}}
+        <script type="text/javascript">
+            var myadspace = [];
+            myadspace[0] = '<noindex><a href="https://pst.net/?f=4d5d6d5148e5f4038393633cc6e06c2b" target="_blank" rel="nofollow"><img src="https://blog.themarfa.name/content/images/2023/10/1200200-ru-no-fb.gif" alt="PST " style="min-width: 120px; width: 100%;"></a></noindex>'
+            myadspace[1] = '<noindex><a href="https://abcard.io?utm_source=media&utm_medium=cpc&utm_campaign=blogthemarfa&utm_content=banner_04" target="_blank" rel="nofollow"><img src="https://blog.themarfa.name/content/images/2025/03/1200x200_gif.gif" alt="Any Bill" style="min-width: 120px; width: 100%;"></a></noindex>'
+            var x = 0;
+            function rotate(myadspace) {
+            while (x < myadspace.length) {
+            var sort = Math.floor(Math.random() * myadspace.length);
+            if (myadspace[sort] != 0) {
+            document.getElementById('adspace').innerHTML = (myadspace[sort]);
+            myadspace[sort] = 0;
+            x++;
+            }
+            }
+            }
+        </script>
+        <style>
+            #adspace {
+            }
+            #adspace img {
+            }
+        </style>
+        <div id="adspace">
+            <script type="text/javascript">
+                rotate(myadspace);
+            </script>
         </div>
-      {{/get}}
-      </div> --}}
-    
-      {{!-- Grid/List buttons --}}
-      <button class="toggle__item btn--grid p-sm m-r-sm js-grid-btn" 
-        aria-label="{{t "Grid"}}" title="{{t "Grid"}}" onclick="setView('grid')">
-        {{> icon name="grid" size="sm"}}
-      </button>
-      <button class="toggle__item btn--list p-sm js-list-btn" 
-        aria-label="{{t "List"}}" title="{{t "List"}}" onclick="setView('list')">
-        {{> icon name="list" size="sm"}}
-      </button>
+        <!-- секция баннеров -->
+        <div class="post__content-inner">
+            <div class="flex flex-cc m-b">
+                <span class="fw-700 text-lg uppercase flex-1">{{t "Недавние посты"}}</span>
+                {{!-- Tag List --}}
+                {{!-- <div class="tag-list-wrap flex-1">
+                {{#get "tags" include="count.posts" order="count.posts desc" limit="5"}}
+                  <div class="tag-list">
+                    {{#foreach tags}}
+                      <a class="tag-item" href="{{url}}">{{name}}</a>
+                    {{/foreach}}
+                  </div>
+                {{/get}}
+                </div> --}}
+
+                {{!-- Grid/List buttons --}}
+                <button class="toggle__item btn--grid p-sm m-r-sm js-grid-btn"
+                        aria-label="{{t "Grid"}}" title="{{t "Grid"}}" onclick="setView('grid')">
+                    {{> icon name="grid" size="sm"}}
+                </button>
+                <button class="toggle__item btn--list p-sm js-list-btn"
+                        aria-label="{{t "List"}}" title="{{t "List"}}" onclick="setView('list')">
+                    {{> icon name="list" size="sm"}}
+                </button>
+            </div>
+
+            {{!-- Posts --}}
+            <div class="grid post-container">
+                <!-- click io  -->
+                <script async type='text/javascript' src='//s.clickiocdn.com/t/225529/360_light.js'></script>
+                <script class='__lxGc__' type='text/javascript'>
+                    ((__lxGc__=window.__lxGc__||{'s':{},'b':0})['s']['_225529']=__lxGc__['s']['_225529']||{'b':{}})['b']['_683379']={'i':__lxGc__.b++};
+                </script>
+                <script async type='text/javascript' src='//s.luxcdn.com/t/225529/360_light.js'></script>
+                <script class='__lxGc__' type='text/javascript'>
+                    ((__lxGc__=window.__lxGc__||{'s':{},'b':0})['s']['_225529']=__lxGc__['s']['_225529']||{'b':{}})['b']['_683379']={'i':__lxGc__.b++};
+                </script>
+                <!-- click io  -->
+                {{#foreach posts}}
+                    {{> post-card img=true }}
+                {{/foreach}}
+            </div>
+
+            {{!-- Load more posts --}}
+            <div class="col-xs-12 center-xs m-t-lg">
+                <button class="btn btn--wide btn--shadow btn--brand js-load-more" onclick="loadMorePosts(this)">
+                    {{t "Load more posts"}}
+                </button>
+            </div>
+        </div>
+
+        {{!-- Main Tags --}}
+        <div class="section">
+            <div class="section__title m-b">{{t "Explore topics"}}</div>
+
+            {{#get "tags" include="count.posts" order="count.posts desc" limit="7"}}
+                <div class="row">
+                    <div class="col-xs-12 col-md-6 col-xl-4 featured-tag">
+                        {{#foreach tags to="1"}}
+                            {{> tag-card class="h-100" img=true}}
+                        {{/foreach}}
+                    </div>
+
+                    <div class="col-xs-12 col-md-6 col-xl-4 tag-wrap">
+                        {{#foreach tags from="2" to="4" columns="3"}}
+                            {{> tag-card}}
+                        {{/foreach}}
+                    </div>
+
+                    <div class="col-xs-12 col-xl-4 tag-wrap">
+                        {{#foreach tags from="5" to="7"}}
+                            {{> tag-card}}
+                        {{/foreach}}
+                    </div>
+                </div>
+            {{/get}}
+        </div>
     </div>
-
-    {{!-- Posts --}}
-    <div class="grid post-container">
-	<!-- click io  -->
-				<script async type='text/javascript' src='//s.clickiocdn.com/t/225529/360_light.js'></script>
-<script class='__lxGc__' type='text/javascript'>
-((__lxGc__=window.__lxGc__||{'s':{},'b':0})['s']['_225529']=__lxGc__['s']['_225529']||{'b':{}})['b']['_683379']={'i':__lxGc__.b++};
-</script>
-				<script async type='text/javascript' src='//s.luxcdn.com/t/225529/360_light.js'></script>
-<script class='__lxGc__' type='text/javascript'>
-((__lxGc__=window.__lxGc__||{'s':{},'b':0})['s']['_225529']=__lxGc__['s']['_225529']||{'b':{}})['b']['_683379']={'i':__lxGc__.b++};
-</script>
-<!-- click io  -->
-      {{#foreach posts}}
-        {{> post-card img=true }}
-      {{/foreach}}
-    </div>
-
-    {{!-- Load more posts --}}
-    <div class="col-xs-12 center-xs m-t-lg">
-      <button class="btn btn--wide btn--shadow btn--brand js-load-more" onclick="loadMorePosts(this)">
-        {{t "Load more posts"}}
-      </button>
-    </div>
-  </div>
-
-  {{!-- Main Tags --}}
-  <div class="section">
-    <div class="section__title m-b">{{t "Explore topics"}}</div>
-
-    {{#get "tags" include="count.posts" order="count.posts desc" limit="7"}}
-      <div class="row">
-        <div class="col-xs-12 col-md-6 col-xl-4 featured-tag">
-          {{#foreach tags to="1"}}
-            {{> tag-card class="h-100" img=true}}
-          {{/foreach}}
-        </div>
-
-        <div class="col-xs-12 col-md-6 col-xl-4 tag-wrap">
-          {{#foreach tags from="2" to="4" columns="3"}}
-            {{> tag-card}}
-          {{/foreach}}
-        </div>
-
-        <div class="col-xs-12 col-xl-4 tag-wrap">
-          {{#foreach tags from="5" to="7"}}
-            {{> tag-card}}
-          {{/foreach}}
-        </div>
-      </div>
-    {{/get}}
-  </div>
-</div>
