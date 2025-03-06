@@ -80,15 +80,6 @@
 </main>
 
 {{!-- The footer at the very bottom --}}
-{{^is "signin, signup"}}
-    {{#unless @member}}
-        <div class="section p-t p-b m-0 sub">
-            <div class="container wrapper">
-                {{> subscribe text=(t 'Send') }}
-            </div>
-        </div>
-    {{/unless}}
-
     {{> footer}}
 
     {{!-- Scroll Top --}}
@@ -98,7 +89,6 @@
         </svg>
         {{> icon name="arrow-up"}}
     </div>
-{{/is}}
 
 {{!-- Notifications --}}
 {{> notifications}}
