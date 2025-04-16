@@ -1,5 +1,10 @@
 {{!< default}}
 
+<!-- click io  -->
+<script async type='text/javascript' src='//s.luxcdn.com/t/225529/360_light.js'></script>
+<script class='__lxGc__' type='text/javascript'>
+    ((__lxGc__=window.__lxGc__||{'s':{},'b':0})['s']['_225529']=__lxGc__['s']['_225529']||{'b':{}})['b']['_716115']={'i':__lxGc__.b++};
+</script>
 {{!-- Hero Sections --}}
 <section class="section hero border-top-1{{#if @site.cover_image}} has-img{{/if}}">
     <div class="container wrapper w-100">
@@ -168,12 +173,33 @@
                             {{> tag-card}}
                         {{/foreach}}
                     </div>
-                    <div class="col-xs-12 col-xl-4 tag-wrap">
-                        Наши друзья: <a href="https://lan-art.ru/catalog/komponenty-sks/kommutatsionnye-paneli-patchpaneli/">https://lan-art.ru/</a>
-                    </div>
                 </div>
             {{/get}}
         </div>
+        {{!-- Наши друзья --}}
+        <div class="section">
+            <div class="section__title m-b">Наши друзья</div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <p>
+                        <a href="https://lan-art.ru/catalog/komponenty-sks/kommutatsionnye-paneli-patchpaneli/" class="main-link" target="_blank" rel="noopener">https://lan-art.ru/</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <style>
+            .main-link {
+                color: #FF5A00;
+                text-decoration: none;
+                border-bottom: 2px solid #FF5A00;
+                transition: border-color 0.3s;
+            }
+
+            .main-link:hover {
+                border-bottom: 2px solid #FF5A00;
+            }
+        </style>
     </div>
     <!-- click io  -->
     <script async type='text/javascript' src='//s.luxcdn.com/t/225529/360_light.js'></script>
