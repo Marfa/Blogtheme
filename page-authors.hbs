@@ -2,63 +2,85 @@
 
 {{!-- Everything inside the #post tags pulls data from the post --}}
 {{#post}}
-    {{> page-hero}}
+{{> page-hero}}
 
-    <div class="container wrapper">
-        {{#get "authors" limit="all" include="count.posts" order="count.posts desc"}}
-            <div class="row">
-                {{#foreach authors}}
-                    {{#if count.posts}}
-                        <div class="col-xs-12 col-md-6 col-lg-4 m-b-lg">
-                            <div class="author-card{{^if profile_image}} no-img{{/if}} h-100 flex flex-col flex-cc p">
-                                {{!-- Author profile image --}}
-                                {{#if profile_image}}
-                                    <a href="{{url}}">
-                                        <img class="lazyload author-card__img m-b-sm"
-                                             data-srcset="{{img_url profile_image size="s"}} 300w,
+<div class="container wrapper">
+  {{#get "authors" limit="all" include="count.posts" order="count.posts desc"}}
+  <div class="row">
+    {{#foreach authors}}
+      {{#if count.posts}}
+      <div class="col-xs-12 col-md-6 col-lg-4 m-b-lg">
+        <div class="author-card{{^if profile_image}} no-img{{/if}} h-100 flex flex-col flex-cc p">
+          {{!-- Author profile image --}}
+          {{#if profile_image}}
+            <a href="{{url}}">
+              <img class="lazyload author-card__img m-b-sm" 
+                data-srcset="{{img_url profile_image size="s"}} 300w,
                     {{img_url profile_image size="m"}} 600w"
-                                             data-sizes="(max-width: 600px) 200px, 400px"
-                                             data-src="{{img_url profile_image size="s"}}"
-                                             src="{{img_url profile_image size="xs"}}"
-                                             alt="{{name}}"/>
-                                    </a>
-                                {{/if}}
+                data-sizes="(max-width: 600px) 200px, 400px"
+                data-src="{{img_url profile_image size="s"}}"
+                src="{{img_url profile_image size="xs"}}"
+                alt="{{name}}" />
+            </a>
+          {{/if}}
 
-                                <div class="author-card__content">
-                                    {{!-- Author Name --}}
-                                    <h2 class="m-b-xs"><a href="{{url}}">{{name}}</a></h2>
-                                    <div class="m-b text-center">
-                                        {{plural count.posts empty=(t 'No posts') singular=(t '1 post')
-                                                 plural=(t '% posts')}}
-                                    </div>
-
-                                    {{!-- Author social links --}}
-                                    <div class="flex flex-cc m-b-sm">
-                                        {{#if twitter}}
-                                            <a href="{{twitter_url}}" target="_blank" title="Twitter"
-                                               aria-label="Twitter">
-                                                {{> twitter-x size="sm"}}
-                                            </a>
-                                        {{/if}}
-                                        {{#if facebook}}
-                                            <a href="{{facebook_url}}" target="_blank" title="Facebook"
-                                               aria-label="Facebook">
-                                                {{> icon name="facebook" size="sm"}}
-                                            </a>
-                                        {{/if}}
-                                        {{!-- Author website --}}
-                                        {{#if website}}
-                                            <a href="{{website}}" target="_blank" title="Website" aria-label="Website">
-                                                {{> icon name="link" size="sm"}}
-                                            </a>
-                                        {{/if}}
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    {{/if}}
-                {{/foreach}}
+          <div class="author-card__content">
+            {{!-- Author Name --}}
+            <h2 class="m-b-xs"><a href="{{url}}">{{name}}</a></h2>
+            <div class="m-b text-center">
+              {{plural count.posts empty=(t 'No posts') singular=(t '1 post') plural=(t '% posts')}}
             </div>
-        {{/get}}
-    </div>
+
+            {{!-- Author social links --}}
+            <div class="hero__social flex flex-cc m-b-sm">
+              {{#if twitter}}
+                <a href="{{social_url type="twitter"}}" target="_blank" title="Twitter" aria-label="Twitter">
+                  {{>icon-p name="twitter-x" size="sm"}}
+                </a>
+              {{/if}}
+              {{#if linkedin}}
+                <a href="{{social_url type="linkedin"}}" target="_blank" title="LinkedIn" aria-label="LinkedIn">
+                  {{> icon name="linkedin" size="sm"}}
+                </a>
+              {{/if}}
+              {{#if bluesky}}
+                <a href="{{social_url type="bluesky"}}" target="_blank" title="Bluesky" aria-label="Bluesky">
+                  {{> icon-p name="bluesky" size="sm"}}
+                </a>
+              {{/if}}
+              {{#if threads}}
+                <a href="{{social_url type="threads"}}" target="_blank" title="Threads" aria-label="Threads">
+                  {{> icon-p name="threads" size="sm"}}
+                </a>
+              {{/if}}
+              {{#if mastodon}}
+                <a href="{{social_url type="mastodon"}}" target="_blank" title="Mastodon" aria-label="Mastodon">
+                  {{> icon-p name="mastodon" size="sm"}}
+                </a>
+              {{/if}}
+              {{#if tiktok}}
+                <a href="{{social_url type="tiktok"}}" target="_blank" title="TikTok" aria-label="TikTok">
+                  {{> icon-p name="tiktok" size="sm"}}
+                </a>
+              {{/if}}
+              {{#if youtube}}
+                <a href="{{social_url type="youtube"}}" target="_blank" title="YouTube" aria-label="YouTube">
+                  {{> icon-p name="youtube" size="sm"}}
+                </a>
+              {{/if}}
+              {{!-- Author website --}}
+              {{#if website}}
+                <a href="{{website}}" target="_blank" title="Website" aria-label="Website">
+                  {{> icon name="link" size="sm"}}
+                </a>
+              {{/if}}
+            </div>
+          </div>
+        </div>
+      </div>
+      {{/if}}
+    {{/foreach}}
+  </div>
+  {{/get}}
+</div>
 {{/post}}
