@@ -8,13 +8,6 @@
             </div>
         </div>
 
-        {{#unless @member.paid}}
-            <a class="upgrade-link" href="/account/" tabindex="0"
-               title="{{t "Upgrade"}}" aria-label="{{t "Upgrade"}}">
-                {{>icon name="trending-up" size="xs"}}{{t "Upgrade"}}
-            </a>
-        {{/unless}}
-
         <a class="account-link" href="/#/portal/account" tabindex="0"
            title="{{t "Account"}}" aria-label="{{t "Account"}}">
             {{>icon name="user" size="xs"}}{{t "Account"}}

@@ -50,8 +50,7 @@
                 {{!-- Sign up Button --}}
                 {{#if @member.paid}}
                 {{else if @member}}
-                    <a class="upgrade-link" href="/account/">{{t
-                            "Upgrade"}}{{>icon name="trending-up" size="xs" class="m-l-sm"}}</a>
+                    <a class="signin-link" href="/#/portal/signin">{{t "Войти"}}</a>
                 {{else}}
                     <a class="signin-link" href="/#/portal/signin">{{t "Войти"}}</a>
                 {{/if}}
