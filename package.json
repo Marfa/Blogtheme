@@ -2,9 +2,9 @@
   "name": "joben",
   "description": "Joben Ghost Theme",
   "demo": "",
-  "version": "2.12.0",
+  "version": "2.15.0",
   "engines": {
-    "ghost": ">=5.0.0"
+    "ghost": ">=6.0.0"
   },
   "author": {
     "name": "Bright Themes",
@@ -26,31 +26,32 @@
   },
   "scripts": {
     "dev": "gulp",
+    "prebuild": "test -f theme.js && node theme.js || true",
     "build": "gulp build",
     "test": "gscan . --verbose",
-    "zip": "gscan . --verbose && gulp build && gulp zip",
-    "release": "npm version minor --no-git-tag-version && git add . && git commit -m \"v$(node -p 'require(\"./package.json\").version')\" && git push && npm run zip"
+    "zip": "gscan . --verbose && gulp build && mkdir -p dist && zip -rq dist/${npm_package_name} . -x 'dist*' -x 'demo*' -x 'node_modules*' -x '.*' 'TODO.md' 'private.hbs' 'theme.js' && size_kb=$(node -p \"Math.ceil(require('fs').statSync('dist/' + process.env.npm_package_name + '.zip').size / 1024)\") && printf '\\n\\033[1m\\033[32m✓\\033[39m Created dist/%s.zip (%s kB)\\033[0m\\n' \"${npm_package_name}\" \"$size_kb\"",
+    "release": "npm version minor --no-git-tag-version && npm run zip && git add . && git commit -m \"v$(node -p 'require(\"./package.json\").version')\" && git push"
   },
   "dependencies": {
-    "@babel/core": "^7.26.0",
-    "@babel/preset-env": "^7.26.0",
-    "@tryghost/content-api": "^1.11.21",
+    "@babel/core": "^7.29.0",
+    "@babel/preset-env": "^7.29.2",
+    "@tryghost/content-api": "^1.12.6",
     "beeper": "^2.1.0",
     "browser-sync": "^2.29.3",
     "cssnano": "^5.1.15",
     "cssnano-preset-advanced": "^5.3.10",
     "feather-icons": "^4.29.2",
     "fitvids": "^2.1.1",
-    "fslightbox": "^3.4.2",
-    "gscan": "^4.46.0",
+    "fslightbox": "^3.7.5",
+    "gscan": "^5.4.1",
     "gulp": "^4.0.2",
     "gulp-babel": "^8.0.0",
     "gulp-concat": "^2.6.1",
     "gulp-postcss": "^9.0.1",
-    "gulp-rename": "^2.0.0",
+    "gulp-rename": "^2.1.0",
     "gulp-uglify": "^3.0.2",
     "gulp-zip": "^5.1.0",
-    "postcss": "^8.4.49",
+    "postcss": "^8.5.8",
     "postcss-cssential": "^1.1.0",
     "postcss-custom-media": "^8.0.2",
     "postcss-custom-properties": "^11.0.0",
@@ -58,9 +59,9 @@
     "postcss-mixins": "^8.1.0",
     "postcss-nested": "^5.0.6",
     "postcss-preset-env": "^7.8.3",
-    "prismjs": "^1.29.0",
-    "pump": "^3.0.2",
-    "tocbot": "^4.32.2",
+    "prismjs": "^1.30.0",
+    "pump": "^3.0.4",
+    "tocbot": "^4.36.4",
     "vanilla-lazyload": "^12.5.1"
   },
   "config": {

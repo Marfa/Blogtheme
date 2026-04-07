@@ -6,7 +6,7 @@
   stroke-width: 2px;
   fill: none;
 
-  &__svg {
+  &__svg, svg {
     fill: inherit;
     background: inherit;
     stroke: currentcolor;
