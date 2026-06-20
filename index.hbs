@@ -22,7 +22,7 @@
                 {{#if @member.paid}}
                 {{!-- Paid member - no CTA --}}
                 {{else if @member}}
-                {{!-- Paid member - no CTA --}}
+                {{!-- Free member - no CTA --}}
                 {{else}}
                     {{#if @custom.hero_form}}
                         <form data-members-form="subscribe">
@@ -126,7 +126,7 @@
             </div>
 
             {{!-- Posts --}}
-            <div class="grid post-container">
+            <div class="grid post-container" {{#if @custom.post_card_tag_accent_bg}}data-grid-color="true"{{/if}}>
                 <!-- click io Luxup disabled
                 <script async type='text/javascript' src='//s.clickiocdn.com/t/225529/360_light.js'></script>
                 <script class='__lxGc__' type='text/javascript'>

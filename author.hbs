@@ -13,15 +13,50 @@
           {{plural ../pagination.total empty=(t 'No posts') singular=(t '1 post') plural=(t '% posts')}}
         </div>
 
-                    {{!-- Author social links --}}
-                    <div class="hero__social flex">
-                        {{!-- Author website --}}
-                        {{#if website}}{{> icon name="link" size="sm"}}
-                            <a href="{{website}}" target="_blank" title="Website" aria-label="Website"> - перейти на
-                                сайт автора</a>
-                        {{/if}}
-                    </div>
-                </div>
+        {{!-- Author social links --}}
+        <div class="hero__social flex">
+          {{#if twitter}}
+            <a href="{{social_url type="twitter"}}" target="_blank" title="Twitter" aria-label="Twitter">
+              {{>icon-p name="twitter-x" size="sm"}}
+            </a>
+          {{/if}}
+          {{#if linkedin}}
+            <a href="{{social_url type="linkedin"}}" target="_blank" title="LinkedIn" aria-label="LinkedIn">
+              {{> icon name="linkedin" size="sm"}}
+            </a>
+          {{/if}}
+          {{#if bluesky}}
+            <a href="{{social_url type="bluesky"}}" target="_blank" title="Bluesky" aria-label="Bluesky">
+              {{>icon-p name="bluesky" size="sm"}}
+            </a>
+          {{/if}}
+          {{#if threads}}
+            <a href="{{social_url type="threads"}}" target="_blank" title="Threads" aria-label="Threads">
+              {{>icon-p name="threads" size="sm"}}
+            </a>
+          {{/if}}
+          {{#if mastodon}}
+            <a href="{{social_url type="mastodon"}}" target="_blank" title="Mastodon" aria-label="Mastodon">
+              {{>icon-p name="mastodon" size="sm"}}
+            </a>
+          {{/if}}
+          {{#if tiktok}}
+            <a href="{{social_url type="tiktok"}}" target="_blank" title="TikTok" aria-label="TikTok">
+              {{>icon-p name="tiktok" size="sm"}}
+            </a>
+          {{/if}}
+          {{#if youtube}}
+            <a href="{{social_url type="youtube"}}" target="_blank" title="YouTube" aria-label="YouTube">
+              {{>icon-p name="youtube" size="sm"}}
+            </a>
+          {{/if}}
+          {{#if website}}
+            <a href="{{website}}" target="_blank" title="Website" aria-label="Website">
+              {{> icon name="link" size="sm"}} — перейти на сайт автора
+            </a>
+          {{/if}}
+        </div>
+      </div>
 
       {{!-- Author profile image --}}
       {{#if profile_image}}
