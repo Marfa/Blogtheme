@@ -2,7 +2,7 @@
   // Basic Config
   let config = {
     color_scheme: `{{#if @custom.default_color_scheme}}{{@custom.default_color_scheme}}{{else}}system{{/if}}`,
-    view_type: `{{#if @custom.post_feed_style}}{{@custom.post_feed_style}}{{else}}grid{{/if}}`,
+    view_type: `{{#if @custom.post_feed_style}}{{@custom.post_feed_style}}{{else}}list{{/if}}`,
     header_position: `{{#if @custom.enable_sticky_header}}sticky{{else}}initial{{/if}}`,
     grid_columns: parseInt(`{{@custom.post_feed_grid_columns}}`), /* Nr of columns for post cards: 2/3. */
     image_lightbox: !!`{{#if @custom.enable_image_lightbox}}{{@custom.enable_image_lightbox}}{{/if}}`,

@@ -85,7 +85,7 @@
           "list",
           "grid"
         ],
-        "default": "grid"
+        "default": "list"
       },
       "post_feed_grid_columns": {
         "type": "select",
@@ -117,7 +117,7 @@
       },
       "hero_form": {
         "type": "boolean",
-        "default": true,
+        "default": false,
         "group": "homepage"
       },
       "hero_stats": {
@@ -127,7 +127,7 @@
       },
       "post_card_tag_accent_bg": {
         "type": "boolean",
-        "default": false,
+        "default": true,
         "group": "homepage"
       },
       "enable_image_lightbox": {
@@ -137,7 +137,7 @@
       },
       "open_external_links_in_new_tab": {
         "type": "boolean",
-        "default": false,
+        "default": true,
         "group": "post"
       }
     },
