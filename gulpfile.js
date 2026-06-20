@@ -143,7 +143,6 @@ const zipper = done => {
         '!dist', 
         '!dist/**',
         '!assets/dist/*.map',
-        '!assets/icon*.png',
         '!.github',
         '!TODO.md',
         '!ROADMAP.md',

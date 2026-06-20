@@ -19,7 +19,6 @@
     {{!-- PWA --}}
     <link rel="manifest" href="{{asset 'manifest.webmanifest'}}">
     <meta name="theme-color" content="{{@site.accent_color}}">
-    <link rel="apple-touch-icon" href="{{asset 'icon-192x192.png'}}">
 
     {{!-- Theme Configuration --}}
     {{> theme-config}}
@@ -58,6 +57,12 @@
 
     {{!-- Ghost outputs important style and meta data with this tag --}}
     {{ghost_head}}
+
+    {{!-- All-In-One Person icons --}}
+    <link rel="icon" href="{{asset 'favicon.png'}}" type="image/png" sizes="32x32">
+    <link rel="icon" href="{{asset 'icon-48x48.png'}}" type="image/png" sizes="48x48">
+    <link rel="icon" href="{{asset 'icon-192x192.png'}}" type="image/png" sizes="192x192">
+    <link rel="apple-touch-icon" href="{{asset 'icon-192x192.png'}}">
 
     {{!-- Global scripts for setting values --}}
     {{> global-scripts}}
