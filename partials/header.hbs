@@ -47,13 +47,14 @@
           {{>icon name="menu" size="sm"}}
         </button>
 
-                {{!-- Sign up Button --}}
+        {{!-- Sign in button hidden
                 {{#if @member.paid}}
                 {{else if @member}}
                     <a class="signin-link" href="/#/portal/signin">{{t "Войти"}}</a>
                 {{else}}
                     <a class="signin-link" href="/#/portal/signin">{{t "Войти"}}</a>
                 {{/if}}
+        --}}
 
         {{!-- User Menu on Mobile --}}
         <div class="header__user-wrap{{#if @member}} member {{else}} non-member {{/if}}m-l-sm">
