@@ -19,14 +19,7 @@
             {{>icon name="log-out" size="xs"}}{{t "Выйти"}}
         </a>
     {{else}}
-        <a class="signup-link" href="/signup/" tabindex="0"
-           title="{{t "Sign up"}}" aria-label="{{t "Sign up"}}">
-            {{>icon name="arrow-up-right" size="xs"}}{{t "Sign up"}}
-        </a>
-        <a class="signin-link" href="/#/portal/account" tabindex="0"
-           title="{{t "Sign in"}}" aria-label="{{t "Sign in"}}">
-            {{>icon name="log-in" size="xs"}}{{t "Войти"}}
-        </a>
+        {{!-- Sign up / Sign in hidden on mobile and desktop --}}
     {{/if}}
 
     {{!-- Dark/Light Theme --}}
