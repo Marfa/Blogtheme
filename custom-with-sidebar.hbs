@@ -38,8 +38,6 @@
             </script>
         </div>
         <!-- секция баннеров -->
-        <section class="post__content">
-            <div class="post__content-inner">
         <div class="row">
             <div class="col-xs-12 col-lg-8 col-xl-9">
                 <article class="{{post_class}} content-wrap post-access-{{visibility}} no-overflow">
@@ -86,10 +84,8 @@
                 {{> sidebar}}
             </div>
         </div>
-            </div>
-        </section>
 
-    {{!-- Include Comments --}}
+        {{!-- Include Comments --}}
         {{#if access}}
             {{> comments}}
         {{/if}}
