@@ -1,9 +1,9 @@
-<div class="post-hero{{#unless feature_image}} no-img{{/unless}}{{#if featured}} featured{{/if}}">
-  <div class="post-hero__content">
-    <h1 class="post-hero__title text-center">{{title}}</h1>
+<header class="post-hero post__header{{#unless feature_image}} no-img{{/unless}}{{#if featured}} featured{{/if}}">
+  <div class="post-hero__content post__info">
+    <h1 class="post-hero__title post__title text-center">{{title}}</h1>
 
     {{!-- Post card Author/s --}}
-    <div class="post-hero__author flex-cc m-b-lg">
+    <div class="post-hero__author post__meta flex-cc m-b-lg">
       {{#has author="count:<2"}}
         {{#primary_author}}
           <a class="flex items-center" href="{{url}}" aria-label="{{name}}">
@@ -20,8 +20,8 @@
             </span>
 
             <div class="m-l-sm flex flex-col fw-500 line-height-1 gap-4">
-              <div>{{name}}</div>
-              <time datetime="{{date ../published_at format='YYYY-MM-DD'}}" class="text-xs">
+              <span class="post__author">{{name}}</span>
+              <time datetime="{{date ../published_at format='YYYY-MM-DD'}}" class="post__date text-xs">
                 {{date ../published_at timeago=""}}
               </time>
             </div>
@@ -45,8 +45,8 @@
           {{/foreach}}
         </div>
         <div class="m-l-sm flex flex-col fw-500 line-height-1 gap-4">
-          <div>{{#authors separator=", "}}{{/authors}}</div>
-          <time datetime="{{date format='YYYY-MM-DD'}}" class="text-xs">
+          <span class="post__author">{{#authors separator=", "}}{{/authors}}</span>
+          <time datetime="{{date format='YYYY-MM-DD'}}" class="post__date text-xs">
             {{date published_at timeago=""}}
           </time>
         </div>
@@ -58,7 +58,7 @@
   {{#if feature_image}}
     <figure class="post-hero__img">
       <img
-        class=""
+        class="post__feature-image"
         srcset="{{img_url feature_image size="s"}} 300w,
                 {{img_url feature_image size="m"}} 600w,
                 {{img_url feature_image size="l"}} 1000w,
@@ -74,4 +74,4 @@
       {{/if}}
     </figure>
   {{/if}}
-</div>
+</header>
