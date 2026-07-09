@@ -1,28 +1,23 @@
 ~version: "2.0"
 
-# blog.themarfa.name — Joben theme (2026)
+# blog.themarfa.name — legacy Ghost layout for IV template #30
 # Submit at https://instantview.telegram.org/my/
-# Test URL: https://blog.themarfa.name/kak-upravliat-cursor-cherez-telegram/
 
 ?exists: //meta[@property="og:type" and @content="article"]
 
-title:          //h1[has-class("post-hero__title")]
+title:          //h1[has-class("post__title")]
 author:         //span[has-class("post__author")]
-author_url:     //div[has-class("post-hero__author")]//a/@href
-published_date: //time[has-class("post__date")]/@datetime
-cover:          //img[has-class("post__feature-image")]
+published_date: //time[has-class("post__date")]
+cover:          //header[has-class("post__header")]/img[has-class("post__feature-image")]
 channel:        //meta[@property="telegram:channel"]/@content
 site_name:      //meta[@property="og:site_name"]/@content
 image_url:      //meta[@property="og:image"]/@content
 
-body: //article[has-class("post")]//div[has-class("post__content-inner")]
+body: //div[has-class("post__content-inner")]
 
 @remove: //div[@id="adspace"]
 @remove: //div[has-class("uSocial-Share")]
-@remove: //div[has-class("post-tags")]
-@remove: //div[has-class("post-toc")]
-@remove: //div[has-class("content-overlay")]/preceding-sibling::p[1]
-@remove: //div[has-class("content-overlay")]
+@remove: //span[has-class("post__tags")]
 @remove: //div[has-class("gh-post-upgrade-cta")]
 @remove: //script
 @remove: //style
