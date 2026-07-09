@@ -15,7 +15,7 @@ channel:        //meta[@property="telegram:channel"]/@content
 site_name:      //meta[@property="og:site_name"]/@content
 image_url:      //meta[@property="og:image"]/@content
 
-body: //section[has-class("post__content")]//div[has-class("content")]
+body: //article[has-class("post")]//div[has-class("post__content-inner")]
 
 @remove: //div[@id="adspace"]
 @remove: //div[has-class("uSocial-Share")]

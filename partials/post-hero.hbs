@@ -3,7 +3,7 @@
     <h1 class="post-hero__title post__title text-center">{{title}}</h1>
 
     {{!-- Post card Author/s --}}
-    <div class="post-hero__author post__meta flex-cc m-b-lg">
+    <div class="post-hero__author flex-cc m-b-lg">
       {{#has author="count:<2"}}
         {{#primary_author}}
           <a class="flex items-center" href="{{url}}" aria-label="{{name}}">
@@ -20,10 +20,12 @@
             </span>
 
             <div class="m-l-sm flex flex-col fw-500 line-height-1 gap-4">
-              <span class="post__author">{{name}}</span>
-              <time datetime="{{date ../published_at format='YYYY-MM-DD'}}" class="post__date text-xs">
-                {{date ../published_at timeago=""}}
-              </time>
+              <span class="post__meta">
+                <time datetime="{{date ../published_at format='YYYY-MM-DD'}}" class="post__date text-xs">
+                  {{date ../published_at timeago=""}}
+                </time>
+                <span class="post__author">{{name}}</span>
+              </span>
             </div>
           </a>
         {{/primary_author}}
@@ -45,10 +47,12 @@
           {{/foreach}}
         </div>
         <div class="m-l-sm flex flex-col fw-500 line-height-1 gap-4">
-          <span class="post__author">{{#authors separator=", "}}{{/authors}}</span>
-          <time datetime="{{date format='YYYY-MM-DD'}}" class="post__date text-xs">
-            {{date published_at timeago=""}}
-          </time>
+          <span class="post__meta">
+            <time datetime="{{date format='YYYY-MM-DD'}}" class="post__date text-xs">
+              {{date published_at timeago=""}}
+            </time>
+            <span class="post__author">{{#authors separator=", "}}{{/authors}}</span>
+          </span>
         </div>
       {{/has}}
     </div>

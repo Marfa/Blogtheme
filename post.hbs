@@ -9,7 +9,6 @@
 {{!-- Everything inside the #post tags pulls data from the post --}}
 {{#post}}
     <div class="container wrapper">
-    {{> post-hero}}
         <!-- секция баннеров  -->
 
         <script type="text/javascript">
@@ -39,9 +38,10 @@
             </script>
         </div>
         <!-- секция баннеров -->
+        <article class="{{post_class}} content-wrap post-access-{{visibility}}">
+        {{> post-hero}}
         <section class="post__content">
         <div class="post__content-inner">
-            <article class="{{post_class}} content-wrap post-access-{{visibility}}">
                 <!-- uSocial -->
                 <script async src="https://usocial.pro/usocial/usocial.js?uid=e74bd6c291f76595&v=6.1.5"
                         data-script="usocial" charset="utf-8"></script>
@@ -80,9 +80,9 @@
                         {{> content-cta fading=true}}
                     {{/if}}
                 </div>
-            </article>
         </div>
         </section>
+        </article>
 
     {{!-- Include Comments --}}
         <script src="https://cdn.fastcomments.com/js/embed-v2.min.js"></script>
