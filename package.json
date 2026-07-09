@@ -37,14 +37,14 @@
     "@babel/preset-env": "^7.29.2",
     "@tryghost/content-api": "^1.12.6",
     "beeper": "^2.1.0",
-    "browser-sync": "^2.29.3",
+    "browser-sync": "^3.0.4",
     "cssnano": "^5.1.15",
     "cssnano-preset-advanced": "^5.3.10",
     "feather-icons": "^4.29.2",
     "fitvids": "^2.1.1",
     "fslightbox": "^3.7.5",
-    "gscan": "^5.4.1",
-    "gulp": "^4.0.2",
+    "gscan": "^6.4.1",
+    "gulp": "^5.0.1",
     "gulp-babel": "^8.0.0",
     "gulp-concat": "^2.6.1",
     "gulp-postcss": "^9.0.1",
@@ -63,6 +63,11 @@
     "pump": "^3.0.4",
     "tocbot": "^4.36.4",
     "vanilla-lazyload": "^12.5.1"
+  },
+  "overrides": {
+    "braces": "^3.0.3",
+    "micromatch": "^4.0.8",
+    "postcss": "^8.5.8"
   },
   "config": {
     "custom": {
