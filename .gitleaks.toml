@@ -1,0 +1,10 @@
+title = "Blogtheme gitleaks config"
+
+[extend]
+useDefault = true
+
+[allowlist]
+description = "Intentionally public domain-verification tokens (not credentials)"
+paths = [
+  '''(?i)\.well-known/brave-rewards-verification\.txt$''',
+]
