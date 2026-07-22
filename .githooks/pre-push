@@ -1,0 +1,9 @@
+#!/usr/bin/env sh
+# Enable once per clone: git config core.hooksPath .githooks
+
+node scripts/update-theme-updated.js
+git add partials/theme-updated.hbs
+
+if ! git diff --cached --quiet -- partials/theme-updated.hbs; then
+  git commit -m "chore: update theme timestamp"
+fi

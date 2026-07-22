@@ -1,6 +1,7 @@
 #!/usr/bin/env sh
 # Requires: brew install gitleaks
 # Enable once per clone: git config core.hooksPath .githooks
+# Hooks: pre-commit (gitleaks), pre-push (theme timestamp)
 
 if ! command -v gitleaks >/dev/null 2>&1; then
   echo "gitleaks not found. Install with: brew install gitleaks" >&2
