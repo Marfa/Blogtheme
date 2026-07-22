@@ -1,6 +1,4 @@
 routes:
-  /manifest.webmanifest/:
-    template: manifest
   /signup/: members/signup
   /signin/: members/signin
   /account/: members/account
