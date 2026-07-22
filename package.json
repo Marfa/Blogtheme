@@ -67,7 +67,11 @@
   "overrides": {
     "braces": "^3.0.3",
     "micromatch": "^4.0.8",
-    "postcss": "^8.5.19"
+    "postcss": "^8.5.19",
+    "minimatch@3": {
+      "brace-expansion": "1.1.16"
+    },
+    "immutable": "4.3.9"
   },
   "config": {
     "custom": {
