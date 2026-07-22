@@ -254,7 +254,8 @@ var callback = function(){
     container.style.flex = `${ratio} 1 0%`;
   })
 
-  // Lighbox function
+  // Lightbox: Ghost already serves images with src, so do not add .lazyload
+  // (that class applies blur forever — LazyLoad never marks them .loaded).
   images.forEach(function (image) {
     if (config.image_lightbox) {
       var wrapper = document.createElement('a');
@@ -265,8 +266,6 @@ var callback = function(){
       image.parentNode.insertBefore(wrapper, image.parentNode.firstChild);
       wrapper.appendChild(image);
     }
-    image.setAttribute('class', 'lazyload lazy');
-    updateLazyLoad(lazyLoad);
   });
 
   refreshFsLightbox();
