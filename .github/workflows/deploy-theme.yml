@@ -5,7 +5,16 @@ on:
     branches:
       - master
       - main
+    paths-ignore:
+      - partials/theme-updated.hbs
   workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: deploy-theme
+  cancel-in-progress: false
 
 jobs:
   deploy:
@@ -21,6 +30,16 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Update theme timestamp
+        run: node scripts/update-theme-updated.js
+
+      - name: Commit timestamp
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add partials/theme-updated.hbs
+          git diff --cached --quiet || git commit -m "chore: update theme timestamp"
+
       - name: Validate, build, and zip theme
         run: npm run zip
 
@@ -31,3 +50,10 @@ jobs:
           api-key: ${{ secrets.GHOST_ADMIN_API_KEY }}
           version: v6.0
           file: dist/joben.zip
+
+      - name: Push timestamp commit
+        run: |
+          ahead=$(git rev-list --count origin/master..HEAD)
+          if [ "$ahead" -gt 0 ]; then
+            git push
+          fi
