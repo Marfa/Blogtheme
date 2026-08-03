@@ -26,13 +26,7 @@
     </div>
 
     {{!-- Include Comments --}}
-    <script src="https://cdn.fastcomments.com/js/embed-v2.min.js"></script>
-    <div id="fastcomments-widget"></div>
-    <script>
-        window.FastCommentsUI(document.getElementById('fastcomments-widget'), {
-            "tenantId": "iPjaMPm9xQu"
-        });
-    </script>
+    {{> artalk-comments}}
 
     {{!-- Related posts --}}
     {{> related-posts}}
