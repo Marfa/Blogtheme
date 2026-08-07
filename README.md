@@ -35,3 +35,8 @@ Runs a series of tasks necessary for local development/customizing.
 ## Documentation
 
 [Online Doc](https://brightthemes.com/docs/joben/)
+## Author
+
+Код подготовлен с помощью Cursor.
+
+Поддержка проекта: [Донат](https://www.donationalerts.com/r/themarfa) · [Донат криптой](https://nowpayments.io/donation/themarfa)

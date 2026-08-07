@@ -1,5 +1,6 @@
 User-agent: *
 Sitemap: https://blog.themarfa.name/sitemap.xml
+Sitemap: https://en.blog.themarfa.name/sitemap.xml
 Disallow: /ghost/
 Disallow: /p/
 Disallow: /email/

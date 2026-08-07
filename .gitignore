@@ -1,1 +1,7 @@
 .cursor/rules/
+node_modules/
+.env
+.env.*
+.github/.env
+.github/.gsc-tokens.json
+**/.gsc-tokens.json
