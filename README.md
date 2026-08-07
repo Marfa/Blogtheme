@@ -35,6 +35,7 @@ Runs a series of tasks necessary for local development/customizing.
 ## Documentation
 
 [Online Doc](https://brightthemes.com/docs/joben/)
+
 ## Author
 
 Код подготовлен с помощью Cursor.
