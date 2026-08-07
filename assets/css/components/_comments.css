@@ -14,6 +14,123 @@
   #ghost-comments-root { width: 100%; max-width: 38rem; }
 }
 
+/* Artalk: match blog palette (light + dark) and keep mobile from overflowing */
+#artalk-comments {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  overflow-x: clip;
+}
+
+#artalk-comments .artalk,
+#artalk-comments .artalk.atk-dark-mode,
+.atk-layer-wrap,
+.atk-layer-wrap.atk-dark-mode {
+  --at-color-font: var(--color-text);
+  --at-color-deep: var(--color-text-acc-1);
+  --at-color-sub: var(--color-text-acc-2);
+  --at-color-grey: var(--color-text-acc-3);
+  --at-color-meta: var(--color-text-acc-2);
+  --at-color-border: var(--color-border);
+  --at-color-bg: var(--color-bg-acc-1);
+  --at-color-bg-transl: var(--color-bg-acc-1);
+  --at-color-bg-grey: var(--color-bg-acc-2);
+  --at-color-bg-grey-transl: var(--color-bg-acc-2);
+  --at-color-main: var(--color-primary);
+  --at-color-gradient: linear-gradient(180deg, transparent, var(--color-bg));
+}
+
+#artalk-comments .artalk {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  color: var(--at-color-font);
+}
+
+#artalk-comments .atk-list-no-comment {
+  color: var(--color-text-acc-2);
+}
+
+/* Theme-wide input rules break Artalk flex rows — reset inside comments */
+#artalk-comments input,
+#artalk-comments textarea,
+#artalk-comments select {
+  box-shadow: none;
+  margin-bottom: 0;
+  max-width: 100%;
+}
+
+#artalk-comments .atk-main-editor {
+  background: var(--color-bg-acc-1);
+  border-color: var(--color-border);
+  max-width: 100%;
+}
+
+#artalk-comments .atk-main-editor > .atk-header {
+  flex-wrap: wrap;
+  gap: 0.25rem;
+}
+
+#artalk-comments .atk-main-editor > .atk-header input,
+#artalk-comments .atk-main-editor > .atk-textarea-wrap > .atk-textarea {
+  min-width: 0;
+  color: var(--color-text);
+  background-color: transparent;
+}
+
+#artalk-comments .atk-main-editor > .atk-textarea-wrap > .atk-textarea {
+  width: 100%;
+}
+
+#artalk-comments .atk-main-editor > .atk-bottom {
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  row-gap: 0.5rem;
+}
+
+#artalk-comments .atk-main-editor > .atk-bottom > .atk-item {
+  flex-wrap: wrap;
+  min-width: 0;
+  max-width: 100%;
+}
+
+#artalk-comments .atk-main-editor > .atk-bottom .atk-state-btn,
+#artalk-comments .atk-main-editor > .atk-bottom .atk-send-btn {
+  max-width: 100%;
+}
+
+@media only screen and (max-width: 768px) {
+  #artalk-comments .atk-main-editor > .atk-header {
+    flex-direction: column;
+  }
+
+  #artalk-comments .atk-main-editor > .atk-header input {
+    width: 100%;
+    margin-right: 0;
+  }
+
+  #artalk-comments .atk-main-editor > .atk-bottom {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  #artalk-comments .atk-main-editor > .atk-bottom > .atk-bottom-left,
+  #artalk-comments .atk-main-editor > .atk-bottom > .atk-bottom-right {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  #artalk-comments .atk-main-editor > .atk-bottom > .atk-bottom-right {
+    justify-content: flex-end;
+    flex-wrap: wrap;
+  }
+
+  #artalk-comments .atk-main-editor > .atk-bottom .atk-state-btn .atk-text-wrap {
+    display: inline;
+    max-width: none;
+  }
+}
+
 .cove-input {
   box-shadow: none!important;
   border-color: var(--color-border); 

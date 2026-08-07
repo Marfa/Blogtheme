@@ -7,11 +7,25 @@
 <script src="https://comments.themarfa.name/dist/Artalk.js"></script>
 <div id="artalk-comments" class="m-t"></div>
 <script>
-    Artalk.init({
-        el: '#artalk-comments',
-        pageKey: '{{url}}',
-        pageTitle: '{{title}}',
-        server: 'https://comments.themarfa.name',
-        site: 'All-in-One Person'
-    });
+    (function () {
+        var isDark = function () {
+            return document.documentElement.getAttribute('data-color-scheme') === 'dark';
+        };
+
+        var artalk = Artalk.init({
+            el: '#artalk-comments',
+            pageKey: '{{url}}',
+            pageTitle: '{{title}}',
+            server: 'https://comments.themarfa.name',
+            site: 'All-in-One Person',
+            darkMode: isDark()
+        });
+
+        new MutationObserver(function () {
+            artalk.setDarkMode(isDark());
+        }).observe(document.documentElement, {
+            attributes: true,
+            attributeFilter: ['data-color-scheme']
+        });
+    })();
 </script>
