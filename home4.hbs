@@ -80,7 +80,7 @@
     {{!-- Posts --}}
     <div class="grid post-container" data-grid-columns="3" data-grid-color="true">
       {{#foreach posts}}
-        {{> post-card class="color" img=true}}
+        {{> post-card class="color" img=true eager=@first}}
       {{/foreach}}
     </div>
     <div class="col-xs-12 center-xs m-t-lg">

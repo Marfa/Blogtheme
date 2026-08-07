@@ -8,10 +8,13 @@
           {{#if @site.logo}}
             {{!-- Site logo --}}
             <img class="header__logo" 
-              srcset="{{img_url @site.logo size="s"}} 300w,
-                      {{img_url @site.logo size="m"}} 600w"
-              sizes="(max-width: 1000px) 80vw, 700px"
-              src="{{img_url @site.logo size="s"}}"
+              srcset="{{img_url @site.logo size="xs"}} 100w,
+                      {{img_url @site.logo size="s"}} 300w"
+              sizes="180px"
+              src="{{img_url @site.logo size="xs"}}"
+              width="180"
+              height="48"
+              decoding="async"
               alt="{{@site.title}}"/>
           {{else}}
             {{!-- Site Title --}}

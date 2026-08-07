@@ -4,14 +4,32 @@
   {{#if img}}
     {{#if feature_image}}
       <a class="post-card__img" href="{{url}}" title="{{title}}" aria-label="{{title}}">
-        <img class="lazyload"
-          data-srcset="{{img_url feature_image size="s"}} 300w,
-                  {{img_url feature_image size="m"}} 600w"
-          data-sizes="(max-width: 1000px) 50vw, 600px"
-          data-src="{{img_url feature_image size="m"}}"
-          src="{{img_url feature_image size="s"}}"
-          alt="{{title}}"
-        />
+        {{#if eager}}
+          <img
+            srcset="{{img_url feature_image size="s"}} 300w,
+                    {{img_url feature_image size="m"}} 600w"
+            sizes="(max-width: 640px) 100vw, (max-width: 1000px) 50vw, 33vw"
+            src="{{img_url feature_image size="m"}}"
+            width="600"
+            height="340"
+            fetchpriority="high"
+            decoding="async"
+            alt="{{title}}"
+          />
+        {{else}}
+          <img class="lazyload"
+            loading="lazy"
+            decoding="async"
+            width="600"
+            height="340"
+            data-srcset="{{img_url feature_image size="s"}} 300w,
+                    {{img_url feature_image size="m"}} 600w"
+            data-sizes="(max-width: 640px) 100vw, (max-width: 1000px) 50vw, 33vw"
+            data-src="{{img_url feature_image size="m"}}"
+            src="{{img_url feature_image size="s"}}"
+            alt="{{title}}"
+          />
+        {{/if}}
       </a>
     {{/if}}
   {{/if}}
@@ -48,7 +66,11 @@
             <span class="post-card__author-img{{#if profile_image}} img{{/if}}">
               {{#if profile_image}}
                 <img 
-                  class="lazyload" 
+                  class="lazyload"
+                  loading="lazy"
+                  decoding="async"
+                  width="30"
+                  height="30"
                   data-src="{{img_url profile_image size="xs"}}" 
                   src="{{img_url profile_image size="xxs"}}" 
                   alt="{{name}}" 
@@ -69,7 +91,11 @@
               title="{{name}}" aria-label="{{name}}">
               {{#if profile_image}}
                 <img 
-                  class="lazyload" 
+                  class="lazyload"
+                  loading="lazy"
+                  decoding="async"
+                  width="30"
+                  height="30"
                   data-src="{{img_url profile_image size="xs"}}" 
                   src="{{img_url profile_image size="xxs"}}" 
                   alt="{{name}}" 

@@ -3,6 +3,10 @@
   {{#if img}}
     {{#if feature_image}}
       <img class="lazyload tag-card__img"
+        loading="lazy"
+        decoding="async"
+        width="600"
+        height="340"
         data-srcset="{{img_url feature_image size="xs"}} 100w,
                 {{img_url feature_image size="s"}} 300w,
                 {{img_url feature_image size="m"}} 600w"

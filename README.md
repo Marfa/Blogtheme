@@ -34,7 +34,7 @@ Runs a series of tasks necessary for local development/customizing.
 
 ## Documentation
 
-[Online Doc](https://brightthemes.com/docs/joben/)
+[OnlineDoc](https://brightthemes.com/docs/joben/)
 
 ## Author
 

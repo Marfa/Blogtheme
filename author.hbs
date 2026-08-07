@@ -99,7 +99,7 @@
     
     <div class="grid grid-col-3 post-container">
       {{#foreach posts}}
-        {{> post-card img=true}}
+        {{> post-card img=true eager=@first}}
       {{/foreach}}
     </div>
     <div class="col-xs-12 center-xs m-t-lg">

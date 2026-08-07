@@ -110,11 +110,15 @@ const js = done => {
         `${npm_src}tocbot/dist/tocbot.min.js`,
         `${asset_src}js/script.js`
       ], { sourcemaps: true }),
+      // Skip already-minified vendors — babel on them = Legacy JS / polyfill bloat
       babel({
-        'presets': [
+        ignore: [/node_modules/],
+        presets: [
           [
-            '@babel/preset-env', {
-              'modules': false
+            '@babel/preset-env',
+            {
+              modules: false,
+              targets: 'defaults and fully supports es6-module'
             }
           ]
         ]
