@@ -6,38 +6,54 @@ table {
   margin: var(--gap) 0 var(--gap-lg);
   border-gap: 0px;
   border-collapse: collapse;
-  border-left: 1px solid var(--color-border);
-  border-right: 1px solid var(--color-border);
+  border-left: 1px solid var(--color-border) !important;
+  border-right: 1px solid var(--color-border) !important;
   max-width: calc(100vw - 2em);
+  color: var(--color-text);
+  background-color: var(--color-bg-acc-1);
 
   @media (--mq-sm) {
     max-width: 100%;
   }
 
   thead {
-    background-color: var(--color-bg-acc-1);
+    background-color: var(--color-bg-acc-2);
   }
 
   th, td {
     padding: var(--gap-sm) var(--gap);
     line-height: var(--line-height-base);
-    border-right: 1px solid var(--color-border);
+    color: var(--color-text);
+    border-right: 1px solid var(--color-border) !important;
+    vertical-align: top;
 
     &:last-of-type {
-      border-right: none;
+      border-right: none !important;
+    }
+
+    /* Docs/paste dumps color:#000 — force theme text in light + dark */
+    *,
+    *[style] {
+      color: inherit !important;
+      background-color: transparent !important;
+      white-space: normal !important;
+    }
+
+    p {
+      margin: 0;
     }
   }
 
   tr {
-    white-space: pre;
+    white-space: normal;
   }
 
   thead tr {
-    border-top: 1px solid var(--color-border);
-    border-bottom: 1px solid var(--color-border);
+    border-top: 1px solid var(--color-border) !important;
+    border-bottom: 1px solid var(--color-border) !important;
   }
 
   tbody tr {
-    border-bottom: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border) !important;
   }
 }
