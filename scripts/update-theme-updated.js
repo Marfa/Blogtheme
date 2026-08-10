@@ -13,4 +13,4 @@ const stamp = new Intl.DateTimeFormat('ru-RU', {
   hourCycle: 'h23',
 }).format(new Date());
 
-fs.writeFileSync(file, `${stamp} МСК`, 'utf8');
+fs.writeFileSync(file, stamp, 'utf8');
