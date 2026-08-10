@@ -17,7 +17,8 @@
             pageKey: '{{url}}',
             pageTitle: '{{title}}',
             server: 'https://comments.themarfa.name',
-            site: 'All-in-One Person',
+            site: '{{#if @custom.artalk_site_name}}{{@custom.artalk_site_name}}{{else}}All-in-One Person{{/if}}',
+            locale: '{{@site.locale}}',
             darkMode: isDark()
         });
 

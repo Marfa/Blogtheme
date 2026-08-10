@@ -59,7 +59,7 @@
                     {{> icon name="list" size="sm"}}
                 </button>
             </div>
-            {{> ad-banner}}
+            {{#if @custom.show_ad_banner}}{{> ad-banner}}{{/if}}
             {{!-- Posts --}}
             <div class="grid grid-col-3 post-container">
                 {{#foreach posts}}

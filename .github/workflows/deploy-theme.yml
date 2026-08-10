@@ -43,11 +43,26 @@ jobs:
       - name: Validate, build, and zip theme
         run: npm run zip
 
-      - name: Deploy to Ghost
+      - name: Upload theme zip
+        uses: actions/upload-artifact@v4
+        with:
+          name: joben-theme
+          path: dist/joben.zip
+
+      - name: Deploy to Ghost RU
         uses: TryGhost/action-deploy-theme@v2
         with:
           api-url: ${{ secrets.GHOST_ADMIN_API_URL }}
           api-key: ${{ secrets.GHOST_ADMIN_API_KEY }}
+          version: v6.0
+          file: dist/joben.zip
+
+      - name: Deploy to Ghost EN
+        if: ${{ secrets.GHOST_EN_ADMIN_API_KEY != '' }}
+        uses: TryGhost/action-deploy-theme@v2
+        with:
+          api-url: ${{ secrets.GHOST_EN_ADMIN_API_URL }}
+          api-key: ${{ secrets.GHOST_EN_ADMIN_API_KEY }}
           version: v6.0
           file: dist/joben.zip
 

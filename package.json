@@ -116,6 +116,14 @@
         "type": "boolean",
         "default": false
       },
+      "artalk_site_name": {
+        "type": "text",
+        "default": "All-in-One Person"
+      },
+      "show_ad_banner": {
+        "type": "boolean",
+        "default": true
+      },
       "hero_headline": {
         "type": "text",
         "group": "homepage"

@@ -9,7 +9,7 @@
 {{#post}}
     <div class="container wrapper">
     {{> post-hero}}
-        {{> ad-banner}}
+        {{#if @custom.show_ad_banner}}{{> ad-banner}}{{/if}}
         <div class="post__content-inner">
             <div class="row post-with-toc">
 

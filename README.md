@@ -36,6 +36,8 @@ Runs a series of tasks necessary for local development/customizing.
 
 [OnlineDoc](https://brightthemes.com/docs/joben/)
 
+RU + EN (one zip, Artalk, dual deploy): [docs/en-theme-setup.md](docs/en-theme-setup.md)
+
 ## Author
 
 Код подготовлен с помощью Cursor.

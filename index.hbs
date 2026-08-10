@@ -74,7 +74,7 @@
 <div class="container wrapper">
     {{!-- Latest Posts --}}
     <div class="section">
-        {{> ad-banner}}
+        {{#if @custom.show_ad_banner}}{{> ad-banner}}{{/if}}
         <div class="post__content-inner">
             <div class="flex flex-cc m-b">
                 <span class="fw-700 text-lg uppercase flex-1">{{t "Недавние посты"}}</span>

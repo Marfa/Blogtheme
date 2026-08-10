@@ -9,7 +9,7 @@
 {{#post}}
     <div class="container wrapper">
         {{> post-hero}}
-        {{> ad-banner}}
+        {{#if @custom.show_ad_banner}}{{> ad-banner}}{{/if}}
         <div class="row">
             <div class="col-xs-12 col-lg-8 col-xl-9">
                 <article class="{{post_class}} content-wrap post-access-{{visibility}} no-overflow">
