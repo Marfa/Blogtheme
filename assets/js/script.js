@@ -263,6 +263,15 @@ var callback = function(){
 
       setTimeout(() => {
         if (typeof tocbotLib.refresh === 'function') tocbotLib.refresh();
+
+        // Debug: если всё равно пусто — это даст конкретику в консоли.
+        if (tocEl && (!tocEl.innerHTML || !tocEl.innerHTML.trim())) {
+          const headingsCount = tocContent
+            ? tocContent.querySelectorAll('h1, h2, h3, h4, h5, h6').length
+            : 0;
+          // eslint-disable-next-line no-console
+          console.warn('TOC still empty after refresh', {headingsCount, headingSelector});
+        }
       }, 900);
 
       if (tocContent && typeof MutationObserver !== 'undefined') {
