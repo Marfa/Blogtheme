@@ -218,12 +218,17 @@ var callback = function(){
     // ponytail: polling с потолком по времени — иначе TOC так и останется пустым.
     const startTs = Date.now();
     const interval = setInterval(() => {
-      const tocbotLib = globalThis.tocbot || (typeof tocbot !== 'undefined' ? tocbot : null);
+      const tocbotLib =
+        (typeof window !== 'undefined' && window.tocbot)
+        || globalThis.tocbot
+        || (typeof tocbot !== 'undefined' ? tocbot : null)
+        || (typeof self !== 'undefined' ? self.tocbot : null);
       if (!tocbotLib) {
         if (Date.now() - startTs > 2000) {
           clearInterval(interval);
           // eslint-disable-next-line no-console
-          console.warn('TOC tocbot not found on globalThis within 2s');
+          // eslint-disable-next-line no-console
+          console.warn('TOC tocbot not found (window/globalThis) within 2s');
         }
         return;
       }
