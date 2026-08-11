@@ -201,9 +201,10 @@ var callback = function(){
   // ========================================
   // Post Table of Contents
   // ========================================
-  const postToc = document.querySelector('.post-with-toc');
+  const tocEl = document.querySelector('.js-toc');
+  const tocContent = document.querySelector('.js-toc-content');
 
-  if (postToc) {
+  if (tocEl && tocContent) {
     const tocToggle = document.querySelector('.js-toc-toggle');
 
     if (tocToggle) {
@@ -216,8 +217,6 @@ var callback = function(){
     const tocbotLib = globalThis.tocbot || (typeof tocbot !== 'undefined' ? tocbot : null);
 
     if (tocbotLib) {
-      const tocContent = document.querySelector('.js-toc-content');
-
       // ponytail: TOC может рендериться заголовками не уровня h1-h3.
       // Подбираем реальные уровни заголовков в контейнере, чтобы не зависеть от верстки/конвертера.
       let headingSelector = 'h1, h2, h3, h4, h5, h6';
