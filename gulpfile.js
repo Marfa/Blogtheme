@@ -107,7 +107,7 @@ const js = done => {
         `${npm_src}fitvids/dist/fitvids.min.js`,
         `${npm_src}prismjs/prism.js`,
         `${npm_src}fslightbox/index.js`,
-        `${npm_src}tocbot/dist/tocbot.min.js`,
+        // tocbot omitted: re-uglify of its webpack UMD breaks window.tocbot; TOC is built natively in script.js
         `${asset_src}js/script.js`
       ], { sourcemaps: true }),
       // Skip already-minified vendors — babel on them = Legacy JS / polyfill bloat

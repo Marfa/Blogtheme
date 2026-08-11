@@ -201,6 +201,7 @@ var callback = function(){
   // ========================================
   // Post Table of Contents
   // ========================================
+  // ponytail: не используем tocbot — gulp uglify ломает его UMD (window.tocbot не появляется).
   const tocEl = document.querySelector('.js-toc');
   const tocContent = document.querySelector('.js-toc-content');
 
@@ -208,116 +209,35 @@ var callback = function(){
     const tocToggle = document.querySelector('.js-toc-toggle');
 
     if (tocToggle) {
-      tocToggle.onclick = (evt) => {
+      tocToggle.onclick = () => {
         toggleClass('.js-toc', 'is-active');
         toggleClass('.js-toc-icon', 'is-rotated');
       }
     }
 
-    // app.min.js грузится через async, поэтому возможна гонка, когда tocbot ещё не появился на globalThis.
-    // ponytail: polling с потолком по времени — иначе TOC так и останется пустым.
-    const startTs = Date.now();
-    const interval = setInterval(() => {
-      let tocbotLib =
-        (typeof window !== 'undefined' && window.tocbot)
-        || globalThis.tocbot
-        || (typeof tocbot !== 'undefined' ? tocbot : null)
-        || (typeof self !== 'undefined' ? self.tocbot : null);
+    const headings = tocContent.querySelectorAll('h1, h2, h3, h4, h5, h6');
+    if (headings.length) {
+      const list = document.createElement('ol');
+      list.className = 'toc-list';
 
-      if (!tocbotLib) {
-        try {
-          // eslint-disable-next-line no-undef
-          if (typeof module !== 'undefined' && module.exports) tocbotLib = module.exports;
-          // eslint-disable-next-line no-undef
-          if (!tocbotLib && typeof exports !== 'undefined' && exports && exports.tocbot) tocbotLib = exports.tocbot;
-        } catch (e) {
-          // ignore
-        }
-      }
+      headings.forEach((heading) => {
+        if (!heading.id) return;
 
-      if (!tocbotLib) {
-        if (Date.now() - startTs > 2000) {
-          clearInterval(interval);
-          // eslint-disable-next-line no-console
-          // eslint-disable-next-line no-console
-          console.warn('TOC tocbot not found (window/globalThis) within 2s');
-        }
-        return;
-      }
+        const li = document.createElement('li');
+        li.className = 'toc-list-item';
 
-      clearInterval(interval);
+        const link = document.createElement('a');
+        link.className = `toc-link node-name--${heading.nodeName}`;
+        link.href = `#${heading.id}`;
+        link.textContent = (heading.textContent || '').trim();
+        link.onclick = () => removeClass('.js-toc', 'is-active');
 
-      // ponytail: TOC может рендериться заголовками не уровня h1-h3.
-      // Подбираем реальные уровни заголовков в контейнере, чтобы не зависеть от верстки/конвертера.
-      let headingSelector = 'h1, h2, h3, h4, h5, h6';
-      if (tocContent) {
-        const foundHeadings = tocContent.querySelectorAll('h1, h2, h3, h4, h5, h6');
-        if (foundHeadings && foundHeadings.length) {
-          const levels = new Set(Array.from(foundHeadings).map((h) => h.tagName.toLowerCase()));
-          headingSelector = Array.from(levels).join(', ');
-        }
-      }
+        li.appendChild(link);
+        list.appendChild(li);
+      });
 
-      try {
-        // eslint-disable-next-line no-console
-        console.debug('TOC init', { headingSelector });
-        tocbotLib.init({
-          tocSelector: '.js-toc',
-          contentSelector: '.js-toc-content',
-          headingSelector,
-          hasInnerContainers: true,
-          scrollSmooth: false,
-          headingsOffset: 30
-        });
-      } catch (err) {
-        // eslint-disable-next-line no-console
-        console.error('TOC init failed', err);
-        return;
-      }
-
-      setTimeout(() => {
-        if (!tocEl) return;
-
-        // Если tocbot не успел нарисовать список — добьём refresh.
-        if (!tocEl.innerHTML || !tocEl.innerHTML.trim()) {
-          if (typeof tocbotLib.refresh === 'function') tocbotLib.refresh();
-        }
-      }, 300);
-
-      setTimeout(() => {
-        if (typeof tocbotLib.refresh === 'function') tocbotLib.refresh();
-
-        // Debug: если всё равно пусто — это даст конкретику в консоли.
-        if (tocEl && (!tocEl.innerHTML || !tocEl.innerHTML.trim())) {
-          const headingsCount = tocContent
-            ? tocContent.querySelectorAll('h1, h2, h3, h4, h5, h6').length
-            : 0;
-          // eslint-disable-next-line no-console
-          console.warn('TOC still empty after refresh', {headingsCount, headingSelector});
-        }
-      }, 900);
-
-      if (tocContent && typeof MutationObserver !== 'undefined') {
-        const observer = new MutationObserver(() => {
-          const hasAnyHeadings = tocContent.querySelector('h1, h2, h3, h4, h5, h6');
-          if (hasAnyHeadings) {
-            if (typeof tocbotLib.refresh === 'function') tocbotLib.refresh();
-            observer.disconnect();
-          }
-        });
-
-        observer.observe(tocContent, {childList: true, subtree: true});
-        setTimeout(() => observer.disconnect(), 2000);
-      }
-    }, 100);
-
-    const tocLinks = document.querySelectorAll('.toc-list-item a[href^="#"]');
-    if (tocLinks) {
-      tocLinks.forEach(link => {
-        link.onclick = function(e) {
-          removeClass('.js-toc', 'is-active');
-        }
-      })
+      tocEl.innerHTML = '';
+      tocEl.appendChild(list);
     }
   }
 
