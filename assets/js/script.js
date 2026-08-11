@@ -220,7 +220,11 @@ var callback = function(){
     const interval = setInterval(() => {
       const tocbotLib = globalThis.tocbot || (typeof tocbot !== 'undefined' ? tocbot : null);
       if (!tocbotLib) {
-        if (Date.now() - startTs > 2000) clearInterval(interval);
+        if (Date.now() - startTs > 2000) {
+          clearInterval(interval);
+          // eslint-disable-next-line no-console
+          console.warn('TOC tocbot not found on globalThis within 2s');
+        }
         return;
       }
 
@@ -238,6 +242,8 @@ var callback = function(){
       }
 
       try {
+        // eslint-disable-next-line no-console
+        console.debug('TOC init', { headingSelector });
         tocbotLib.init({
           tocSelector: '.js-toc',
           contentSelector: '.js-toc-content',
