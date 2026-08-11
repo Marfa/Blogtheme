@@ -216,14 +216,26 @@ var callback = function(){
     const tocbotLib = globalThis.tocbot || (typeof tocbot !== 'undefined' ? tocbot : null);
 
     if (tocbotLib) {
+      const tocContent = document.querySelector('.js-toc-content');
+
+      // ponytail: TOC может рендериться заголовками не уровня h1-h3.
+      // Подбираем реальные уровни заголовков в контейнере, чтобы не зависеть от верстки/конвертера.
+      let headingSelector = 'h1, h2, h3, h4, h5, h6';
+      if (tocContent) {
+        const foundHeadings = tocContent.querySelectorAll('h1, h2, h3, h4, h5, h6');
+        if (foundHeadings && foundHeadings.length) {
+          const levels = new Set(Array.from(foundHeadings).map((h) => h.tagName.toLowerCase()));
+          headingSelector = Array.from(levels).join(', ');
+        }
+      }
+
       tocbotLib.init({
         // Where to render the table of contents.
         tocSelector: '.js-toc',
         // Where to grab the headings to build the table of contents.
         contentSelector: '.js-toc-content',
         // Which headings to grab inside of the contentSelector element.
-        // Some Ghost posts render headings as h4/h5; TOC should still work.
-        headingSelector: 'h1, h2, h3, h4, h5, h6',
+        headingSelector,
         // For headings inside relative or absolute positioned containers within content.
         hasInnerContainers: true,
         // smooth scroll
@@ -231,6 +243,13 @@ var callback = function(){
         // offset
         headingsOffset: 30
       });
+
+      // Some pages render content after DOMContentLoaded; добиваем пересчётом.
+      setTimeout(() => {
+        if (tocbotLib && typeof tocbotLib.refresh === 'function') {
+          tocbotLib.refresh();
+        }
+      }, 250);
     }
 
     const tocLinks = document.querySelectorAll('.toc-list-item a[href^="#"]');
