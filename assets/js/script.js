@@ -222,7 +222,8 @@ var callback = function(){
         // Where to grab the headings to build the table of contents.
         contentSelector: '.js-toc-content',
         // Which headings to grab inside of the contentSelector element.
-        headingSelector: 'h1, h2, h3',
+        // Some Ghost posts render headings as h4/h5; TOC should still work.
+        headingSelector: 'h1, h2, h3, h4, h5, h6',
         // For headings inside relative or absolute positioned containers within content.
         hasInnerContainers: true,
         // smooth scroll
