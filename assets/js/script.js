@@ -218,11 +218,23 @@ var callback = function(){
     // ponytail: polling с потолком по времени — иначе TOC так и останется пустым.
     const startTs = Date.now();
     const interval = setInterval(() => {
-      const tocbotLib =
+      let tocbotLib =
         (typeof window !== 'undefined' && window.tocbot)
         || globalThis.tocbot
         || (typeof tocbot !== 'undefined' ? tocbot : null)
         || (typeof self !== 'undefined' ? self.tocbot : null);
+
+      if (!tocbotLib) {
+        try {
+          // eslint-disable-next-line no-undef
+          if (typeof module !== 'undefined' && module.exports) tocbotLib = module.exports;
+          // eslint-disable-next-line no-undef
+          if (!tocbotLib && typeof exports !== 'undefined' && exports && exports.tocbot) tocbotLib = exports.tocbot;
+        } catch (e) {
+          // ignore
+        }
+      }
+
       if (!tocbotLib) {
         if (Date.now() - startTs > 2000) {
           clearInterval(interval);
