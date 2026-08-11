@@ -237,18 +237,33 @@ var callback = function(){
         }
       }
 
-      tocbotLib.init({
-        tocSelector: '.js-toc',
-        contentSelector: '.js-toc-content',
-        headingSelector,
-        hasInnerContainers: true,
-        scrollSmooth: false,
-        headingsOffset: 30
-      });
+      try {
+        tocbotLib.init({
+          tocSelector: '.js-toc',
+          contentSelector: '.js-toc-content',
+          headingSelector,
+          hasInnerContainers: true,
+          scrollSmooth: false,
+          headingsOffset: 30
+        });
+      } catch (err) {
+        // eslint-disable-next-line no-console
+        console.error('TOC init failed', err);
+        return;
+      }
+
+      setTimeout(() => {
+        if (!tocEl) return;
+
+        // Если tocbot не успел нарисовать список — добьём refresh.
+        if (!tocEl.innerHTML || !tocEl.innerHTML.trim()) {
+          if (typeof tocbotLib.refresh === 'function') tocbotLib.refresh();
+        }
+      }, 300);
 
       setTimeout(() => {
         if (typeof tocbotLib.refresh === 'function') tocbotLib.refresh();
-      }, 250);
+      }, 900);
 
       if (tocContent && typeof MutationObserver !== 'undefined') {
         const observer = new MutationObserver(() => {
