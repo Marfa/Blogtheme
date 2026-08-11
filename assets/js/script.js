@@ -250,6 +250,22 @@ var callback = function(){
           tocbotLib.refresh();
         }
       }, 250);
+
+      // TOC может собираться до того, как Ghost доотрисует контент (особенно на тяжёлых страницах).
+      // Наблюдаем за изменениями внутри content-области и делаем refresh один раз.
+      if (tocContent && typeof MutationObserver !== 'undefined') {
+        const observer = new MutationObserver(() => {
+          const hasAnyHeadings = tocContent.querySelector('h1, h2, h3, h4, h5, h6');
+          if (hasAnyHeadings) {
+            tocbotLib.refresh();
+            observer.disconnect();
+          }
+        });
+
+        observer.observe(tocContent, {childList: true, subtree: true});
+
+        setTimeout(() => observer.disconnect(), 2000);
+      }
     }
 
     const tocLinks = document.querySelectorAll('.toc-list-item a[href^="#"]');
