@@ -1,16 +1,55 @@
-{{!-- Static ad slot: reserved aspect ratio avoids CLS from JS injection --}}
-<div id="adspace" class="adspace m-b">
+{{!-- Random affiliate banner: aspect-ratio reserved, pick runs inline during parse --}}
+<div id="adspace" class="adspace m-b"></div>
+<script>
+(function () {
+  var pool = [
+    {
+      href: 'https://pst.net/?f=4d5d6d5148e5f4038393633cc6e06c2b',
+      webp: '{{asset "images/pst-banner.webp"}}',
+      jpg: '{{asset "images/pst-banner.jpg"}}',
+      alt: 'PSTNET — виртуальные карты для рекламы: Google Ads и TikTok, 100 карт бесплатно, 3% кэшбэк'
+    },
+    {
+      href: 'https://tgstat.ru/x/XkTpZ',
+      webp: '{{asset "images/tgstat-banner.webp"}}',
+      jpg: '{{asset "images/tgstat-banner.jpg"}}',
+      alt: 'TGStat — аналитика Telegram: охваты, поиск каналов, проверка накруток'
+    },
+    {
+      href: 'https://2sync.com?via=vx1yz',
+      webp: '{{asset "images/2sync-banner.webp"}}',
+      jpg: '{{asset "images/2sync-banner.jpg"}}',
+      alt: '2sync — двусторонняя синхронизация Notion с календарём, Todoist и Outlook'
+    },
+    {
+      href: 'https://ishosting.com/affiliate/MjUyOCM2',
+      webp: '{{asset "images/ishosting-banner.webp"}}',
+      jpg: '{{asset "images/ishosting-banner.jpg"}}',
+      alt: 'is*hosting — VPS на KVM и NVMe, 40+ локаций, аптайм 99,99%'
+    },
+    {
+      href: 'https://emcd.io/referral/invite/565709',
+      webp: '{{asset "images/emcd-banner.webp"}}',
+      jpg: '{{asset "images/emcd-banner.jpg"}}',
+      alt: 'EMCD — майнинг-пул, кошелёк и Coinhold до 14% APR'
+    }
+  ];
+  var b = pool[(Math.random() * pool.length) | 0];
+  var el = document.getElementById('adspace');
+  if (!el) return;
+  el.innerHTML = '<a href="' + b.href + '" target="_blank" rel="nofollow noopener">' +
+    '<picture><source srcset="' + b.webp + '" type="image/webp">' +
+    '<img src="' + b.jpg + '" alt="' + b.alt.replace(/"/g, '&quot;') +
+    '" width="1200" height="200" loading="lazy" decoding="async"></picture></a>';
+})();
+</script>
+<noscript>
   <a href="https://pst.net/?f=4d5d6d5148e5f4038393633cc6e06c2b" target="_blank" rel="nofollow noopener">
-    <picture>
-      <source srcset="{{asset 'images/pst-banner.webp'}}" type="image/webp">
-      <img
-        src="{{asset 'images/pst-banner.jpg'}}"
-        alt="PSTNET — виртуальные карты для рекламы: Google Ads и TikTok, 100 карт бесплатно, 3% кэшбэк"
-        width="1200"
-        height="200"
-        loading="lazy"
-        decoding="async"
-      >
-    </picture>
+    <img
+      src="{{asset "images/pst-banner.jpg"}}"
+      alt="PSTNET — виртуальные карты для рекламы"
+      width="1200"
+      height="200"
+    >
   </a>
-</div>
+</noscript>
