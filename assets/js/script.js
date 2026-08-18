@@ -288,6 +288,11 @@ var callback = function(){
     loadMore.classList.add('btn--disabled');
   }
 
+  // ========================================
+  // Search results open in new tab
+  // ========================================
+  setupSearchResultsNewTab();
+
   // ==================
   // Post external links
   // ==================
@@ -572,4 +577,72 @@ function getParameterByName(name, url) {
   if (!results) return null;
   if (!results[2]) return '';
   return decodeURIComponent(results[2].replace(/\+/g, ' '));
+}
+
+// ========================================
+// Ghost sodo-search: open results in new tab
+// ========================================
+function setupSearchResultsNewTab() {
+  const patchIframe = (iframe) => {
+    if (!iframe || iframe.dataset.searchNewTab) {
+      return;
+    }
+
+    const inject = () => {
+      try {
+        const doc = iframe.contentDocument;
+        const win = iframe.contentWindow;
+        if (!doc || !win || win.__searchNewTabPatched) {
+          return;
+        }
+
+        const script = doc.createElement('script');
+        script.textContent = [
+          '(function(){',
+          'if(window.__searchNewTabPatched){return;}',
+          'window.__searchNewTabPatched=true;',
+          'var descriptor=Object.getOwnPropertyDescriptor(Location.prototype,"href");',
+          'if(!descriptor||!descriptor.set){return;}',
+          'Object.defineProperty(Location.prototype,"href",{',
+          'get:descriptor.get,',
+          'set:function(url){window.open(url,"_blank","noopener,noreferrer");},',
+          'configurable:true',
+          '});',
+          '})();'
+        ].join('');
+        (doc.head || doc.documentElement).appendChild(script);
+        script.remove();
+        iframe.dataset.searchNewTab = '1';
+      } catch (err) {
+        // sodo-search iframe may be unavailable
+      }
+    };
+
+    if (iframe.contentDocument?.documentElement) {
+      inject();
+    } else {
+      iframe.addEventListener('load', inject, { once: true });
+    }
+  };
+
+  const observeRoot = (root) => {
+    patchIframe(root.querySelector('iframe'));
+    new MutationObserver(() => {
+      patchIframe(root.querySelector('iframe'));
+    }).observe(root, { childList: true, subtree: true });
+  };
+
+  const root = document.getElementById('sodo-search-root');
+  if (root) {
+    observeRoot(root);
+    return;
+  }
+
+  new MutationObserver((_mutations, observer) => {
+    const searchRoot = document.getElementById('sodo-search-root');
+    if (searchRoot) {
+      observeRoot(searchRoot);
+      observer.disconnect();
+    }
+  }).observe(document.body, { childList: true });
 }
