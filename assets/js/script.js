@@ -583,66 +583,108 @@ function getParameterByName(name, url) {
 // Ghost sodo-search: open results in new tab
 // ========================================
 function setupSearchResultsNewTab() {
-  const patchIframe = (iframe) => {
-    if (!iframe || iframe.dataset.searchNewTab) {
+  const hookedDocs = new WeakSet();
+
+  const resultUrl = (el) => {
+    if (!el) {
+      return '';
+    }
+
+    const fiberKey = Object.keys(el).find((key) => key.startsWith('__reactFiber$'));
+    let fiber = fiberKey ? el[fiberKey] : null;
+
+    for (let i = 0; fiber && i < 12; i++) {
+      const props = fiber.memoizedProps || {};
+      if (typeof props.url === 'string' && props.url) {
+        return props.url;
+      }
+      if (props.post && typeof props.post.url === 'string') {
+        return props.post.url;
+      }
+      fiber = fiber.return;
+    }
+
+    return '';
+  };
+
+  const openResult = (el, event) => {
+    const url = resultUrl(el);
+    if (!url) {
       return;
     }
 
-    const inject = () => {
-      try {
-        const doc = iframe.contentDocument;
-        const win = iframe.contentWindow;
-        if (!doc || !win || win.__searchNewTabPatched) {
-          return;
-        }
+    event.preventDefault();
+    event.stopPropagation();
+    event.stopImmediatePropagation();
+    window.open(url, '_blank', 'noopener,noreferrer');
+  };
 
-        const script = doc.createElement('script');
-        script.textContent = [
-          '(function(){',
-          'if(window.__searchNewTabPatched){return;}',
-          'window.__searchNewTabPatched=true;',
-          'var descriptor=Object.getOwnPropertyDescriptor(Location.prototype,"href");',
-          'if(!descriptor||!descriptor.set){return;}',
-          'Object.defineProperty(Location.prototype,"href",{',
-          'get:descriptor.get,',
-          'set:function(url){window.open(url,"_blank","noopener,noreferrer");},',
-          'configurable:true',
-          '});',
-          '})();'
-        ].join('');
-        (doc.head || doc.documentElement).appendChild(script);
-        script.remove();
-        iframe.dataset.searchNewTab = '1';
+  const hookDoc = (doc) => {
+    if (!doc || hookedDocs.has(doc)) {
+      return;
+    }
+    hookedDocs.add(doc);
+
+    doc.addEventListener('click', (event) => {
+      const node = event.target && event.target.nodeType === 1 ? event.target : event.target.parentElement;
+      const item = node && node.closest ? node.closest('.cursor-pointer') : null;
+      if (!item) {
+        return;
+      }
+      openResult(item, event);
+    }, true);
+
+    const onEnter = (event) => {
+      if (event.key !== 'Enter') {
+        return;
+      }
+      const selected = doc.querySelector('.cursor-pointer.bg-neutral-100');
+      if (selected) {
+        openResult(selected, event);
+      }
+    };
+
+    doc.addEventListener('keyup', onEnter, true);
+  };
+
+  const hookIframe = (iframe) => {
+    if (!iframe) {
+      return;
+    }
+
+    const tryHook = () => {
+      try {
+        hookDoc(iframe.contentDocument);
       } catch (err) {
         // sodo-search iframe may be unavailable
       }
     };
 
-    if (iframe.contentDocument?.documentElement) {
-      inject();
-    } else {
-      iframe.addEventListener('load', inject, { once: true });
-    }
+    tryHook();
+    iframe.addEventListener('load', tryHook);
   };
 
-  const observeRoot = (root) => {
-    patchIframe(root.querySelector('iframe'));
+  const watch = (root) => {
+    hookIframe(root.querySelector('iframe'));
     new MutationObserver(() => {
-      patchIframe(root.querySelector('iframe'));
+      hookIframe(root.querySelector('iframe'));
     }).observe(root, { childList: true, subtree: true });
   };
 
-  const root = document.getElementById('sodo-search-root');
-  if (root) {
-    observeRoot(root);
-    return;
-  }
-
-  new MutationObserver((_mutations, observer) => {
-    const searchRoot = document.getElementById('sodo-search-root');
-    if (searchRoot) {
-      observeRoot(searchRoot);
-      observer.disconnect();
+  const start = () => {
+    const root = document.getElementById('sodo-search-root');
+    if (!root) {
+      return false;
     }
-  }).observe(document.body, { childList: true });
+    watch(root);
+    return true;
+  };
+
+  if (!start()) {
+    new MutationObserver((_mutations, observer) => {
+      if (start()) {
+        observer.disconnect();
+      }
+    }).observe(document.documentElement, { childList: true, subtree: true });
+  }
 }
