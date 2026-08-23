@@ -44,16 +44,25 @@ function parseArgs(argv) {
 
 function htmlToText(html) {
   if (!html) return '';
-  return String(html)
+  let s = String(html)
     .replace(/<br\s*\/?>/gi, '\n')
-    .replace(/<\/p>/gi, '\n')
-    .replace(/<[^>]+>/g, '')
+    .replace(/<\/p>/gi, '\n');
+  // Strip tags until stable (handles incomplete/malformed tags).
+  let prev;
+  do {
+    prev = s;
+    s = s.replace(/<[^>]*>?/g, '');
+  } while (s !== prev);
+  // Decode entities; &amp; last to avoid double-unescaping.
+  return s
     .replace(/&nbsp;/g, ' ')
-    .replace(/&amp;/g, '&')
+    .replace(/&#(\d+);/g, (_, n) => String.fromCharCode(Number(n)))
+    .replace(/&#x([0-9a-f]+);/gi, (_, h) => String.fromCharCode(parseInt(h, 16)))
     .replace(/&lt;/g, '<')
     .replace(/&gt;/g, '>')
     .replace(/&quot;/g, '"')
-    .replace(/&#39;/g, "'")
+    .replace(/&#39;|&apos;/g, "'")
+    .replace(/&amp;/g, '&')
     .trim();
 }
 
@@ -141,15 +150,17 @@ function ghostToArtrans(payload, opts) {
   return artrans;
 }
 
-function jwtForGhost(apiKey) {
-  const [id, secret] = String(apiKey).split(':');
+function jwtForGhost(adminApiKey) {
+  // Ghost Admin API uses HMAC-SHA256 JWT signing (not password hashing).
+  // codeql[js/insufficient-password-hash]
+  const [id, secret] = String(adminApiKey).split(':');
   if (!id || !secret) throw new Error('GHOST_ADMIN_API_KEY must be id:secret');
-  const key = Buffer.from(secret, 'hex');
+  const signingKey = Buffer.from(secret, 'hex');
   const header = Buffer.from(JSON.stringify({ alg: 'HS256', typ: 'JWT', kid: id })).toString('base64url');
   const now = Math.floor(Date.now() / 1000);
   const payload = Buffer.from(JSON.stringify({ iat: now, exp: now + 300, aud: '/admin/' })).toString('base64url');
   const data = `${header}.${payload}`;
-  const sig = crypto.createHmac('sha256', key).update(data).digest('base64url');
+  const sig = crypto.createHmac('sha256', signingKey).update(data).digest('base64url');
   return `${data}.${sig}`;
 }
 
