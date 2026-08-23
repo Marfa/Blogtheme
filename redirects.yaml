@@ -1,2 +1,34 @@
 301:
+  ^\/permalink\/f1f6566b39\/?$: /prisoediniaites-k-kanalu-moego-bloga-v-telegram/
+  ^\/permalink\/1c044269b4\/?$: /bystryi-sovet-kak-vygruzit-izbrannoe-iz-google-chrome/
+  ^\/permalink\/66af94f788\/?$: /obzor-watchfacepro-kak-samomu-sozdat-tsiferblat-dlia-android-wear/
+  ^\/permalink\/74be1f4add\/?$: /novyi-razdel-evernote/
+  ^\/permalink\/a643b25586\/?$: /kak-dobavit-avtonabor-v-gmail/
+  ^\/permalink\/5025a03f6d\/?$: /kak-podelitsia-svoimi-pismami-v-gmail/
+  ^\/permalink\/c84d3240f3\/?$: /obzor-throttle-mailinator-na-steroidakh/
+  ^\/permalink\/731821d4f0\/?$: /samye-populiarnye-stati-7-dekabria-2015-12-dekabria-2015/
+  ^\/permalink\/1d97dfefad\/?$: /samye-populiarnye-stati-21-dekabria-2015-26-dekabria-2015/
+  ^\/permalink\/0c8362fd9a\/?$: /bystryi-sovet-kak-dobavit-push-opoveshcheniia-na-sait/
+  ^\/permalink\/bd62b067ca\/?$: /kak-sekonomit-pri-oplate-podpisok-na-servisy/
+  ^\/permalink\/5268f052c9\/?$: /bystryi-sovet-kak-izbavitsia-ot-nazoilivogo-kollegi/
+  ^\/permalink\/3384525b2e\/?$: /konkurs-ot-watchfacepro-s-glavnym-prizom-100/
+  ^\/permalink\/4f65e1861c\/?$: /nuzhen-li-mne-connectify-hotspot/
+  ^\/permalink\/fed061456d\/?$: /obzor-taskfully/
+  ^\/permalink\/92ffb966a2\/?$: /bystryi-sovet-kak-sobrat-obratnye-ssylki-na-svoi-sait/
+  ^\/permalink\/bc6f9c7aaa\/?$: /circloscope-kak-uznat-vse-o-vashikh-krugakh-v-google/
+  ^\/permalink\/d99355c7ae\/?$: /bystryi-sovet-kak-otsortirovat-stati-v-pocket-po-vremeni-chteniia/
+  ^\/permalink\/afaf5c1bb9\/?$: /bystryi-sovet-kak-minimizirovat-potok-vkhodiashchei-pochty/
+  ^\/permalink\/82cf4eddef\/?$: /obzor-uptime-robot-poluchaem-opoveshcheniia-o-dostupnosti-saita-v-twitter/
+  ^\/permalink\/903f5f81ff\/?$: /bystryi-sovet-kak-uznat-na-chem-postroen-sait/
+  ^\/permalink\/f90d562ae7\/?$: /bystryi-sovet-peek-kak-uvidet-reaktsiiu-posetitelei-na-vash-sait/
+  ^\/permalink\/17a76c19ad\/?$: /khitrosti-postach-io-kak-izmenit-temu-pri-pomoshchi-github/
+  ^\/permalink\/584f7d0212\/?$: /kak-dobitsia-inbox-zero/
+  ^\/permalink\/21059fbcb3\/?$: /obzor-phraseexpress-avtomaticheskii-nabor-teksta/
+  ^\/permalink\/a0fa11a760\/?$: /obzor-mailbird-samyi-bystryi-pochtovyi-klient/
+  ^\/feed\.xml\/?$: /rss/
+  ^\/kak-otsledit-informatsiiu-o-startapakh-v-\/?$: /kak-otsledit-informatsiiu-o-startapakh-v-evernote/
+  ^\/chto-takoie-big-data-i-kak-ispytat-eto-na-siebie-priamo-sieich\/?$: /chto-takoie-big-data-i-kak-ispytat-eto-na-siebie-priamo-sieichas/
+  ^\/blurry-pomozhiet-skryt-chuvstvitielnyi-tiekst-v-brauzierie-vo-vriemia-priezientatsii\/?$: /blurweb-app-pomozhiet-skryt-chuvstvitielnyi-tiekst-v-brauzierie-vo-vriemia-priezientatsii/
+  ^\/post\/[0-9]+\/([a-z0-9\-]+)\/?$: /$1/
   ^\/post\/(.+?)\/?$: /$1/
+  ^\/(.+)\/amp\/?$: /$1/
