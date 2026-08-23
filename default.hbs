@@ -72,6 +72,11 @@
     {{!-- Main theme scripts (async, after CSS link so parse is not blocked earlier than needed) --}}
     <script async src="{{asset 'dist/app.min.js'}}"></script>
 
+    {{!-- Tag archives: keep for users, exclude from Google index --}}
+    {{#is "tag"}}
+        <meta name="robots" content="noindex, follow">
+    {{/is}}
+
     {{!-- Ghost outputs important style and meta data with this tag --}}
     {{ghost_head}}
 
