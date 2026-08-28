@@ -4,7 +4,6 @@
     {{!-- Document Settings --}}
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta property="article:author" content="{{name}}">
     <meta property="telegram:channel" content="@themarfa">
     <meta property="tg:site_verification" content="g7j8/rPFXfhyrq5q0QQV7EsYWv4=">
 
@@ -79,6 +78,24 @@
 
     {{!-- Ghost outputs important style and meta data with this tag --}}
     {{ghost_head}}
+
+    {{!-- Member pages: noindex + OG fallback (ghost_head omits og:image/description) --}}
+    {{#is "signin,signup,account"}}
+        <meta name="robots" content="noindex, follow">
+        {{#if @site.cover_image}}
+            <meta property="og:image" content="{{img_url @site.cover_image size='xl'}}">
+            <meta name="twitter:image" content="{{img_url @site.cover_image size='xl'}}">
+        {{else if @site.logo}}
+            <meta property="og:image" content="{{img_url @site.logo size='l'}}">
+            <meta name="twitter:image" content="{{img_url @site.logo size='l'}}">
+        {{/if}}
+        {{#if @site.description}}
+            <meta property="og:description" content="{{@site.description}}">
+            <meta name="twitter:description" content="{{@site.description}}">
+        {{/if}}
+    {{/is}}
+
+    {{{block "head"}}}
 
     {{!-- Global scripts for setting values --}}
     {{> global-scripts}}

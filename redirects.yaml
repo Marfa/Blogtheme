@@ -1,4 +1,5 @@
 301:
+  ^\/manifest\.webmanifest\/?$: /assets/manifest.webmanifest
   ^\/permalink\/f1f6566b39\/?$: /prisoediniaites-k-kanalu-moego-bloga-v-telegram/
   ^\/permalink\/1c044269b4\/?$: /bystryi-sovet-kak-vygruzit-izbrannoe-iz-google-chrome/
   ^\/permalink\/66af94f788\/?$: /obzor-watchfacepro-kak-samomu-sozdat-tsiferblat-dlia-android-wear/

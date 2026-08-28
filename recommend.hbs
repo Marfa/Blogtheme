@@ -1,5 +1,20 @@
 {{!< default}}
 
+{{#contentFor "head"}}
+    <meta name="robots" content="noindex, follow">
+    {{#if @site.cover_image}}
+        <meta property="og:image" content="{{img_url @site.cover_image size='xl'}}">
+        <meta name="twitter:image" content="{{img_url @site.cover_image size='xl'}}">
+    {{else if @site.logo}}
+        <meta property="og:image" content="{{img_url @site.logo size='l'}}">
+        <meta name="twitter:image" content="{{img_url @site.logo size='l'}}">
+    {{/if}}
+    {{#if @site.description}}
+        <meta property="og:description" content="{{@site.description}}">
+        <meta name="twitter:description" content="{{@site.description}}">
+    {{/if}}
+{{/contentFor}}
+
 {{#match @site.recommendations_enabled}}
   <div class="container wrapper">
     {{!-- Hero --}}
