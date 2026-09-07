@@ -76,6 +76,22 @@
         <meta name="robots" content="noindex, follow">
     {{/is}}
 
+    {{!-- Telegram reads the first og:image; large PNG covers break WebpageBot — JPEG resize first --}}
+    {{#is "post,page"}}
+        {{#post}}
+            {{#if og_image}}
+                <meta property="og:image" content="{{img_url og_image size='l' format='jpeg'}}">
+            {{else if feature_image}}
+                <meta property="og:image" content="{{img_url feature_image size='l' format='jpeg'}}">
+            {{/if}}
+            {{#if twitter_image}}
+                <meta name="twitter:image" content="{{img_url twitter_image size='l' format='jpeg'}}">
+            {{else if feature_image}}
+                <meta name="twitter:image" content="{{img_url feature_image size='l' format='jpeg'}}">
+            {{/if}}
+        {{/post}}
+    {{/is}}
+
     {{!-- Ghost outputs important style and meta data with this tag --}}
     {{ghost_head}}
 
