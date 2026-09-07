@@ -1,0 +1,29 @@
+name: Fix Telegram OG images
+
+on:
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: 'slugs (comma-separated) or all-png'
+        required: true
+        default: 'opensorsnye-alternativy-microsoft-excel,kak-poigrat-v-klassicheskie-fleshki-na-smartfone,kak-oformit-virtualnuiu-kartu-ot-chocopay'
+
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Upload real .jpg og_image for Telegram
+        env:
+          GHOST_ADMIN_API_URL: ${{ secrets.GHOST_ADMIN_API_URL }}
+          GHOST_ADMIN_API_KEY: ${{ secrets.GHOST_ADMIN_API_KEY }}
+        run: |
+          MODE="${{ inputs.mode }}"
+          if [ "$MODE" = "all-png" ]; then
+            node scripts/fix-telegram-og-images.js --all-png
+          else
+            node scripts/fix-telegram-og-images.js --slugs "$MODE"
+          fi
