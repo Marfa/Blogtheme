@@ -1,0 +1,13 @@
+{{!-- Compressed JPEG for Telegram (large PNG covers / last og:image break WebpageBot) --}}
+{{#if og_image}}
+    <meta property="og:image" content="{{img_url og_image size='l' format='jpeg'}}">
+    <meta property="og:image:type" content="image/jpeg">
+{{else if feature_image}}
+    <meta property="og:image" content="{{img_url feature_image size='l' format='jpeg'}}">
+    <meta property="og:image:type" content="image/jpeg">
+{{/if}}
+{{#if twitter_image}}
+    <meta name="twitter:image" content="{{img_url twitter_image size='l' format='jpeg'}}">
+{{else if feature_image}}
+    <meta name="twitter:image" content="{{img_url feature_image size='l' format='jpeg'}}">
+{{/if}}

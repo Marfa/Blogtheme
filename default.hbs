@@ -76,24 +76,24 @@
         <meta name="robots" content="noindex, follow">
     {{/is}}
 
-    {{!-- Telegram reads the first og:image; large PNG covers break WebpageBot — JPEG resize first --}}
+    {{!-- Telegram: JPEG before + after ghost_head (some clients use first, some last; raw PNG in between breaks WebpageBot) --}}
     {{#is "post,page"}}
         {{#post}}
-            {{#if og_image}}
-                <meta property="og:image" content="{{img_url og_image size='l' format='jpeg'}}">
-            {{else if feature_image}}
-                <meta property="og:image" content="{{img_url feature_image size='l' format='jpeg'}}">
-            {{/if}}
-            {{#if twitter_image}}
-                <meta name="twitter:image" content="{{img_url twitter_image size='l' format='jpeg'}}">
-            {{else if feature_image}}
-                <meta name="twitter:image" content="{{img_url feature_image size='l' format='jpeg'}}">
-            {{/if}}
+            {{> og-telegram-image}}
         {{/post}}
     {{/is}}
 
     {{!-- Ghost outputs important style and meta data with this tag --}}
     {{ghost_head}}
+
+    {{#is "post,page"}}
+        {{#post}}
+            {{> og-telegram-image}}
+            {{!-- Override multiline auto-excerpt (invalid in HTML attrs; breaks Telegram parsers) --}}
+            <meta property="og:description" content="{{#if meta_description}}{{meta_description}}{{else}}{{title}} — {{@site.title}}{{/if}}">
+            <meta name="twitter:description" content="{{#if meta_description}}{{meta_description}}{{else}}{{title}} — {{@site.title}}{{/if}}">
+        {{/post}}
+    {{/is}}
 
     {{!-- Member pages: noindex + OG fallback (ghost_head omits og:image/description) --}}
     {{#is "signin,signup,account"}}
