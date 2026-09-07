@@ -1,0 +1,133 @@
+/* Twitch min embed is 400×300; scale down for a corner preview */
+.twitch-live {
+  --twitch-live-scale: 0.7;
+  --twitch-live-w: calc(400px * var(--twitch-live-scale));
+  --twitch-live-h: calc(300px * var(--twitch-live-scale));
+
+  position: fixed;
+  right: var(--gap-lg);
+  bottom: var(--gap-lg);
+  z-index: 110;
+  width: var(--twitch-live-w);
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--global-radius);
+  box-shadow: 0 8px 28px hsl(0 0% 0% / 0.18);
+  overflow: hidden;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(12px);
+  transition: opacity var(--trans-default), transform var(--trans-default), visibility var(--trans-default);
+
+  &.is-live {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  &[hidden] {
+    display: none !important;
+  }
+
+  &__bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--gap-sm);
+    padding: 6px 8px 6px 10px;
+    background: var(--color-bg-acc-1);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  &__link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.75rem;
+    font-weight: var(--font-weight-700);
+    letter-spacing: 0.02em;
+    color: var(--color-text);
+    text-decoration: none;
+
+    @mixin attention {
+      color: var(--color-primary);
+    }
+  }
+
+  &__dot {
+    width: 8px;
+    height: 8px;
+    border-radius: var(--global-radius-round);
+    background: var(--color-error);
+    box-shadow: 0 0 0 0 hsl(348 97% 60% / 0.55);
+    animation: twitch-live-pulse 1.6s ease-out infinite;
+  }
+
+  &__close {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    padding: 0;
+    border: 0;
+    border-radius: var(--global-radius-round);
+    background: transparent;
+    color: var(--color-text-acc-2);
+    cursor: pointer;
+
+    @mixin attention {
+      background: var(--color-bg-acc-3);
+      color: var(--color-text);
+    }
+
+    .icon {
+      pointer-events: none;
+    }
+  }
+
+  &__frame {
+    width: var(--twitch-live-w);
+    height: var(--twitch-live-h);
+    overflow: hidden;
+    line-height: 0;
+
+    iframe,
+    #twitch-live-player {
+      width: 400px !important;
+      height: 300px !important;
+      transform: scale(var(--twitch-live-scale));
+      transform-origin: top left;
+      border: 0;
+    }
+  }
+}
+
+@keyframes twitch-live-pulse {
+  0% {
+    box-shadow: 0 0 0 0 hsl(348 97% 60% / 0.55);
+  }
+  70% {
+    box-shadow: 0 0 0 8px hsl(348 97% 60% / 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 hsl(348 97% 60% / 0);
+  }
+}
+
+/* Keep scroll-top clear of the live preview (~scaled 400×300 + bar) */
+body:has(.twitch-live.is-live) .scroll-top {
+  bottom: calc(var(--gap-lg) + 254px);
+}
+
+@media (max-width: 480px) {
+  .twitch-live {
+    --twitch-live-scale: 0.55;
+    right: var(--gap);
+    bottom: var(--gap);
+  }
+
+  body:has(.twitch-live.is-live) .scroll-top {
+    bottom: calc(var(--gap) + 209px);
+  }
+}
