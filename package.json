@@ -28,7 +28,8 @@
     "dev": "gulp",
     "prebuild": "test -f theme.js && node theme.js || true",
     "build": "gulp build",
-    "test": "gscan . --verbose",
+    "postinstall": "node scripts/patch-extract-zip.js",
+    "test": "node scripts/assert-extract-zip-patch.js && gscan . --verbose",
     "zip": "gscan . --verbose && gulp build && mkdir -p dist && zip -rq dist/${npm_package_name} . -x 'dist*' -x 'demo*' -x 'node_modules*' -x '.*' 'TODO.md' 'private.hbs' 'theme.js' && size_kb=$(node -p \"Math.ceil(require('fs').statSync('dist/' + process.env.npm_package_name + '.zip').size / 1024)\") && printf '\\n\\033[1m\\033[32m✓\\033[39m Created dist/%s.zip (%s kB)\\033[0m\\n' \"${npm_package_name}\" \"$size_kb\"",
     "release": "npm version minor --no-git-tag-version && npm run zip && git add . && git commit -m \"v$(node -p 'require(\"./package.json\").version')\" && git push"
   },

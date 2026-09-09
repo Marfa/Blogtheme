@@ -8,6 +8,9 @@ on:
         required: true
         default: 'opensorsnye-alternativy-microsoft-excel,kak-poigrat-v-klassicheskie-fleshki-na-smartfone,kak-oformit-virtualnuiu-kartu-ot-chocopay'
 
+permissions:
+  contents: read
+
 jobs:
   fix:
     runs-on: ubuntu-latest

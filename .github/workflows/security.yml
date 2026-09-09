@@ -21,6 +21,9 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Assert extract-zip CVE patch
+        run: node scripts/assert-extract-zip-patch.js
+
       - name: Fail on critical vulnerabilities
         run: npm audit --audit-level=critical
 
