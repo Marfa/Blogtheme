@@ -1,5 +1,5 @@
 {{!-- Floating Twitch preview (marfapr) — visible only while the channel is live --}}
-<aside class="twitch-live" id="twitch-live" aria-label="Twitch live" hidden>
+<aside class="twitch-live" id="twitch-live" aria-label="Twitch live">
   <div class="twitch-live__bar">
     <a class="twitch-live__link" href="https://www.twitch.tv/marfapr" target="_blank" rel="noopener noreferrer">
       <span class="twitch-live__dot" aria-hidden="true"></span>
@@ -9,6 +9,10 @@
       {{> icon name="x" size="xs"}}
     </button>
   </div>
+  {{!-- Mobile: static preview (autoplay blocked). Desktop: embed player. --}}
+  <a class="twitch-live__poster" href="https://www.twitch.tv/marfapr" target="_blank" rel="noopener noreferrer">
+    <img id="twitch-live-thumb" alt="marfapr live" width="440" height="248" decoding="async">
+  </a>
   <div class="twitch-live__frame">
     <div id="twitch-live-player"></div>
   </div>
@@ -18,24 +22,29 @@
 (function () {
   var CHANNEL = 'marfapr';
   var DISMISS_KEY = 'twitch-live-dismissed:' + CHANNEL;
+  var PREVIEW = 'https://static-cdn.jtvnw.net/previews-ttv/live_user_' + CHANNEL + '-440x248.jpg';
   var widget = document.getElementById('twitch-live');
   var closeBtn = document.getElementById('twitch-live-close');
+  var thumb = document.getElementById('twitch-live-thumb');
 
-  if (!widget || sessionStorage.getItem(DISMISS_KEY)) return;
+  if (!widget || sessionStorage.getItem(DISMISS_KEY)) {
+    if (widget) widget.remove();
+    return;
+  }
 
   function hide() {
-    widget.hidden = true;
     widget.classList.remove('is-live');
   }
 
   function show() {
-    widget.hidden = false;
+    if (thumb) thumb.src = PREVIEW + '?t=' + Date.now();
     widget.classList.add('is-live');
   }
 
   function handleClose() {
     sessionStorage.setItem(DISMISS_KEY, '1');
     hide();
+    widget.remove();
   }
 
   if (closeBtn) closeBtn.addEventListener('click', handleClose);
@@ -43,6 +52,8 @@
   function bootPlayer() {
     if (typeof Twitch === 'undefined' || !Twitch.Player) return;
 
+    // Keep a real laid-out box (not display:none) so Twitch can emit ONLINE/OFFLINE —
+    // mobile WebKit often never fires those events for players created in display:none.
     var player = new Twitch.Player('twitch-live-player', {
       width: 400,
       height: 300,

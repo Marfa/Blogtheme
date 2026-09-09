@@ -1,4 +1,5 @@
-/* Twitch min embed is 400×300; scale down for a corner preview */
+/* Twitch min embed is 400×300; scale down for a corner preview.
+   Never use display:none while detecting live — Twitch ONLINE won't fire on mobile. */
 .twitch-live {
   --twitch-live-scale: 0.7;
   --twitch-live-w: calc(400px * var(--twitch-live-scale));
@@ -15,18 +16,14 @@
   box-shadow: 0 8px 28px hsl(0 0% 0% / 0.18);
   overflow: hidden;
   opacity: 0;
-  visibility: hidden;
+  pointer-events: none;
   transform: translateY(12px);
-  transition: opacity var(--trans-default), transform var(--trans-default), visibility var(--trans-default);
+  transition: opacity var(--trans-default), transform var(--trans-default);
 
   &.is-live {
     opacity: 1;
-    visibility: visible;
+    pointer-events: auto;
     transform: translateY(0);
-  }
-
-  &[hidden] {
-    display: none !important;
   }
 
   &__bar {
@@ -86,6 +83,20 @@
     }
   }
 
+  &__poster {
+    display: none;
+    line-height: 0;
+
+    img {
+      display: block;
+      width: 100%;
+      height: auto;
+      aspect-ratio: 440 / 248;
+      object-fit: cover;
+      background: var(--color-bg-acc-2);
+    }
+  }
+
   &__frame {
     width: var(--twitch-live-w);
     height: var(--twitch-live-h);
@@ -120,14 +131,34 @@ body:has(.twitch-live.is-live) .scroll-top {
   bottom: calc(var(--gap-lg) + 254px);
 }
 
-@media (max-width: 480px) {
+/* Phones: Twitch blocks autoplay — cover player with live thumbnail; tap opens stream.
+   Player stays in-layout underneath so ONLINE/OFFLINE still fire. */
+@media (max-width: 640px) {
   .twitch-live {
-    --twitch-live-scale: 0.55;
+    --twitch-live-scale: 0.65;
+    --twitch-live-w: calc(400px * var(--twitch-live-scale));
+    --twitch-live-h: calc(300px * var(--twitch-live-scale));
     right: var(--gap);
     bottom: var(--gap);
   }
 
+  .twitch-live__poster {
+    display: block;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: var(--twitch-live-h);
+    z-index: 2;
+    background: var(--color-bg);
+
+    img {
+      height: 100%;
+      aspect-ratio: auto;
+    }
+  }
+
   body:has(.twitch-live.is-live) .scroll-top {
-    bottom: calc(var(--gap) + 209px);
+    bottom: calc(var(--gap) + 236px);
   }
 }
