@@ -1,4 +1,4 @@
-/* Twitch min embed is 400×300; scale down for a corner preview.
+/* Twitch min embed is 400×300; scale the player wrapper once (not the iframe too).
    Never use display:none while detecting live — Twitch ONLINE won't fire on mobile. */
 .twitch-live {
   --twitch-live-scale: 0.7;
@@ -90,26 +90,32 @@
     img {
       display: block;
       width: 100%;
-      height: auto;
-      aspect-ratio: 440 / 248;
+      height: 100%;
       object-fit: cover;
       background: var(--color-bg-acc-2);
     }
   }
 
   &__frame {
+    position: relative;
     width: var(--twitch-live-w);
     height: var(--twitch-live-h);
     overflow: hidden;
     line-height: 0;
 
-    iframe,
+    /* Scale only the player host — scaling iframe too double-shrinks the video */
     #twitch-live-player {
       width: 400px !important;
       height: 300px !important;
       transform: scale(var(--twitch-live-scale));
       transform-origin: top left;
+    }
+
+    iframe {
+      width: 100% !important;
+      height: 100% !important;
       border: 0;
+      transform: none !important;
     }
   }
 }
@@ -132,7 +138,8 @@ body:has(.twitch-live.is-live) .scroll-top {
 }
 
 /* Phones: Twitch blocks autoplay — cover player with live thumbnail; tap opens stream.
-   Player stays in-layout underneath so ONLINE/OFFLINE still fire. */
+   Player stays in-layout underneath so ONLINE/OFFLINE still fire.
+   Frame stays 400×300 aspect so poster/player share the same box (no crop mismatch). */
 @media (max-width: 640px) {
   .twitch-live {
     --twitch-live-scale: 0.65;
@@ -148,14 +155,10 @@ body:has(.twitch-live.is-live) .scroll-top {
     left: 0;
     right: 0;
     bottom: 0;
+    width: var(--twitch-live-w);
     height: var(--twitch-live-h);
     z-index: 2;
     background: var(--color-bg);
-
-    img {
-      height: 100%;
-      aspect-ratio: auto;
-    }
   }
 
   body:has(.twitch-live.is-live) .scroll-top {
