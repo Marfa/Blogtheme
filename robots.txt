@@ -1,14 +1,27 @@
 User-agent: *
 Sitemap: https://blog.themarfa.name/sitemap.xml
+Sitemap: https://en.blog.themarfa.name/sitemap.xml
 Disallow: /ghost/
 Disallow: /p/
 Disallow: /email/
 Disallow: /r/
 Disallow: /webmentions/receive/
 Disallow: /tag/
+Disallow: /author/
+Disallow: /*.md$
+Disallow: /llms.txt
+Disallow: /llms-full.txt
 
 User-agent: Yandex
 Disallow: /tag/
+Disallow: /author/
+Disallow: /*.md
+Disallow: /llms.txt
+Disallow: /llms-full.txt
 
 User-agent: YandexAdditionalBot
 Disallow: /tag/
+Disallow: /author/
+Disallow: /*.md
+Disallow: /llms.txt
+Disallow: /llms-full.txt

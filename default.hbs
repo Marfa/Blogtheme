@@ -71,8 +71,8 @@
     {{!-- Main theme scripts (async, after CSS link so parse is not blocked earlier than needed) --}}
     <script async src="{{asset 'dist/app.min.js'}}"></script>
 
-    {{!-- Tag archives: keep for users, exclude from Google index --}}
-    {{#is "tag"}}
+    {{!-- Tag/author archives: keep for users, exclude from search index --}}
+    {{#is "tag,author"}}
         <meta name="robots" content="noindex, follow">
     {{/is}}
 
