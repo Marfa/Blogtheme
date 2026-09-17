@@ -76,10 +76,11 @@
         <meta name="robots" content="noindex, follow">
     {{/is}}
 
-    {{!-- Telegram: JPEG before + after ghost_head (some clients use first, some last; raw PNG in between breaks WebpageBot) --}}
+    {{!-- Telegram: JPEG + one-line description before and after ghost_head --}}
     {{#is "post,page"}}
         {{#post}}
             {{> og-telegram-image}}
+            {{> og-telegram-description}}
         {{/post}}
     {{/is}}
 
@@ -89,9 +90,7 @@
     {{#is "post,page"}}
         {{#post}}
             {{> og-telegram-image}}
-            {{!-- Override multiline auto-excerpt (invalid in HTML attrs; breaks Telegram parsers) --}}
-            <meta property="og:description" content="{{#if meta_description}}{{meta_description}}{{else}}{{title}} — {{@site.title}}{{/if}}">
-            <meta name="twitter:description" content="{{#if meta_description}}{{meta_description}}{{else}}{{title}} — {{@site.title}}{{/if}}">
+            {{> og-telegram-description}}
         {{/post}}
     {{/is}}
 
