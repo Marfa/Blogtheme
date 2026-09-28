@@ -98,17 +98,35 @@ function tokenSet(s) {
   return new Set(normalizeTitle(s).split(' ').filter((t) => t.length > 2));
 }
 
-function jaccard(a, b) {
-  const A = tokenSet(a);
-  const B = tokenSet(b);
+function latinTokens(s) {
+  return new Set(String(s || '').toLowerCase().match(/[a-z][a-z0-9]{2,}/g) || []);
+}
+
+function latinOverlap(a, b) {
+  const A = latinTokens(a);
+  const B = latinTokens(b);
   if (!A.size || !B.size) return 0;
   let inter = 0;
   for (const t of A) if (B.has(t)) inter += 1;
+  // Prefer absolute shared product tokens (obsidian, livesync) over pure jaccard
+  if (inter >= 2) return 0.7 + Math.min(inter, 5) * 0.05;
+  if (inter === 1 && (A.size <= 4 || B.size <= 4)) return 0.5;
   return inter / (A.size + B.size - inter);
 }
 
+function pairScore(ruPost, enPost) {
+  const ruBlob = `${ruPost.slug} ${ruPost.title}`;
+  const enBlob = `${enPost.slug} ${enPost.title}`;
+  return Math.max(
+    jaccard(ruPost.slug.replace(/-/g, ' '), enPost.slug.replace(/-/g, ' ')),
+    jaccard(ruPost.title, enPost.title),
+    latinOverlap(ruBlob, enBlob),
+  );
+}
+
 function isHowToTitle(title) {
-  return /^(как|how to|how-to)\b/i.test(String(title || '').trim());
+  // Avoid \\b — in JS it does not treat Cyrillic as word chars, so «Как …» never matched.
+  return /^(как|how to|how-to)([\s:.—–-]|$)/i.test(String(title || '').trim());
 }
 
 const HREFLANG_MARK = 'data-ai-hreflang="1"';
@@ -218,7 +236,8 @@ async function ensureHowToTag(apiUrl, apiKey) {
 
 async function tagHowToPosts(apiUrl, apiKey, label) {
   const howto = await ensureHowToTag(apiUrl, apiKey);
-  const posts = await listRecentPosts(apiUrl, apiKey, HOWTO_SCAN_LIMIT);
+  // Scan enough pages that «Как…» / «How to…» titles are included, not only guest churn.
+  const posts = await listRecentPosts(apiUrl, apiKey, Math.max(HOWTO_SCAN_LIMIT, 800));
   let n = 0;
   for (const post of posts) {
     if (!isHowToTitle(post.title)) continue;
@@ -245,10 +264,7 @@ async function linkHreflang(ru, en) {
     let best = null;
     let bestScore = 0;
     for (const e of enPosts) {
-      const score = Math.max(
-        jaccard(r.slug.replace(/-/g, ' '), e.slug.replace(/-/g, ' ')),
-        jaccard(r.title, e.title),
-      );
+      const score = pairScore(r, e);
       if (score > bestScore) {
         bestScore = score;
         best = e;
