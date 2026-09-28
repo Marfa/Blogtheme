@@ -124,12 +124,13 @@ function latinOverlap(a, b) {
   const A = latinTokens(a);
   const B = latinTokens(b);
   if (!A.size || !B.size) return 0;
-  let inter = 0;
-  for (const t of A) if (B.has(t)) inter += 1;
-  // Prefer absolute shared product tokens (obsidian, livesync) over pure jaccard
+  const shared = [...A].filter((t) => B.has(t));
+  const inter = shared.length;
+  if (!inter) return 0;
+  // One distinctive product/brand token (obsidian, livesync, navidrome…) is enough
+  if (shared.some((t) => t.length >= 7)) return 0.8;
   if (inter >= 2) return 0.7 + Math.min(inter, 5) * 0.05;
-  if (inter === 1 && (A.size <= 4 || B.size <= 4)) return 0.5;
-  return inter / (A.size + B.size - inter);
+  return 0;
 }
 
 function pairScore(ruPost, enPost) {
