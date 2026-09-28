@@ -1,0 +1,33 @@
+name: Clean LLM index
+
+on:
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'Dry run (no writes)'
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+jobs:
+  clean:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Clean llms noise, authors, howto/hreflang tags
+        env:
+          GHOST_ADMIN_API_URL: ${{ secrets.GHOST_ADMIN_API_URL }}
+          GHOST_ADMIN_API_KEY: ${{ secrets.GHOST_ADMIN_API_KEY }}
+          GHOST_EN_ADMIN_API_URL: ${{ secrets.GHOST_EN_ADMIN_API_URL }}
+          GHOST_EN_ADMIN_API_KEY: ${{ secrets.GHOST_EN_ADMIN_API_KEY }}
+        run: |
+          if [ "${{ inputs.dry_run }}" = "true" ]; then
+            node scripts/clean-llms-index.js --dry-run
+          else
+            node scripts/clean-llms-index.js
+          fi

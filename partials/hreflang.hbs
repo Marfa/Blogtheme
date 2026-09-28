@@ -1,0 +1,17 @@
+{{!-- Self + homepage language links; post pairs use codeinjection_head (set by clean-llms-index.js) --}}
+{{#is "post,page"}}
+    {{#post}}
+        <link rel="alternate" hreflang="{{@site.locale}}" href="{{url absolute="true"}}">
+        <link rel="alternate" hreflang="x-default" href="{{url absolute="true"}}">
+    {{/post}}
+{{else}}
+    {{#match @site.locale "=" "en"}}
+        <link rel="alternate" hreflang="en" href="{{@site.url}}/">
+        <link rel="alternate" hreflang="ru" href="https://blog.themarfa.name/">
+        <link rel="alternate" hreflang="x-default" href="https://blog.themarfa.name/">
+    {{else}}
+        <link rel="alternate" hreflang="ru" href="{{@site.url}}/">
+        <link rel="alternate" hreflang="en" href="https://en.blog.themarfa.name/">
+        <link rel="alternate" hreflang="x-default" href="{{@site.url}}/">
+    {{/match}}
+{{/is}}

@@ -1,6 +1,37 @@
-User-agent: *
+# Sitemaps (both hosts share this theme file)
 Sitemap: https://blog.themarfa.name/sitemap.xml
 Sitemap: https://en.blog.themarfa.name/sitemap.xml
+
+# Shared private paths
+User-agent: *
+Disallow: /ghost/
+Disallow: /p/
+Disallow: /email/
+Disallow: /r/
+Disallow: /webmentions/receive/
+Disallow: /tag/
+Disallow: /author/
+
+# Search engines: do not index LLM markdown exports (HTML canonical only).
+# Ghost(Pro) cannot set X-Robots-Tag on *.md from the theme; Disallow is the control.
+User-agent: Googlebot
+Disallow: /ghost/
+Disallow: /p/
+Disallow: /email/
+Disallow: /r/
+Disallow: /webmentions/receive/
+Disallow: /tag/
+Disallow: /author/
+Disallow: /*.md$
+Disallow: /llms.txt
+Disallow: /llms-full.txt
+
+User-agent: Googlebot-News
+Disallow: /*.md$
+Disallow: /llms.txt
+Disallow: /llms-full.txt
+
+User-agent: Bingbot
 Disallow: /ghost/
 Disallow: /p/
 Disallow: /email/
@@ -23,5 +54,82 @@ User-agent: YandexAdditionalBot
 Disallow: /tag/
 Disallow: /author/
 Disallow: /*.md
+Disallow: /llms.txt
+Disallow: /llms-full.txt
+
+User-agent: DuckDuckBot
+Disallow: /*.md$
+Disallow: /llms.txt
+Disallow: /llms-full.txt
+
+# AI crawlers: allow llms.txt + per-post markdown (override the * rules below).
+User-agent: GPTBot
+Allow: /llms.txt
+Allow: /llms-full.txt
+Allow: /*.md$
+
+User-agent: ChatGPT-User
+Allow: /llms.txt
+Allow: /llms-full.txt
+Allow: /*.md$
+
+User-agent: OAI-SearchBot
+Allow: /llms.txt
+Allow: /llms-full.txt
+Allow: /*.md$
+
+User-agent: ClaudeBot
+Allow: /llms.txt
+Allow: /llms-full.txt
+Allow: /*.md$
+
+User-agent: anthropic-ai
+Allow: /llms.txt
+Allow: /llms-full.txt
+Allow: /*.md$
+
+User-agent: Claude-Web
+Allow: /llms.txt
+Allow: /llms-full.txt
+Allow: /*.md$
+
+User-agent: PerplexityBot
+Allow: /llms.txt
+Allow: /llms-full.txt
+Allow: /*.md$
+
+User-agent: Google-Extended
+Allow: /llms.txt
+Allow: /llms-full.txt
+Allow: /*.md$
+
+User-agent: Applebot-Extended
+Allow: /llms.txt
+Allow: /llms-full.txt
+Allow: /*.md$
+
+User-agent: Bytespider
+Allow: /llms.txt
+Allow: /llms-full.txt
+Allow: /*.md$
+
+User-agent: CCBot
+Allow: /llms.txt
+Allow: /llms-full.txt
+Allow: /*.md$
+
+User-agent: FacebookBot
+Allow: /llms.txt
+Allow: /llms-full.txt
+Allow: /*.md$
+
+User-agent: meta-externalagent
+Allow: /llms.txt
+Allow: /llms-full.txt
+Allow: /*.md$
+
+# Everyone else: keep markdown / llms out of generic crawlers
+User-agent: *
+Disallow: /*.md$
 Disallow: /llms.txt
 Disallow: /llms-full.txt

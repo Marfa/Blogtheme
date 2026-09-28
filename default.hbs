@@ -76,6 +76,20 @@
         <meta name="robots" content="noindex, follow">
     {{/is}}
 
+    {{!-- Verification / noise pages: keep URL for partners, out of search + AI preference --}}
+    {{#is "page"}}
+        {{#post}}
+            {{#match slug "=" "30af8eeaa0883aad5355974667c162356cab3a82"}}
+                <meta name="robots" content="noindex, nofollow">
+            {{/match}}
+            {{#match slug "=" "gogetlinks-verification"}}
+                <meta name="robots" content="noindex, nofollow">
+            {{/match}}
+        {{/post}}
+    {{/is}}
+
+    {{> hreflang}}
+
     {{!-- Telegram: JPEG + one-line description before and after ghost_head --}}
     {{#is "post,page"}}
         {{#post}}
@@ -87,13 +101,14 @@
     {{!-- Ghost outputs important style and meta data with this tag --}}
     {{ghost_head}}
 
+    {{> schema-ai}}
+
     {{#is "post,page"}}
         {{#post}}
             {{> og-telegram-image}}
             {{> og-telegram-description}}
         {{/post}}
     {{/is}}
-
     {{!-- Member pages: noindex + OG fallback (ghost_head omits og:image/description) --}}
     {{#is "signin,signup,account"}}
         <meta name="robots" content="noindex, follow">
