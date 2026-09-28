@@ -107,8 +107,17 @@ function jaccard(a, b) {
   return inter / (A.size + B.size - inter);
 }
 
+const LATIN_STOP = new Set([
+  'kak', 'how', 'the', 'for', 'and', 'with', 'from', 'your', 'into', 'onto', 'via',
+  'using', 'review', 'best', 'new', 'all', 'any', 'app', 'apps', 'mac', 'macos',
+  'windows', 'linux', 'android', 'iphone', 'google', 'free', 'easy', 'easily',
+  'quick', 'quickly', 'make', 'made', 'get', 'set', 'add', 'use',
+]);
+
 function latinTokens(s) {
-  return new Set(String(s || '').toLowerCase().match(/[a-z][a-z0-9]{2,}/g) || []);
+  return new Set(
+    (String(s || '').toLowerCase().match(/[a-z][a-z0-9]{2,}/g) || []).filter((t) => !LATIN_STOP.has(t)),
+  );
 }
 
 function latinOverlap(a, b) {
@@ -265,8 +274,29 @@ async function tagHowToPosts(apiUrl, apiKey, label) {
 }
 
 async function linkHreflang(ru, en) {
-  const ruPosts = await listRecentPosts(ru.url, ru.key, HREFLANG_RECENT);
-  const enPosts = await listRecentPosts(en.url, en.key, HREFLANG_RECENT);
+  let ruPosts = await listRecentPosts(ru.url, ru.key, HREFLANG_RECENT);
+  let enPosts = await listRecentPosts(en.url, en.key, HREFLANG_RECENT);
+
+  // Drop previous auto-links so false positives from earlier runs can be replaced.
+  for (const [site, posts] of [[ru, ruPosts], [en, enPosts]]) {
+    for (const post of posts) {
+      if (!String(post.codeinjection_head || '').includes(HREFLANG_MARK)) continue;
+      const cleaned = stripHreflangInjection(post.codeinjection_head);
+      console.log(`[hreflang] clear ${post.slug}`);
+      if (DRY) continue;
+      const updated = await adminJson(site.url, site.key, `/ghost/api/admin/posts/${post.id}/`, {
+        method: 'PUT',
+        body: JSON.stringify({
+          posts: [{ codeinjection_head: cleaned || null, updated_at: post.updated_at }],
+        }),
+      });
+      post.codeinjection_head = cleaned;
+      post.updated_at = updated.posts?.[0]?.updated_at || post.updated_at;
+    }
+  }
+
+  ruPosts = await listRecentPosts(ru.url, ru.key, HREFLANG_RECENT);
+  enPosts = await listRecentPosts(en.url, en.key, HREFLANG_RECENT);
 
   const pairs = [];
   for (const r of ruPosts) {
@@ -279,7 +309,7 @@ async function linkHreflang(ru, en) {
         best = e;
       }
     }
-    if (best && bestScore >= 0.45) pairs.push([r, best, bestScore]);
+    if (best && bestScore >= 0.7) pairs.push([r, best, bestScore]);
   }
 
   const usedEn = new Set();
@@ -293,35 +323,27 @@ async function linkHreflang(ru, en) {
   console.log(`[hreflang] pairs: ${unique.length}`);
 
   for (const [r, e, score] of unique) {
-    const ruHas = String(r.codeinjection_head || '').includes(HREFLANG_MARK);
-    const enHas = String(e.codeinjection_head || '').includes(HREFLANG_MARK);
-    if (ruHas && enHas) continue;
     console.log(`[hreflang] ${score.toFixed(2)} ${r.slug} ↔ ${e.slug}`);
     if (DRY) continue;
 
-    if (!ruHas) {
-      await adminJson(ru.url, ru.key, `/ghost/api/admin/posts/${r.id}/`, {
-        method: 'PUT',
-        body: JSON.stringify({
-          posts: [{
-            codeinjection_head: withHreflangInjection(r.codeinjection_head, 'en', e.url),
-            updated_at: r.updated_at,
-          }],
-        }),
-      });
-    }
-    if (!enHas) {
-      // refresh updated_at after possible concurrent edits — re-fetch would be safer; use e.updated_at
-      await adminJson(en.url, en.key, `/ghost/api/admin/posts/${e.id}/`, {
-        method: 'PUT',
-        body: JSON.stringify({
-          posts: [{
-            codeinjection_head: withHreflangInjection(e.codeinjection_head, 'ru', r.url),
-            updated_at: e.updated_at,
-          }],
-        }),
-      });
-    }
+    await adminJson(ru.url, ru.key, `/ghost/api/admin/posts/${r.id}/`, {
+      method: 'PUT',
+      body: JSON.stringify({
+        posts: [{
+          codeinjection_head: withHreflangInjection(r.codeinjection_head, 'en', e.url),
+          updated_at: r.updated_at,
+        }],
+      }),
+    });
+    await adminJson(en.url, en.key, `/ghost/api/admin/posts/${e.id}/`, {
+      method: 'PUT',
+      body: JSON.stringify({
+        posts: [{
+          codeinjection_head: withHreflangInjection(e.codeinjection_head, 'ru', r.url),
+          updated_at: e.updated_at,
+        }],
+      }),
+    });
   }
 }
 
