@@ -1,9 +1,8 @@
 #!/usr/bin/env node
 /**
- * Clean LLM index noise + author branding for AI citation.
+ * Clean LLM index noise for AI citation.
  *
  * - Draft verification pages (drop from llms.txt)
- * - Rename author «Гостевой» → «Редакция»
  * - Tag how-to posts with #howto (theme JSON-LD)
  * - Inject reciprocal hreflang link tags into codeinjection_head for RU↔EN pairs
  *
@@ -183,67 +182,6 @@ async function draftVerificationPages(apiUrl, apiKey, label) {
   }
 }
 
-async function findUser(apiUrl, apiKey, slug) {
-  const data = await adminJson(apiUrl, apiKey, `/ghost/api/admin/users/?filter=slug:${slug}&limit=1`);
-  return data.users?.[0] || null;
-}
-
-/** Integration tokens cannot PATCH /users — reassign recent guest posts instead. */
-async function rebrandGuestAuthor(apiUrl, apiKey, label) {
-  const guest = await findUser(apiUrl, apiKey, 'gostievoi');
-  if (!guest) {
-    console.log(`[${label}] guest author not found (ok)`);
-    return;
-  }
-
-  try {
-    const patch = {
-      name: 'Редакция',
-      bio: 'Материалы редакции All-In-One Person и приглашённых авторов.',
-      website: label === 'EN' ? 'https://en.blog.themarfa.name/' : 'https://blog.themarfa.name/',
-      updated_at: guest.updated_at,
-    };
-    console.log(`[${label}] rebrand author ${guest.slug} → ${patch.name}`);
-    if (!DRY) {
-      await adminJson(apiUrl, apiKey, `/ghost/api/admin/users/${guest.id}/`, {
-        method: 'PUT',
-        body: JSON.stringify({ users: [patch] }),
-      });
-      return;
-    }
-  } catch (err) {
-    const msg = String(err.message || err);
-    if (!msg.includes('HTTP 403')) throw err;
-    console.log(`[${label}] users API forbidden for Integration key — reassign recent posts`);
-  }
-
-  const owner =
-    (await findUser(apiUrl, apiKey, 'konstantin')) ||
-    (await findUser(apiUrl, apiKey, 'immarfa'));
-  if (!owner) {
-    console.log(`[${label}] owner author not found; skip post reassignment`);
-    return;
-  }
-
-  const posts = await listRecentPosts(apiUrl, apiKey, HOWTO_SCAN_LIMIT);
-  let n = 0;
-  for (const post of posts) {
-    const authors = post.authors || [];
-    const isGuest = authors.some((a) => a.slug === 'gostievoi' || a.id === guest.id);
-    if (!isGuest) continue;
-    n += 1;
-    console.log(`[${label}] author ${owner.slug} ← ${post.slug}`);
-    if (DRY) continue;
-    await adminJson(apiUrl, apiKey, `/ghost/api/admin/posts/${post.id}/`, {
-      method: 'PUT',
-      body: JSON.stringify({
-        posts: [{ authors: [{ id: owner.id }], updated_at: post.updated_at }],
-      }),
-    });
-  }
-  console.log(`[${label}] posts reassigned off guest: ${n}`);
-}
-
 async function ensureHowToTag(apiUrl, apiKey) {
   const found = await adminJson(apiUrl, apiKey, `/ghost/api/admin/tags/?filter=${encodeURIComponent('name:#howto')}&limit=1`);
   if (found.tags?.[0]) return found.tags[0];
@@ -357,7 +295,6 @@ async function runSite(label, url, key) {
   }
   console.log(`\n=== ${label} ${url} ===`);
   await draftVerificationPages(url, key, label);
-  await rebrandGuestAuthor(url, key, label);
   await tagHowToPosts(url, key, label);
   return { url, key };
 }
