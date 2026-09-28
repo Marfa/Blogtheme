@@ -112,6 +112,8 @@ const LATIN_STOP = new Set([
   'using', 'review', 'best', 'new', 'all', 'any', 'app', 'apps', 'mac', 'macos',
   'windows', 'linux', 'android', 'iphone', 'google', 'free', 'easy', 'easily',
   'quick', 'quickly', 'make', 'made', 'get', 'set', 'add', 'use',
+  'betting', 'sports', 'browser', 'tokens', 'advanced', 'manager', 'status',
+  'volume', 'music', 'apple', 'task', 'online', 'games', 'trending',
 ]);
 
 function latinTokens(s) {
