@@ -74,7 +74,7 @@ async function listRecentPosts(apiUrl, apiKey, limit) {
     const data = await adminJson(
       apiUrl,
       apiKey,
-      `/ghost/api/admin/posts/?limit=${perPage}&page=${page}&filter=status:published&order=published_at%20desc&formats=mobiledoc&include=tags`,
+      `/ghost/api/admin/posts/?limit=${perPage}&page=${page}&filter=status:published&order=published_at%20desc&formats=mobiledoc&include=tags,authors`,
     );
     const rows = data.posts || [];
     if (!rows.length) break;
@@ -144,25 +144,65 @@ async function draftVerificationPages(apiUrl, apiKey, label) {
   }
 }
 
+async function findUser(apiUrl, apiKey, slug) {
+  const data = await adminJson(apiUrl, apiKey, `/ghost/api/admin/users/?filter=slug:${slug}&limit=1`);
+  return data.users?.[0] || null;
+}
+
+/** Integration tokens cannot PATCH /users — reassign recent guest posts instead. */
 async function rebrandGuestAuthor(apiUrl, apiKey, label) {
-  const data = await adminJson(apiUrl, apiKey, '/ghost/api/admin/users/?filter=slug:gostievoi&limit=1');
-  const guest = data.users?.[0];
+  const guest = await findUser(apiUrl, apiKey, 'gostievoi');
   if (!guest) {
     console.log(`[${label}] guest author not found (ok)`);
     return;
   }
-  const patch = {
-    name: 'Редакция',
-    bio: 'Материалы редакции All-In-One Person и приглашённых авторов.',
-    website: label === 'EN' ? 'https://en.blog.themarfa.name/' : 'https://blog.themarfa.name/',
-    updated_at: guest.updated_at,
-  };
-  console.log(`[${label}] rebrand author ${guest.slug} → ${patch.name}`);
-  if (DRY) return;
-  await adminJson(apiUrl, apiKey, `/ghost/api/admin/users/${guest.id}/`, {
-    method: 'PUT',
-    body: JSON.stringify({ users: [patch] }),
-  });
+
+  try {
+    const patch = {
+      name: 'Редакция',
+      bio: 'Материалы редакции All-In-One Person и приглашённых авторов.',
+      website: label === 'EN' ? 'https://en.blog.themarfa.name/' : 'https://blog.themarfa.name/',
+      updated_at: guest.updated_at,
+    };
+    console.log(`[${label}] rebrand author ${guest.slug} → ${patch.name}`);
+    if (!DRY) {
+      await adminJson(apiUrl, apiKey, `/ghost/api/admin/users/${guest.id}/`, {
+        method: 'PUT',
+        body: JSON.stringify({ users: [patch] }),
+      });
+      return;
+    }
+  } catch (err) {
+    const msg = String(err.message || err);
+    if (!msg.includes('HTTP 403')) throw err;
+    console.log(`[${label}] users API forbidden for Integration key — reassign recent posts`);
+  }
+
+  const owner =
+    (await findUser(apiUrl, apiKey, 'konstantin')) ||
+    (await findUser(apiUrl, apiKey, 'immarfa'));
+  if (!owner) {
+    console.log(`[${label}] owner author not found; skip post reassignment`);
+    return;
+  }
+
+  const posts = await listRecentPosts(apiUrl, apiKey, HOWTO_SCAN_LIMIT);
+  let n = 0;
+  for (const post of posts) {
+    const authors = post.authors || [];
+    const isGuest = authors.some((a) => a.slug === 'gostievoi' || a.id === guest.id);
+    if (!isGuest) continue;
+    n += 1;
+    console.log(`[${label}] author ${owner.slug} ← ${post.slug}`);
+    if (DRY) continue;
+    await adminJson(apiUrl, apiKey, `/ghost/api/admin/posts/${post.id}/`, {
+      method: 'PUT',
+      body: JSON.stringify({
+        posts: [{ authors: [{ id: owner.id }], updated_at: post.updated_at }],
+      }),
+    });
+  }
+  console.log(`[${label}] posts reassigned off guest: ${n}`);
 }
 
 async function ensureHowToTag(apiUrl, apiKey) {
