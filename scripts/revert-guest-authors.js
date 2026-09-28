@@ -168,10 +168,14 @@ async function main() {
   const apiKey = process.env.GHOST_ADMIN_API_KEY;
   if (!apiUrl || !apiKey) throw new Error('Set GHOST_ADMIN_API_URL and GHOST_ADMIN_API_KEY');
 
-  const guestData = await adminJson(apiUrl, apiKey, '/ghost/api/admin/users/?filter=slug:gostievoi&limit=1');
-  const guest = guestData.users?.[0];
-  if (!guest) throw new Error('Author gostievoi not found');
-  console.log(`guest author: ${guest.id} ${guest.name}`);
+  const guestData = await adminJson(apiUrl, apiKey, '/ghost/api/admin/users/?filter=slug:redaktsiia&limit=1');
+  let guest = guestData.users?.[0];
+  if (!guest) {
+    const legacy = await adminJson(apiUrl, apiKey, '/ghost/api/admin/users/?filter=slug:gostievoi&limit=1');
+    guest = legacy.users?.[0];
+  }
+  if (!guest) throw new Error('Author redaktsiia/gostievoi not found');
+  console.log(`guest author: ${guest.id} ${guest.slug} (${guest.name})`);
 
   let ok = 0;
   let skip = 0;
@@ -186,13 +190,13 @@ async function main() {
       console.log(`missing: ${slug}`);
       continue;
     }
-    const already = (post.authors || []).some((a) => a.slug === 'gostievoi' || a.id === guest.id);
+    const already = (post.authors || []).some((a) => a.id === guest.id || a.slug === guest.slug);
     if (already) {
       skip += 1;
       console.log(`already guest: ${slug}`);
       continue;
     }
-    console.log(`revert → gostievoi: ${slug}`);
+    console.log(`revert → ${guest.slug}: ${slug}`);
     if (DRY) {
       ok += 1;
       continue;
