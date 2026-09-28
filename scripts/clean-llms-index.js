@@ -98,6 +98,15 @@ function tokenSet(s) {
   return new Set(normalizeTitle(s).split(' ').filter((t) => t.length > 2));
 }
 
+function jaccard(a, b) {
+  const A = tokenSet(a);
+  const B = tokenSet(b);
+  if (!A.size || !B.size) return 0;
+  let inter = 0;
+  for (const t of A) if (B.has(t)) inter += 1;
+  return inter / (A.size + B.size - inter);
+}
+
 function latinTokens(s) {
   return new Set(String(s || '').toLowerCase().match(/[a-z][a-z0-9]{2,}/g) || []);
 }
