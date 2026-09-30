@@ -175,6 +175,8 @@
 </script>
 
 {{!-- Ghost outputs important scripts and data with this tag --}}
+{{!-- Ghost CDN image failover (storage.ghost.io -> img / feeds /gimg) --}}
+<script src="{{asset 'js/ghost-img-proxy.js'}}" defer></script>
 {{ghost_foot}}
 </body>
 </html>
