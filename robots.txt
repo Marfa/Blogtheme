@@ -1,6 +1,9 @@
-# Sitemaps (both hosts share this theme file)
-Sitemap: https://blog.themarfa.name/sitemap.xml
-Sitemap: https://en.blog.themarfa.name/sitemap.xml
+# Sitemaps: posts + pages only (do not advertise Ghost sitemap.xml index —
+# it pulls in sitemap-tags.xml / sitemap-authors.xml).
+Sitemap: https://blog.themarfa.name/sitemap-posts.xml
+Sitemap: https://blog.themarfa.name/sitemap-pages.xml
+Sitemap: https://en.blog.themarfa.name/sitemap-posts.xml
+Sitemap: https://en.blog.themarfa.name/sitemap-pages.xml
 
 # Shared private paths
 User-agent: *
