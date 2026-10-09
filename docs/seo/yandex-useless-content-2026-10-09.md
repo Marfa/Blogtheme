@@ -18,6 +18,9 @@ Stop advertising tag/author catalogs to Yandex without changing Ghost tag taxono
 | Yandex user-added sitemaps RU: `sitemap-posts.xml`, `sitemap-pages.xml` | API 201 (2026-10-09) |
 | Yandex user-added sitemaps EN: `sitemap-posts.xml`, `sitemap-pages.xml` | API 201 (2026-10-09) |
 | Removed EN user-added `sitemap.xml` index | API 204 (2026-10-09) |
+| Theme deploy RU+EN | Actions `Deploy Theme` success; live `robots.txt` shows posts+pages only |
+| Recrawl `robots.txt` (RU+EN) | API 202 (2026-10-09) — old ROBOTS_TXT `sitemap.xml` rows may linger until Yandex re-parses |
+| Clean LLM index Action | Success: verification pages already draft; `#howto` tags + hreflang refresh |
 
 After theme deploy, ROBOTS_TXT-sourced `sitemap.xml` entries should drop on the next Yandex robots re-read.
 
@@ -59,11 +62,16 @@ Attach: screenshot of robots Sitemap lines + prefix-delete queue.
 
 ## Content pass (CMS)
 
-Posts live in Ghost, not this repo. Minimal pass:
+Posts live in Ghost, not this repo.
 
-1. Run GitHub Action **Clean LLM index** (drafts verification pages already listed in `scripts/clean-llms-index.js`).
-2. Manually refresh top Yandex-demand posts (from Sep audit): Rutracker Android, R7 Office how-tos, Appdater / SuperShift / Twitch clusters — drop dead offers, keep unique how-to value.
-3. Draft or delete obvious stubs / expired promo posts.
+**Done via Action (2026-10-09):** `Clean LLM index` — RU verification page already draft; EN `gogetlinks-verification` already draft; recent how-tos tagged `#howto`; hreflang pairs refreshed.
+
+**Still manual in Ghost Admin (top Yandex demand from Sep audit):**
+
+1. `kak-poluchit-dostup-k-rutracker-s-android-biez-vpn` — refresh facts, drop dead workarounds.
+2. R7 Office / spreadsheet how-tos — update screenshots/steps if stale.
+3. Appdater / SuperShift / Twitch clusters — remove expired promos; keep unique how-to value.
+4. Scan recent `[Скидка]` / promo posts — draft if offer is dead.
 
 ## Measure later
 
