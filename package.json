@@ -76,7 +76,9 @@
     "minimatch@10": {
       "brace-expansion": "5.0.9"
     },
-    "immutable": "4.3.9"
+    "immutable": "4.3.9",
+    "source-map-js": "1.2.2",
+    "postcss-selector-parser": "7.1.6"
   },
   "config": {
     "custom": {
