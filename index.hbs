@@ -115,32 +115,20 @@
             </div>
         </div>
 
-        {{!-- Main Tags --}}
-        <div class="section">
-            <div class="section__title m-b">{{t "Explore topics"}}</div>
-
-            {{#get "tags" include="count.posts" order="count.posts desc" limit="7"}}
-                <div class="row">
-                    <div class="col-xs-12 col-md-6 col-xl-4 featured-tag">
-                        {{#foreach tags to="1"}}
-                            {{> tag-card class="h-100" img=true}}
-                        {{/foreach}}
-                    </div>
-
-                    <div class="col-xs-12 col-md-6 col-xl-4 tag-wrap">
-                        {{#foreach tags from="2" to="4" columns="3"}}
-                            {{> tag-card}}
-                        {{/foreach}}
-                    </div>
-
-                    <div class="col-xs-12 col-xl-4 tag-wrap">
-                        {{#foreach tags from="5" to="7"}}
-                            {{> tag-card}}
+        {{!-- Featured posts: indexable HTML URLs from the only reliably indexed surface (homepage).
+             Tag hubs are noindex + robots Disallow — do not spend homepage internal links there. --}}
+        {{#get "posts" filter="featured:true" limit="6" include="authors,tags" as |featured|}}
+            {{#if featured}}
+                <div class="section">
+                    <div class="section__title m-b">{{t "Featured posts"}}</div>
+                    <div class="grid post-container" {{#if @custom.post_card_tag_accent_bg}}data-grid-color="true"{{/if}}>
+                        {{#foreach featured}}
+                            {{> post-card img=true}}
                         {{/foreach}}
                     </div>
                 </div>
-            {{/get}}
-        </div>
+            {{/if}}
+        {{/get}}
         {{!-- Наши друзья --}}
 <!--        <div class="section">-->
 <!--            <div class="section__title m-b">Наши друзья</div>-->

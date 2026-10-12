@@ -24,41 +24,21 @@ Stop advertising tag/author catalogs to Yandex without changing Ghost tag taxono
 
 After theme deploy, ROBOTS_TXT-sourced `sitemap.xml` entries should drop on the next Yandex robots re-read.
 
-## Must finish in Yandex Webmaster UI (no API)
+## Webmaster UI (done 2026-10-09 — user confirmed)
 
-URL deletion and threat resubmit are **UI-only**.
+Prefix delete `/tag/`, `/author/` (RU+EN) and threat resubmit completed in UI.
 
-### 1. Remove pages from search (prefix)
+### API check after UI (2026-10-09 late morning)
 
-For **RU** and **EN** hosts → Tools → Remove pages from search → **By prefix**:
-
-- `https://blog.themarfa.name/tag/`
-- `https://blog.themarfa.name/author/`
-- `https://en.blog.themarfa.name/tag/`
-- `https://en.blog.themarfa.name/author/`
-
-Optional (markdown duplicates):
-
-- `https://blog.themarfa.name/` … pages matching `*.md` — submit top samples or wait for Disallow; Disallow `/*.md` already in robots for Yandex.
-
-Removal is accepted only while Disallow remains (already set).
-
-### 2. Confirm sitemaps
-
-Per host, keep only:
-
-- `…/sitemap-posts.xml`
-- `…/sitemap-pages.xml`
-
-Remove any remaining `…/sitemap.xml` index if still listed after robots refresh.
-
-### 3. Resubmit threat
-
-Security / Threats → useless content → mark fixed → comment (RU example):
-
-> Закрыли индексацию /tag/ и /author/ (robots Disallow + noindex). В robots и Вебмастере заявлены только sitemap-posts.xml и sitemap-pages.xml — каталог тегов/авторов больше не рекламируется. Отправлены на удаление префиксы /tag/ и /author/. Markdown *.md закрыт Disallow для Yandex. Посты с мёртвыми офферами/заглушками выведены из публикации или обновлены.
-
-Attach: screenshot of robots Sitemap lines + prefix-delete queue.
+| Signal | Value |
+| --- | --- |
+| RU searchable | **5773** (was ~7722 in Sep audit) — drop consistent with tag deindex |
+| EN searchable | 1310 |
+| `THREATS` | still **PRESENT** (expected until Yandex finishes review, up to ~30d) |
+| User-added sitemaps | posts + pages only (RU+EN) |
+| Live robots Sitemap | posts + pages only |
+| Stale `sitemap.xml` in API list | still `ROBOTS_TXT` source — lag until robots re-parse |
+| New: `ERROR_IN_ROBOTS_TXT` | PRESENT RU+EN — watch; may clear after robots re-read |
 
 ## Content pass (CMS)
 
