@@ -189,6 +189,24 @@
   var FLAG = "ghostImgProxyBase";
   var ATTR = "data-ghost-img-proxy";
 
+  /** True when url is prefix plus end or a URL boundary (/ ? #). */
+  function urlHasPrefix(url, prefix) {
+    if (!url || url.indexOf(prefix) !== 0) return false;
+    if (url.length === prefix.length) return true;
+    var c = url.charAt(prefix.length);
+    return c === "/" || c === "?" || c === "#";
+  }
+
+  function srcsetHasPrefix(srcset, prefix) {
+    if (!srcset) return false;
+    var parts = srcset.split(",");
+    for (var i = 0; i < parts.length; i++) {
+      var u = parts[i].trim().split(/\s+/)[0];
+      if (urlHasPrefix(u, prefix)) return true;
+    }
+    return false;
+  }
+
   function getActiveProxy() {
     try {
       var v = sessionStorage.getItem(FLAG);
@@ -208,15 +226,15 @@
   }
 
   function stripKnownProxy(url) {
-    if (url.indexOf(PROXY_FALLBACK) === 0) return ORIGIN + url.slice(PROXY_FALLBACK.length);
-    if (url.indexOf(PROXY) === 0) return ORIGIN + url.slice(PROXY.length);
+    if (urlHasPrefix(url, PROXY_FALLBACK)) return ORIGIN + url.slice(PROXY_FALLBACK.length);
+    if (urlHasPrefix(url, PROXY)) return ORIGIN + url.slice(PROXY.length);
     return url;
   }
 
   function toProxy(url, base) {
     if (!url) return url;
     var originUrl = stripKnownProxy(url);
-    if (originUrl.indexOf(ORIGIN) !== 0) return url;
+    if (!urlHasPrefix(originUrl, ORIGIN)) return url;
     return base + originUrl.slice(ORIGIN.length);
   }
 
@@ -241,15 +259,15 @@
     var srcset = img.getAttribute("srcset") || "";
     var current = img.currentSrc || src;
     var involved =
-      current.indexOf(ORIGIN) === 0 ||
-      src.indexOf(ORIGIN) === 0 ||
-      srcset.indexOf(ORIGIN) !== -1 ||
-      current.indexOf(PROXY) === 0 ||
-      src.indexOf(PROXY) === 0 ||
-      current.indexOf(PROXY_FALLBACK) === 0 ||
-      src.indexOf(PROXY_FALLBACK) === 0 ||
-      srcset.indexOf(PROXY) !== -1 ||
-      srcset.indexOf(PROXY_FALLBACK) !== -1;
+      urlHasPrefix(current, ORIGIN) ||
+      urlHasPrefix(src, ORIGIN) ||
+      srcsetHasPrefix(srcset, ORIGIN) ||
+      urlHasPrefix(current, PROXY) ||
+      urlHasPrefix(src, PROXY) ||
+      urlHasPrefix(current, PROXY_FALLBACK) ||
+      urlHasPrefix(src, PROXY_FALLBACK) ||
+      srcsetHasPrefix(srcset, PROXY) ||
+      srcsetHasPrefix(srcset, PROXY_FALLBACK);
     if (!involved) return;
     img.setAttribute(ATTR, base);
     if (src) img.setAttribute("src", toProxy(src, base));
@@ -262,9 +280,9 @@
     if (!base) return;
     var srcset = el.getAttribute("srcset") || "";
     if (
-      srcset.indexOf(ORIGIN) === -1 &&
-      srcset.indexOf(PROXY) === -1 &&
-      srcset.indexOf(PROXY_FALLBACK) === -1
+      !srcsetHasPrefix(srcset, ORIGIN) &&
+      !srcsetHasPrefix(srcset, PROXY) &&
+      !srcsetHasPrefix(srcset, PROXY_FALLBACK)
     ) {
       return;
     }
@@ -286,7 +304,7 @@
     if (!t || t.tagName !== "IMG") return;
     var probe = t.currentSrc || t.getAttribute("src") || "";
 
-    if (probe.indexOf(ORIGIN) === 0) {
+    if (urlHasPrefix(probe, ORIGIN)) {
       setActiveProxy(PROXY);
       t.removeAttribute(ATTR);
       applyProxyToImg(t, PROXY);
@@ -294,7 +312,7 @@
       return;
     }
 
-    if (probe.indexOf(PROXY) === 0 && probe.indexOf(PROXY_FALLBACK) !== 0) {
+    if (urlHasPrefix(probe, PROXY) && !urlHasPrefix(probe, PROXY_FALLBACK)) {
       setActiveProxy(PROXY_FALLBACK);
       t.removeAttribute(ATTR);
       applyProxyToImg(t, PROXY_FALLBACK);
