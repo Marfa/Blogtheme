@@ -1,9 +1,7 @@
-# Sitemaps: posts + pages only (do not advertise Ghost sitemap.xml index —
-# it pulls in sitemap-tags.xml / sitemap-authors.xml).
-Sitemap: https://blog.themarfa.name/sitemap-posts.xml
-Sitemap: https://blog.themarfa.name/sitemap-pages.xml
-Sitemap: https://en.blog.themarfa.name/sitemap-posts.xml
-Sitemap: https://en.blog.themarfa.name/sitemap-pages.xml
+# No Sitemap: lines here. One theme robots.txt is served on both RU and EN hosts;
+# cross-host Sitemap URLs trigger Yandex ERROR_IN_ROBOTS_TXT, and Ghost's
+# sitemap.xml index still pulls tags/authors. Discovery = GSC + Yandex
+# user-added sitemap-posts.xml / sitemap-pages.xml only (per host).
 
 # Shared private paths
 User-agent: *
